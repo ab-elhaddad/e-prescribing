@@ -1,0 +1,48 @@
+# Main:
+- Landing Page [STATIC] (services, contact info, clinic and specialties ...)
+- About Page (feedbacks, doctors on the site ...)
+- Contact Page [STATIC] (detailed contact info, contact form)
+- Auth Page [Sign up and Sign in] (Sign up as assistant or patient, Sign in as doctor, assistant or patient)
+- Profile Page: (View all profile data and update it)
+- Logout
+
+# Doctor:
+- Patients Page 
+-- List of patients associated with the doctor
+-- Option to delete patient
+-- Form to add new patient
+
+- Assistants Page
+-- List of assistants associated with the doctor
+-- Option to delete assistant
+-- Form to add new assistant
+
+- Specific Patient Page
+-- View all patient's data and prescriptions
+-- Form to add new prescription
+-- Form to update specific prescription
+-- Option to delete prescription
+
+- Drugs Page
+-- List of available drugs added by this doctor
+-- Option to delete drug
+-- Form to add new drug
+
+- Approvement Page
+-- List of all the requested prescription approval (prescriptions which are generated from the AI model and sent by the assistant)
+-- Form to update the received prescriptions
+-- Approve and Delete prescriptions
+
+# Assistant:
+- Scan Page:
+-- Upload an image from the OS and send it to the AI model (In the background when the Model response arrives, it directly redirected to the doctor for approval)
+
+- Approvement Page
+-- Send approved prescription to the patient (which is sent from the doctor after their approval)
+
+# Patient:
+- Doctors Page
+-- List of all the associated doctors with this patient
+
+- Prescriptions Page
+-- List of all the prescriptions for this patient
