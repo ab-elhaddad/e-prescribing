@@ -29,7 +29,7 @@ export default function SelectRole({ roles }: { roles: string[] }) {
                 defaultChecked={role === "doctor"}
               />
               <span
-                className={`ml-2 ${roleState === role ? "text-sky-600" : ""}`}
+                className={`ml-2 ${roleState === role ? "text-sky-600 font-semibold" : ""}`}
               >
                 {title}
               </span>
