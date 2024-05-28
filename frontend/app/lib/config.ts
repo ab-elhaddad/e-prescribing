@@ -1,5 +1,5 @@
-const data = {
-  baseUrl: process.env.API_URL,
+const config = {
+  apiUrl: process.env.API_URL,
 }
 
-export default data;
+export default config;

@@ -11,12 +11,31 @@ import { initialState } from "./signupForm";
 import { useContext } from "react";
 import { AuthContext } from "@/app/context/AuthProvider";
 
-export default function profileForm() {
-  const { user } = useContext(AuthContext);
+export default function profileForm({
+  user,
+}: {
+  user: {
+    name: string;
+    email: string;
+    birthday: string;
+    phoneNumber: string;
+    nationalityId: string;
+    address: string;
+    gender: "male" | "female";
+    department: string;
+    type: string
+  };
+}) {
+  const { user: isAuthed } = useContext(AuthContext);
   const router = useRouter();
-  // if (!user) router.push("/login");
+  // if (!isAuthed) router.push("/login");
 
-  const [formState, formAction] = useFormState(updateProfile, initialState);
+  const updateProfileWithType = updateProfile.bind(null, user.type)
+
+  const [formState, formAction] = useFormState(
+    updateProfileWithType,
+    initialState
+  );
   return (
     <form
       action={formAction}
@@ -35,6 +54,7 @@ export default function profileForm() {
             <FullBorderInput
               type="text"
               placeholder="First Name"
+              defaultValue={user.name.split(" ")[0]}
               name="firstName"
               error={formState.errors?.firstName}
             />
@@ -43,6 +63,7 @@ export default function profileForm() {
             <FullBorderInput
               type="text"
               placeholder="Last Name"
+              defaultValue={user.name.split(" ")[1]}
               name="lastName"
               error={formState.errors?.lastName}
             />
@@ -52,6 +73,8 @@ export default function profileForm() {
           type="text"
           placeholder="Department"
           name="department"
+          disabled={user.type !== 'doctor'}
+          defaultValue={user.department}
           error={formState.errors?.department}
         />
       </div>
@@ -60,6 +83,7 @@ export default function profileForm() {
         <FullBorderInput
           type="email"
           placeholder="E-mail"
+          defaultValue={user.email}
           name="email"
           error={formState.errors?.email}
         />
@@ -68,6 +92,7 @@ export default function profileForm() {
           type="text"
           placeholder="Phone Number"
           name="phoneNumber"
+          defaultValue={user.phoneNumber}
           error={formState.errors?.phoneNumber}
         />
       </div>
@@ -76,6 +101,7 @@ export default function profileForm() {
         <FullBorderInput
           type="text"
           placeholder="Nationality ID"
+          defaultValue={user.nationalityId}
           name="nationalityId"
           error={formState.errors?.nationalityId}
         />
@@ -84,6 +110,7 @@ export default function profileForm() {
           type="text"
           placeholder="Address"
           name="address"
+          defaultValue={user.address}
           error={formState.errors?.address}
         />
       </div>
@@ -92,6 +119,7 @@ export default function profileForm() {
         <select
           name="gender"
           id="gender"
+          defaultValue={user.gender}
           className="focus:outline-none bg-transparent p-3 border-2 border-gray-200 rounded-xl shadow-sm focus:border-sky-500 my-2 w-80 w-full h-fit text-start text-left"
         >
           <option value="male">Male</option>
@@ -101,6 +129,7 @@ export default function profileForm() {
           type="date"
           placeholder="Birth Date"
           name="birthDate"
+          defaultValue={user.birthday.split('T')[0]}
           error={formState.errors?.birthDate}
         />
       </div>

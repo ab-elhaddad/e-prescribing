@@ -1,7 +1,12 @@
+"use server";
+
 import { z } from "zod";
 
-import data from "../config";
-const { baseUrl } = data;
+import config from "../config";
+import { typeShorten } from "../constants";
+import { cookies } from "next/headers";
+import { revalidatePath } from "next/cache";
+const { apiUrl } = config;
 
 const profileFormSchema = z.object({
   firstName: z
@@ -18,7 +23,8 @@ const profileFormSchema = z.object({
     }),
   department: z
     .string()
-    .max(50, "Department cannot be more than 50 characters"),
+    .max(50, "Department cannot be more than 50 characters")
+    .or(z.null()),
   email: z.string().email({ message: "Please enter a valid email address" }),
   phoneNumber: z
     .string()
@@ -38,10 +44,11 @@ const profileFormSchema = z.object({
   birthDate: z.date({ message: "Please enter a valid date" }),
 });
 
-export type ProfileForm = z.infer<typeof profileFormSchema>;
-export default profileFormSchema;
-
-export const updateProfile = async (prevState: any, formData: FormData) => {
+export const updateProfile = async (
+  type: string,
+  prevState: any,
+  formData: FormData
+) => {
   const data = {
     firstName: formData.get("firstName"),
     lastName: formData.get("lastName"),
@@ -51,6 +58,7 @@ export const updateProfile = async (prevState: any, formData: FormData) => {
     nationalityId: formData.get("nationalityId"),
     address: formData.get("address"),
     birthDate: new Date(formData.get("birthDate") as string),
+    gender: formData.get("gender"),
   };
   const validatedFields = profileFormSchema.safeParse(data);
 
@@ -61,22 +69,38 @@ export const updateProfile = async (prevState: any, formData: FormData) => {
       errors: validatedFields.error.flatten().fieldErrors,
     };
 
+  const dataToSend = {
+    name: `${data.firstName} ${data.lastName}`,
+    department: data.department || "",
+    email: data.email,
+    phoneNumber: data.phoneNumber,
+    nationalityNumber: data.nationalityId,
+    address: data.address,
+    birthday: data.birthDate,
+    gender: data.gender,
+  };
+
   try {
-    const response = await fetch(`${baseUrl}/doc/update`, {
+    await fetch(`${apiUrl}/${typeShorten[type]}/update`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        Authorization: cookies().get("authorization")?.value || "",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(dataToSend),
     });
-  } catch (error) {
+  } catch (error: any) {
+    console.error(error);
     return {
       ...prevState,
       message: "",
-      errors: { server: "An error occurred while updating your profile" },
+      errors: {
+        server: error.error || "An error occurred while updating your profile",
+      },
     };
   }
 
+  revalidatePath("/profile");
   return {
     data: validatedFields.data,
     message: "Profile updated successfully",
