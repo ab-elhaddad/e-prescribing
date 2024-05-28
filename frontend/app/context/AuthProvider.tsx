@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useEffect, useState } from "react";
+import Cookies from 'js-cookie'
 
 export const AuthContext = createContext({
   user: false,
@@ -14,7 +15,7 @@ export default function AuthProvider({
 }) {
   const [user, setUser] = useState<boolean>(false);
 
-  useEffect(() => setUser(!!localStorage.getItem("user")), []);
+  useEffect(() => setUser(!!Cookies.get('authorization')), []);
 
   const login = () => {
     setUser(true);

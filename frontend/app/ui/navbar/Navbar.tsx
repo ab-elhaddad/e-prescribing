@@ -70,8 +70,7 @@ function LoginLink({ isSidebarOpen }: { isSidebarOpen: boolean }) {
 
   const handleLogout = () => {
     logout();
-    localStorage.removeItem("user");
-    Cookies.remove("Authorization");
+    Cookies.remove("authorization");
   };
 
   const authComp = (

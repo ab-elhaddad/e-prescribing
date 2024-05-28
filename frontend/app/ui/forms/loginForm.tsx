@@ -25,33 +25,18 @@ const initialState = {
 export default function LoginForm() {
   const router = useRouter();
 
-  const { user } = useContext(AuthContext);
-  if (user) router.push("/");
+  const { user, login } = useContext(AuthContext);
+  // if (user) router.push("/");
 
   const [formState, formAction] = useFormState(loginAction, initialState);
 
-  const handleSuccess = async (token: string | null, role: string) => {
+  const handleSuccess = async (token: string | null) => {
     if (!token) return;
-    useContext(AuthContext).login();
-
-    // const user = decodeJwt(token);
-    // localStorage.setItem("user", JSON.stringify(user));
-    Cookies.set("Authorization", `Bearer ${token}`, {
-      sameSite: "strict",
-      expires: 7,
-    });
-
-    try {
-      const userData = await getUserAction(token);
-      localStorage.setItem('user', JSON.stringify(userData));
-      console.log(userData);
-      router.push("/");
-    } catch (error) {
-      console.error(error);
-    }
+    login();
+    router.push("/");
     // TODO redirect to the dashboard
   };
-  handleSuccess(formState.token, formState.data?.role);
+  handleSuccess(formState.token);
 
   return (
     <form

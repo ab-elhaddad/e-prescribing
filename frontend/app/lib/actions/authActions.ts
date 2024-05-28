@@ -2,10 +2,12 @@
 
 import { redirect } from "next/navigation";
 import { z } from "zod";
+import { jwtDecode } from "jwt-decode";
+import { cookies } from "next/headers";
 
-import data from "../config";
 import config from "../config";
-const { baseUrl } = data;
+import { typeShorten } from "../constants";
+const { apiUrl } = config;
 
 const SignupFormSchema = z
   .object({
@@ -54,7 +56,7 @@ export async function signupAction(prevState: any, formData: FormData) {
   const fullName = `${firstName} ${lastName}`;
 
   try {
-    const response = await fetch(`${baseUrl}/pat/signup`, {
+    await fetch(`${apiUrl}/pat/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -120,7 +122,7 @@ export async function loginAction(prevState: any, formData: FormData) {
   try {
     // throw { error: "Thrown error." };
 
-    const response = await fetch(`${baseUrl}${endpoint}`, {
+    const response = await fetch(`${apiUrl}${endpoint}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -129,22 +131,35 @@ export async function loginAction(prevState: any, formData: FormData) {
         email,
         password,
       }),
+    }).then((value) => value.json());
+
+    const {
+      tokens,
+    }: { tokens: Array<{ token: string; _id: string; userType: string }> } =
+      response;
+
+    const token = tokens?.at(-1)?.token || "";
+
+    cookies().set("authorization", `Bearer ${token}`, {
+      sameSite: "strict",
+      maxAge: 60 * 60 * 24 * 7, // 1 week
     });
 
-    const { tokens } = await response.json();
-    // cookies().set("Authorization", tokens[0].token, {
-    //   sameSite: "strict",
-    //   // secure: true,
-    //   maxAge: 60 * 60 * 24 * 7, // 1 week
-    // });
-
-    // redirect("/");
+    const { userType } = jwtDecode(token) as {
+      userType: string;
+      _id: string;
+      iat: number;
+    };
+    cookies().set("userType", userType, {
+      sameSite: "strict",
+      maxAge: 60 * 60 * 24 * 7, // 1 week
+    });
 
     return {
       data,
       errors: {},
       message: "SUCCESS: Login successful",
-      token: tokens[0].token,
+      token: token,
     };
   } catch (error: any) {
     console.log(error);
@@ -158,20 +173,9 @@ export async function loginAction(prevState: any, formData: FormData) {
   }
 }
 
-export async function getUserAction (role: string) {
-  let reqRole;
-    switch (role) {
-      case "doctor":
-        reqRole = "doc";
-        break;
-      case "assistant":
-        reqRole = "ast";
-        break;
-      case "patient":
-        reqRole = "pat";
-        break;
-    }
-
-    const userData = fetch(`${config.baseUrl}/${reqRole}/`).then((res) => res);
-    return userData;
-  }
+export async function getUserAction(role: string) {
+  const userData = await fetch(`${config.apiUrl}/${typeShorten[role]}/`).then(
+    (res) => res
+  );
+  return userData;
+}
