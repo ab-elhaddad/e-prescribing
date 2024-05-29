@@ -4,14 +4,12 @@ import { useContext } from "react";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import Cookies from "js-cookie";
 
-import decodeJwt from "@/app/lib/utils/decodeJwt";
 import SelectRole from "../custom/selectRole";
 import BottomBorderInput from "../custom/BottomBorderInput";
 import Button from "../custom/Button";
 
-import { loginAction, getUserAction } from "@/app/lib/actions/authActions";
+import { loginAction } from "@/app/lib/actions/authActions";
 import { AuthContext } from "@/app/context/AuthProvider";
 import { ZodError } from "../custom/ZodError";
 
@@ -62,16 +60,14 @@ export default function LoginForm() {
         <SelectRole roles={["doctor", "assistant", "patient"]} />
       </div>
 
-      {formState.message?.startsWith("ERROR") && (
         <ZodError
-          error={[formState.message.split("ERROR: ")[1]]}
+          error={[formState.errors.server]}
           style={{
             display: "flex",
             justifyContent: "center",
             fontSize: ".85rem",
           }}
         />
-      )}
       <Button body="Log in" />
       <p className="mt-5">
         Don't have an account?{" "}

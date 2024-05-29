@@ -102,16 +102,14 @@ export default function SignupForm() {
           />
         </div>
 
-        {formState.message?.startsWith("ERROR") && (
           <ZodError
-            error={[formState.message.split("ERROR: ")[1]]}
+            error={formState.errors.server}
             style={{
               display: "flex",
               justifyContent: "center",
               fontSize: ".85rem",
             }}
           />
-        )}
         <button
           type="submit"
           className="bg-sky-600 duration-300 hover:bg-sky-500 text-white font-semibold p-3 rounded-md w-40 mt-3"

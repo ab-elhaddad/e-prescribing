@@ -72,7 +72,7 @@ export async function signupAction(prevState: any, formData: FormData) {
   } catch (error: any) {
     return {
       ...prevState,
-      errors: {},
+      errors: { server: error.error || "An error occurred. Please try again later."},
       message:
         "ERROR: " +
         (error.error || "An error occurred. Please try again later."),
@@ -165,7 +165,9 @@ export async function loginAction(prevState: any, formData: FormData) {
     console.log(error);
     return {
       ...prevState,
-      errors: {},
+      errors: {
+        server: error.error || "An error occurred. Please try again later.",
+      },
       message:
         "ERROR: " +
         (error.error || "An error occurred. Please try again later."),
