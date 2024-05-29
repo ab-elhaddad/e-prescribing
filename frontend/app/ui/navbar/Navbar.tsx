@@ -1,12 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import Cookies from "js-cookie";
 import { useContext, useState } from "react";
 import { usePathname } from "next/navigation";
-import Cookies from "js-cookie";
+
 import NavLinks from "./NavLinks";
 import Logo from "../custom/Logo";
 import { AuthContext } from "@/app/context/AuthProvider";
+import { FaUser } from "react-icons/fa6";
 
 export default function Navbar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -15,13 +17,13 @@ export default function Navbar() {
     setIsSidebarOpen(!isSidebarOpen);
   };
   return (
-    <div className="bg-white w-full sticky z-20">
+    <div className="bg-white w-full fixed z-50">
       <nav
         className="flex items-center justify-between p-5 lg:px-8 bg-white border-b-2"
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
-          <Link href="/" className="-m-1.5 p-1.5 flex">
+          <Link href="/home" className="-m-1.5 p-1.5 flex">
             <Logo size={32} />
             {/* <span className="h-8 w-auto text-blue-500 text-lg font-semibold">
               E-Prescribing
@@ -71,18 +73,21 @@ function LoginLink({ isSidebarOpen }: { isSidebarOpen: boolean }) {
   const handleLogout = () => {
     logout();
     Cookies.remove("authorization");
+    if (path === "/profile") {
+      location.href = "/home";
+    }
   };
 
   const authComp = (
-    <div className="flex">
+    <div className="flex items-center gap-x-3 text-sky-900">
       <Link
         href="/profile"
-        className="text-sm font-semibold leading-6 text-gray-900 hover:text-sky-500 duration-300 mx-1"
+        className="text-lg hover:text-sky-600 duration-300"
       >
-        Profile
+        <FaUser/>
       </Link>
       <p
-        className="text-sm font-semibold leading-6 text-gray-900 hover:text-sky-500 duration-300 mx-1 cursor-pointer"
+        className="text-sm font-semibold hover:text-sky-600 duration-300 cursor-pointer"
         onClick={handleLogout}
       >
         Logout
@@ -93,15 +98,15 @@ function LoginLink({ isSidebarOpen }: { isSidebarOpen: boolean }) {
   const unauthComp =
     path === "/login" || path === "/signup" ? (
       <Link
-        href="/"
-        className="text-sm font-semibold leading-6 text-gray-900 hover:text-sky-500 duration-300"
+        href="/home"
+        className="text-sm font-semibold text-sky-900 hover:text-sky-600 duration-300"
       >
         <span aria-hidden="true">&larr;</span> Home
       </Link>
     ) : (
       <Link
         href="/login"
-        className="text-sm font-semibold leading-6 text-gray-900 hover:text-sky-500 duration-300"
+        className="text-sm font-semibold text-sky-900 hover:text-sky-600 duration-300"
       >
         Log in <span aria-hidden="true">&rarr;</span>
       </Link>
