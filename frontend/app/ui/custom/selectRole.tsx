@@ -4,10 +4,9 @@ import { useState } from "react";
 import { clsx } from 'clsx';
 
 export default function SelectRole({ roles }: { roles: string[] }) {
-  const [roleState, setRoleState] = useState<string | null>(null);
+  const [roleState, setRoleState] = useState(roles[0]);
   
   if (roles.length === 0) return null;
-  setRoleState(roles[0]);
 
   const handleRoleChange = (e: any) => {
     setRoleState(e.target.value);
