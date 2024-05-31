@@ -1,13 +1,15 @@
 "use client";
 
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import Cookies from 'js-cookie'
 
-export const AuthContext = createContext({
+const AuthContext = createContext({
   user: false,
   login: () => {},
   logout: () => {},
 });
+export const useAuth = () => useContext(AuthContext);
+
 export default function AuthProvider({
   children,
 }: {

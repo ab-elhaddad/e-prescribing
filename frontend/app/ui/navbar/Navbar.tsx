@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 
 import NavLinks from "./NavLinks";
 import Logo from "../custom/Logo";
-import { AuthContext } from "@/app/context/AuthProvider";
+import { useAuth } from "@/app/context/AuthProvider";
 import { FaUser } from "react-icons/fa6";
 
 export default function Navbar() {
@@ -68,7 +68,7 @@ export default function Navbar() {
 
 function LoginLink({ isSidebarOpen }: { isSidebarOpen: boolean }) {
   const path = usePathname();
-  const { user, logout } = useContext(AuthContext);
+  const { user, logout } = useAuth();
 
   const handleLogout = () => {
     logout();
@@ -80,18 +80,15 @@ function LoginLink({ isSidebarOpen }: { isSidebarOpen: boolean }) {
 
   const authComp = (
     <div className="flex items-center gap-x-3 text-sky-900">
-      <Link
-        href="/profile"
-        className="text-lg hover:text-sky-600 duration-300"
-      >
-        <FaUser/>
-      </Link>
       <p
-        className="text-sm font-semibold hover:text-sky-600 duration-300 cursor-pointer"
+        className="text-sm hover:text-sky-600 duration-300 cursor-pointer"
         onClick={handleLogout}
       >
         Logout
       </p>
+      <Link href="/profile" className="text-lg hover:text-sky-600 duration-300">
+        <FaUser />
+      </Link>
     </div>
   );
 

@@ -43,7 +43,7 @@ export default async function Page() {
   const Icon = getUserIcon(user.type);
   return (
     <>
-    <PurpleHaloGroup hiddenIds={[5]}/>
+    <PurpleHaloGroup hiddenIds={[1, 4, 5]}/>
     <div>
       <Header title="Your Profile" />
       <Icon className="text-10xl text-sky-100 bg-sky-700 p-5 rounded-full absolute top-64 left-44 z-30" />

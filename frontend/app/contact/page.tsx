@@ -9,7 +9,7 @@ export default function Page() {
       <div className="mx-24 my-24 flex gap-5">
         {/* Contact Info */}
         <div
-          className="p-5 pb-8 rounded-lg flex flex-col gap-5 w-96 h-fit bg-slate-50"
+          className="p-5 pb-8 rounded-lg flex flex-col gap-5 w-96 h-fit bg-gray-50"
         >
           <div className="flex items-start mb-2 gap-2">
             <FaLocationArrow className="bg-sky-200 p-1 rounded-full text-sky-600 text-xl mt-1" />

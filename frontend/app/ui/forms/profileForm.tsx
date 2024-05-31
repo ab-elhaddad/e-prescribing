@@ -8,8 +8,7 @@ import Button from "../custom/Button";
 
 import { updateProfile } from "@/app/lib/actions/profileActions";
 import { initialState } from "./signupForm";
-import { useContext } from "react";
-import { AuthContext } from "@/app/context/AuthProvider";
+import { useAuth } from "@/app/context/AuthProvider";
 
 export default function profileForm({
   user,
@@ -26,7 +25,7 @@ export default function profileForm({
     type: string
   };
 }) {
-  const { user: isAuthed } = useContext(AuthContext);
+  const { user: isAuthed } = useAuth();
   const router = useRouter();
   // if (!isAuthed) router.push("/login");
 
@@ -39,7 +38,7 @@ export default function profileForm({
   return (
     <form
       action={formAction}
-      className="my-20 pb-10 pt-6 px-10 rounded-lg flex flex-col gap-5 w-full bg-slate-50 relative z-20 shadow-md"
+      className="my-20 pb-10 pt-6 px-10 rounded-lg flex flex-col gap-5 w-full bg-gray-50 relative z-20 shadow-md"
     >
       <div className="flex justify-between items-start mb-5">
         {/* <h1 className="text-3xl text-sky-700 font-bold ml-44">Your Profile</h1> */}
@@ -54,7 +53,7 @@ export default function profileForm({
             <FullBorderInput
               type="text"
               placeholder="First Name"
-              defaultValue={user.name.split(" ")[0]}
+              defaultValue={user.name?.split(" ")[0]}
               name="firstName"
               error={formState.errors?.firstName}
             />
@@ -63,7 +62,7 @@ export default function profileForm({
             <FullBorderInput
               type="text"
               placeholder="Last Name"
-              defaultValue={user.name.split(" ")[1]}
+              defaultValue={user.name?.split(" ")[1]}
               name="lastName"
               error={formState.errors?.lastName}
             />
@@ -120,16 +119,16 @@ export default function profileForm({
           name="gender"
           id="gender"
           defaultValue={user.gender}
-          className="focus:outline-none bg-transparent p-3 border-2 border-gray-200 rounded-xl shadow-sm focus:border-sky-500 my-2 w-80 w-full h-fit text-start text-left"
+          className="focus:outline-none bg-transparent text-md px-3 py-2 border border-gray-200 bg-white rounded-xl focus:border-sky-500 focus:border-2 my-2 w-full h-fit text-start"
         >
           <option value="male">Male</option>
-          <option value="Female">Male</option>
+          <option value="female">Female</option>
         </select>
         <FullBorderInput
           type="date"
           placeholder="Birth Date"
           name="birthDate"
-          defaultValue={user.birthday.split('T')[0]}
+          defaultValue={user.birthday?.split('T')[0]}
           error={formState.errors?.birthDate}
         />
       </div>

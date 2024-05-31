@@ -5,7 +5,7 @@ import { ReactNode, CSSProperties, JSXElementConstructor } from "react";
 
 import Button from "@/app/ui/custom/Button";
 import MySwiper from "@/app/ui/custom/MySwiper";
-import swiperSlides from "@/app/lib/data/swiperSlides";
+import swiperSlides from "@/app/lib/swiperSlides";
 import Divider from "@/app/ui/custom/Divider";
 import PurpleHaloGroup from '@/app/ui/custom/PurpleHaloGroup'
 
@@ -16,7 +16,7 @@ import { FaHeadphonesAlt } from "react-icons/fa";
 export default function Home() {
   return (
     <main>
-      <PurpleHaloGroup />
+      <PurpleHaloGroup hiddenIds={[1]}/>
       <div className="flex flex-col items-center justify-between w-full">
         <header className="absolute top-40 left-0 z-10 mx-20">
           <h1 className="text-7xl text-gray-700 font-bold">

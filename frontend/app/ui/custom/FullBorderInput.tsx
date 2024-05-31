@@ -13,7 +13,7 @@ export default function FullBorderInput({
   placeholder?: string;
   name: string;
   style?: React.CSSProperties;
-  error: any;
+  error?: any;
   defaultValue?: string;
   disabled?: boolean;
 }) {
@@ -25,7 +25,7 @@ export default function FullBorderInput({
         name={name}
         defaultValue={defaultValue}
         disabled={disabled === undefined ? false : disabled}
-        className={`focus:outline-none p-3 border-2 rounded-xl shadow-sm focus:border-sky-500 my-2 w-80 w-full text-start text-left
+        className={`focus:outline-none text-md px-3 py-2 border rounded-xl bg-white focus:border-sky-500 focus:border-2 my-2 w-80 w-full 
           ${error ? "border-red-500" : "border-gray-200"}
           ${disabled ? "bg-gray-200" : "bg-transparent"}`}
         style={style}

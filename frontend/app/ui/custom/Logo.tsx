@@ -1,4 +1,10 @@
-export default function Logo({ size }: { size: number }) {
+export default function Logo({
+  size,
+  color,
+}: {
+  size: number;
+  color?: string;
+}) {
   const width = size;
   const height = (size * 112.651) / 115.609;
   return (
@@ -24,7 +30,7 @@ export default function Logo({ size }: { size: number }) {
             ry="8.532"
             transform="translate(46.373)"
             fill="none"
-            stroke="#0c4a6e"
+            stroke={color || "#0c4a6e"}
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeMiterlimit="10"
@@ -35,7 +41,7 @@ export default function Logo({ size }: { size: number }) {
             d="M.75,0V25.6"
             transform="translate(54.055 72.523)"
             fill="none"
-            stroke="#0c4a6e"
+            stroke={color || "#0c4a6e"}
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeMiterlimit="10"
@@ -47,7 +53,7 @@ export default function Logo({ size }: { size: number }) {
             d="M.75,0V38.395"
             transform="translate(54.055 34.128)"
             fill="none"
-            stroke="#0c4a6e"
+            stroke={color || "#0c4a6e"}
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeMiterlimit="10"
@@ -59,7 +65,7 @@ export default function Logo({ size }: { size: number }) {
             d="M80.1,0V2.133a25.3,25.3,0,1,1-50.589,0V0L0,27.729,54.8,44.794l54.8-17.064Z"
             transform="translate(0 6.399)"
             fill="none"
-            stroke="#0c4a6e"
+            stroke={color || "#0c4a6e"}
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeMiterlimit="10"
@@ -71,7 +77,7 @@ export default function Logo({ size }: { size: number }) {
             d="M2.287,12.234A5.126,5.126,0,0,1,0,8.266C0,3.637,8.822,0,19.605,0S39.211,3.637,39.211,8.266s-8.822,8.266-19.605,8.266"
             transform="translate(35.199 54.071)"
             fill="none"
-            stroke="#0c4a6e"
+            stroke={color || "#0c4a6e"}
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeMiterlimit="10"
@@ -83,7 +89,7 @@ export default function Logo({ size }: { size: number }) {
             d="M5.48,14.931C2.108,13.225,0,11.092,0,8.532,0,3.839,7.588,0,16.863,0"
             transform="translate(37.942 72.523)"
             fill="none"
-            stroke="#0c4a6e"
+            stroke={color || "#0c4a6e"}
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeMiterlimit="10"
@@ -95,7 +101,7 @@ export default function Logo({ size }: { size: number }) {
             d="M12.647,0c7.167,0,12.647,3.839,12.647,8.532s-5.48,8.532-12.647,8.532S0,13.225,0,8.532"
             transform="translate(42.157 89.587)"
             fill="none"
-            stroke="#0c4a6e"
+            stroke={color || "#0c4a6e"}
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeMiterlimit="10"

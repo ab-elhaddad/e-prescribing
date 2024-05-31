@@ -1,6 +1,8 @@
 import { Metadata } from "next";
-import Header from "../ui/custom/Header";
+
+import Header from "@/app/ui/custom/Header";
 import PurpleHaloGroup from "@/app/ui/custom/PurpleHaloGroup";
+import Divider from '@/app/ui/custom/Divider'
 
 export const metadata: Metadata = {
   title: "About us",
@@ -40,10 +42,11 @@ export default function Page() {
             />
           </div>
 
-          <div className="flex-col justify-center mt-36">
-            <h1 className="text-5xl font-bold text-gray-700 text-center mb-10">
+          <div className="flex-col items-center justify-center mt-36">
+            <h1 className="text-5xl font-bold text-gray-700 text-center">
               Meet our <span className="text-sky-500">doctors</span>
             </h1>
+            <Divider size={10} />
             <div className="flex justify-between backdrop-blur-md bg-white/30 rounded-2xl p-3 hover:-translate-y-1 hover:shadow-sm transition duration-500 ease-in-out">
               <DoctorCard
                 doctor={{

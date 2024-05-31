@@ -2,7 +2,7 @@ import PurpleHalo from "./PurpleHalo";
 
 export default function PurpleHaloGroup({ hiddenIds }: { hiddenIds?: number[] }) {
   return (
-    <>
+    <div className="opacity-50">
       <PurpleHalo
         style={{
           marginLeft: "40vw",
@@ -39,12 +39,12 @@ export default function PurpleHaloGroup({ hiddenIds }: { hiddenIds?: number[] })
       />
       <PurpleHalo
         style={{
-          marginLeft: "-20vw",
+          marginLeft: "-5vw",
           top: "220vh",
         }}
         id={5}
         hiddenIds={hiddenIds}
       />
-    </>
+    </div>
   );
 }

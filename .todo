@@ -1,8 +1,11 @@
+✔ Fix Navbar @done (5/28/2024, 2:59:12 PM)
+✔ Fix height @done (5/29/2024, 12:17:05 PM)
+✔ Add icon instead of profile word @done (5/29/2024, 12:31:13 PM)
+✔ Add user data to update form @done (5/30/2024, 10:11:17 AM)
+✔ Add a loading spinner to forms @done (5/30/2024, 3:22:28 PM)
+✔ Fix toast in auth forms @done (5/30/2024, 5:09:33 PM)
+✔ Add background to roles @done (5/30/2024, 5:09:38 PM)
+☐ Use Suspense with fetched server components
 ☐ Display Invalid Creditentials error
-☐ Add a loading spinner to forms
-☐ Add user data to update form
-☐ Add user icon to the sign in form
 ☐ Add the Login or Home button to the side bar
-☐ Fix Navbar
-☐ Add background to roles
 ☐ Add minimun chars in validation

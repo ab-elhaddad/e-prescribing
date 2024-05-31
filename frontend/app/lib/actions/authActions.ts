@@ -47,7 +47,6 @@ export async function signupAction(prevState: any, formData: FormData) {
     return {
       ...prevState,
       errors: validatedData.error.flatten().fieldErrors,
-      message: "",
     };
   }
 
@@ -68,16 +67,16 @@ export async function signupAction(prevState: any, formData: FormData) {
         birthday: dateOfBirth,
       }),
     });
-    redirect("/login");
   } catch (error: any) {
+    console.log(error);
     return {
       ...prevState,
-      errors: { server: error.error || "An error occurred. Please try again later."},
-      message:
-        "ERROR: " +
-        (error.error || "An error occurred. Please try again later."),
+      errors: {
+        server: error.error || error.message || "Something went wrong!",
+      },
     };
   }
+  redirect("/login");
 }
 
 const LoginFormSchema = z.object({
@@ -100,7 +99,6 @@ export async function loginAction(prevState: any, formData: FormData) {
     return {
       ...prevState,
       errors: validatedData.error.flatten().fieldErrors,
-      message: "",
     };
   }
 
@@ -158,7 +156,6 @@ export async function loginAction(prevState: any, formData: FormData) {
     return {
       data,
       errors: {},
-      message: "SUCCESS: Login successful",
       token: token,
     };
   } catch (error: any) {
@@ -166,11 +163,8 @@ export async function loginAction(prevState: any, formData: FormData) {
     return {
       ...prevState,
       errors: {
-        server: error.error || "An error occurred. Please try again later.",
+        server: error.error|| error.message || "Something went wrong!",
       },
-      message:
-        "ERROR: " +
-        (error.error || "An error occurred. Please try again later."),
     };
   }
 }

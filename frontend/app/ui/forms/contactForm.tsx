@@ -12,7 +12,7 @@ export default function ContactForm() {
   return (
     <form
       action={formAction}
-      className="py-10 px-16 rounded-lg flex flex-col gap-5 w-full bg-slate-50"
+      className="py-10 px-16 rounded-lg flex flex-col gap-5 w-full bg-gray-50 shadow-md relative z-50"
     >
       <div className="w-full flex justify-between gap-x-5">
         <div className="w-1/2">
@@ -51,7 +51,7 @@ export default function ContactForm() {
         <textarea
           placeholder="Message"
           name="message"
-          className={`focus:outline-none bg-transparent p-3 border-2 rounded-lg shadow-sm focus:border-sky-500 my-3 w-80 w-full text-start text-left
+          className={`focus:outline-none bg-white bg-transparent p-3 border rounded-lg focus:border-sky-500 focus:border-2 my-3 w-80 w-full text-start text-left
           ${formState.errors?.message ? "border-red-500" : "border-gray-200"}`}
           style={{
             height: "30vh",

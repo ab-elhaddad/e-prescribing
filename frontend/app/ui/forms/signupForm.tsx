@@ -1,31 +1,31 @@
 "use client";
 
-import { useFormState } from "react-dom";
+import { useFormState, useFormStatus } from "react-dom";
+import { useEffect } from "react";
 import Link from "next/link";
-import { ToastContainer, toast } from "react-toastify";
+import toast, { Toaster } from "react-hot-toast";
 
 import BottomBorderInput from "../custom/BottomBorderInput";
 
 import { signupAction } from "@/app/lib/actions/authActions";
 import { ZodError } from "../custom/ZodError";
+import Button from "../custom/Button";
 
 export const initialState = {
   data: null,
   errors: {},
-  message: null,
 };
 
 export default function SignupForm() {
   const [formState, formAction] = useFormState(signupAction, initialState);
-  if (formState.message) {
-    toast.error(formState.message, {
-      position: "bottom-center",
-    });
-  }
+
+  useEffect(() => {
+    if (formState.errors.server) toast.error(formState.errors.server, {className: 'text-sm'});
+  }, [formState.errors.server]);
 
   return (
     <>
-      {/* <ToastContainer /> */}
+      <Toaster />
       <form
         action={formAction}
         className="my-12 flex flex-col justify-center items-center w-fit md:z-20"
@@ -102,20 +102,15 @@ export default function SignupForm() {
           />
         </div>
 
-          <ZodError
-            error={formState.errors.server}
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              fontSize: ".85rem",
-            }}
-          />
-        <button
-          type="submit"
-          className="bg-sky-600 duration-300 hover:bg-sky-500 text-white font-semibold p-3 rounded-md w-40 mt-3"
-        >
-          Sign up
-        </button>
+        {/* <ZodError
+          error={formState.errors.server}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            fontSize: ".85rem",
+          }}
+        /> */}
+        <SubmitButton />
         <p className="mt-5">
           Already have an account?{" "}
           <Link href="/login" className="text-sky-500">
@@ -125,4 +120,9 @@ export default function SignupForm() {
       </form>
     </>
   );
+}
+
+function SubmitButton() {
+  const { pending } = useFormStatus();
+  return <Button body="Sign up" pending={pending} />;
 }
