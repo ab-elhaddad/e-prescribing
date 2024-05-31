@@ -1,17 +1,14 @@
-'use client';
-
 import Link from "next/link";
 import { ReactNode, CSSProperties, JSXElementConstructor } from "react";
 
 import Button from "@/app/ui/custom/Button";
-import MySwiper from "@/app/ui/custom/MySwiper";
-import swiperSlides from "@/app/lib/swiperSlides";
 import Divider from "@/app/ui/custom/Divider";
 import PurpleHaloGroup from '@/app/ui/custom/PurpleHaloGroup'
 
 import { FaHouseMedical } from "react-icons/fa6";
 import { IoChatbox } from "react-icons/io5";
 import { FaHeadphonesAlt } from "react-icons/fa";
+import HomeSwipper from "../ui/home/HomeSwipper";
 
 export default function Home() {
   return (
@@ -98,7 +95,7 @@ export default function Home() {
             </p>
             <Divider size={12} />
           </div>
-          <MySwiper slides={swiperSlides} />
+          <HomeSwipper />
         </div>
 
         <div className="container flex flex-row items-center gap-x-5 rounded-3xl mb-20 z-20">
