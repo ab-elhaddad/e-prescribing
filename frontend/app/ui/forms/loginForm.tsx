@@ -30,16 +30,18 @@ export default function LoginForm() {
   const [formState, formAction] = useFormState(loginAction, initialState);
 
   useEffect(() => {
-    if (formState.errors.server) toast.error(formState.errors.server, {className: 'text-sm'});
+    if (formState.errors.server)
+      toast.error(formState.errors.server, { className: "text-sm" });
   }, [formState.errors.server]);
 
-  const handleSuccess = async (token: string | null) => {
-    if (!token) return;
-    login();
-    router.push("/");
-    // TODO redirect to the dashboard
-  };
-  handleSuccess(formState.token);
+  useEffect(() => {
+    const handleSuccess = async (token: string | null) => {
+      if (!token) return;
+      login();
+      router.push("/dashboard");
+    };
+    handleSuccess(formState.token);
+  }, [formState.token]);
 
   return (
     <>
