@@ -10,7 +10,7 @@ import { updateProfile } from "@/app/lib/actions/profileActions";
 import { initialState } from "./signupForm";
 import { useAuth } from "@/app/context/AuthProvider";
 
-export default function profileForm({
+export default function ProfileForm({
   user,
 }: {
   user: {

@@ -77,7 +77,7 @@ export default function LoginForm() {
       /> */}
         <SubmitButton />
         <p className="mt-5">
-          Don't have an account?{" "}
+          {`Don't have an account?`}{" "}
           <Link href="/signup" className="text-sky-500">
             Sign up
           </Link>

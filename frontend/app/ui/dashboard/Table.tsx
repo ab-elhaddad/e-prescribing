@@ -24,7 +24,7 @@ export default async function Table({
           <thead className="bg-white sticky top-0">
             <tr>
               {Object.keys(headerToAttribute).map((el) => (
-                <th className={styles.th}>{el}</th>
+                <th key={el} className={styles.th}>{el}</th>
               ))}
             </tr>
           </thead>
@@ -33,7 +33,7 @@ export default async function Table({
               data.map((el: any) => (
                 <tr key={el._id}>
                   {Object.keys(headerToAttribute).map((header) => (
-                    <td className={styles.td}>
+                    <td key={header} className={styles.td}>
                       {el[headerToAttribute[header]] || '-'}
                     </td>
                   ))}

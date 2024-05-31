@@ -60,7 +60,7 @@ export default function AddDrugForm() {
                 placeholder="Side Effects"
               />
               <p className="m-0 p-0 ml-2 text-xs text-gray-500 ">
-                ie. 'Headache, Dizziness, Flushing'
+                {`ie. 'Headache, Dizziness, Flushing'`}
               </p>
             </div>
             <div className="flex-flex-col gap-y-1 w-full">
@@ -70,7 +70,7 @@ export default function AddDrugForm() {
                 placeholder="Contraindications"
               />
               <p className="m-0 p-0 ml-2 text-xs text-gray-500 ">
-                ie. 'Ungina, Cardiac failure, Prignancy'
+                {`ie. 'Ungina, Cardiac failure, Prignancy'`}
               </p>
             </div>
           </div>
@@ -81,7 +81,7 @@ export default function AddDrugForm() {
               placeholder="Similar Drugs"
             />
             <p className="m-0 p-0 ml-2 text-xs text-gray-500 ">
-              ie. 'blockadibine 10, blockadibine 20'
+              {`ie. 'blockadibine 10, blockadibine 20'`}
             </p>
           </div>
         </div>

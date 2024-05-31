@@ -21,7 +21,7 @@ export default function Page() {
             <div>
               <div className="border-b-4 border-sky-500 w-fit p-3 m-3">
                 <h1 className="text-5xl font-bold text-sky-500">
-                  Our <span className="text-gray-700">doctors'</span>
+                  Our <span className="text-gray-700">{`doctors'`}</span>
                   <br /> achievements
                 </h1>
               </div>
