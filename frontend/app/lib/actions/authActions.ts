@@ -102,25 +102,12 @@ export async function loginAction(prevState: any, formData: FormData) {
     };
   }
 
-  const { email, password } = validatedData.data;
-
-  let endpoint = "";
-  switch (validatedData.data.role) {
-    case "doctor":
-      endpoint = "/doc/signIn";
-      break;
-    case "patient":
-      endpoint = "/pat/signIn";
-      break;
-    case "assistant":
-      endpoint = "/ast/signIn";
-      break;
-  }
+  const { email, password, role } = validatedData.data;
 
   try {
     // throw { error: "Thrown error." };
 
-    const response = await fetch(`${apiUrl}${endpoint}`, {
+    const response = await fetch(`${apiUrl}/${typeShorten[role]}/signIn`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
