@@ -67,7 +67,7 @@ export async function getDrugs(token: string) {
 
 export async function getPrescriptions(
   token: string
-): Promise<{ error?: string; data?: any[] }> {
+) {
   try {
     const response = await fetch(`${config.apiUrl}/pat/prescriptions`, {
       headers: {
