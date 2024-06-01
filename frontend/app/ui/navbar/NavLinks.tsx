@@ -5,20 +5,24 @@ import Link from "next/link";
 import Cookies from "js-cookie";
 
 export default function NavLinks() {
-  const links = ["Home", "About", "Contact"];
+  const links: Record<string, string> = {
+    Home: '/home',
+    About: '/about',
+    Contact: '/contact',
+  }
   const { user } = useAuth();
-  if (user && Cookies.get("authorization")) links.push("Dashboard");
+  if (user && Cookies.get("authorization")) links.Dashboard = `/dashboard/${Cookies.get("userType")}`;
 
   return (
     <>
-      {links.map((link) => {
+      {Object.entries(links).map(([header, href]) => {
         return (
           <Link
-            href={`/${link.toLowerCase()}`}
+            href={href}
             className="text-sm font-semibold leading-6 text-sky-900 hover:underline"
-            key={link}
+            key={header}
           >
-            {link}
+            {header}
           </Link>
         );
       })}

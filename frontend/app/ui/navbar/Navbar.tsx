@@ -73,7 +73,8 @@ function LoginLink({ isSidebarOpen }: { isSidebarOpen: boolean }) {
   const handleLogout = () => {
     logout();
     Cookies.remove("authorization");
-    if (path === "/profile") {
+    Cookies.remove("userType");
+    if (path === "/profile" || path.startsWith('/dashboard')) {
       location.href = "/home";
     }
   };
