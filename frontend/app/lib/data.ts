@@ -1,4 +1,4 @@
-'use server'
+"use server";
 
 import config from "@/app/lib/config";
 
@@ -33,7 +33,7 @@ export async function getAssistants(token: string) {
   }
 }
 
-export async function getDrugs (token: string) {
+export async function getDrugs(token: string) {
   const drugs = await fetch(`${config.apiUrl}/drug`, {
     headers: {
       authorization: token || "",
