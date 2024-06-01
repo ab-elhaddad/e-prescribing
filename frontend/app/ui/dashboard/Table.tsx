@@ -12,7 +12,7 @@ export default async function Table({
   headerToAttribute,
   deleteAction,
 }: {
-  getData: (token: string) => Promise<{error?: string, data: any[]}>;
+  getData: (token: string) => Promise<{ error?: string; data: any[] }>;
   headerToAttribute: Record<string, string>;
   deleteAction?: (prevState: any, formData: FormData) => Promise<any>;
 }) {
@@ -35,21 +35,12 @@ export default async function Table({
           <tbody className="bg-white">
             {data.length !== 0 ? (
               data.map((el: any) => (
-                <tr key={el._id}>
-                  {Object.keys(headerToAttribute).map((header) => (
-                    <td key={header} className={styles.td}>
-                      {el[headerToAttribute[header]] || "-"}
-                    </td>
-                  ))}
-                  {deleteAction && (
-                    <td className="px-5 py-3 border-b border-gray-200 flex justify-end gap-x-3">
-                      <DeleteForm
-                        entityId={el._id}
-                        deleteAction={deleteAction}
-                      />
-                    </td>
-                  )}
-                </tr>
+                <Row
+                  el={el}
+                  deleteAction={deleteAction}
+                  headerToAttribute={headerToAttribute}
+                  key={el._id}
+                />
               ))
             ) : (
               <tr>
@@ -65,5 +56,34 @@ export default async function Table({
         </table>
       </div>
     </>
+  );
+}
+
+function Row({
+  el,
+  deleteAction,
+  headerToAttribute,
+}: {
+  el: any;
+  deleteAction?: (prevState: any, formData: FormData) => Promise<any>;
+  headerToAttribute: Record<string, string>;
+}) {
+  return (
+    <tr>
+      {Object.keys(headerToAttribute).map((header) => {
+        let value = el[headerToAttribute[header]] || "N/A";
+        if (Array.isArray(value)) value = value.join(", ");
+        return (
+          <td key={header} className={styles.td}>
+            {value}
+          </td>
+        );
+      })}
+      {deleteAction && (
+        <td className="px-5 py-3 border-b border-gray-200 flex justify-end gap-x-3">
+          <DeleteForm entityId={el._id} deleteAction={deleteAction} />
+        </td>
+      )}
+    </tr>
   );
 }
