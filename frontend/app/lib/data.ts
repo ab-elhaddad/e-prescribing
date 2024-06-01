@@ -58,3 +58,39 @@ export async function getDrugs (token: string) {
     return [];
   }
 }
+
+export async function getPrescriptions(
+  token: string
+): Promise<{ error?: string; data?: any[] }> {
+  try {
+    const response = await fetch(`${config.apiUrl}/pat/prescriptions`, {
+      headers: {
+        authorization: token || "",
+      },
+    });
+
+    if (!response.ok) return { error: await response.text(), data: []};
+
+    const data = await response.json();
+    return {data: data.reverse()};
+  } catch (error: any) {
+    console.error(error);
+    return { error: error.message || "An error occurred", data: []};
+  }
+}
+
+export async function getDoctors(token: string) {
+  // The endpoint is not implemented yet
+  const doctors = await fetch(`${config.apiUrl}/doc/doctors`, {
+    headers: {
+      authorization: token || "",
+    },
+  });
+
+  try {
+    const data: any[] = await doctors.json();
+    return data.reverse();
+  } catch (error) {
+    return [];
+  }
+}
