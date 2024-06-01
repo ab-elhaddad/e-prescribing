@@ -51,11 +51,7 @@ export async function getDrugs(token: string) {
         authorization: token || "",
       },
     });
-
-    if (!response.ok) return { error: await response.text(), data: [] };
-
-    const data: any[] = await response.json();
-    return { data: snakeToCamel(data.reverse()) };
+    return handleResponse(response);
   } catch (error: any) {
     console.error(error);
     return {
