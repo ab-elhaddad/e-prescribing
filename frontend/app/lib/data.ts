@@ -14,7 +14,7 @@ export async function getPatients(token: string) {
   try {
     const response = await fetch(`${config.apiUrl}/pat/patients`, {
       headers: {
-        authorization: token || "",
+        authorization: token,
       },
     });
     return handleResponse(response);
@@ -31,7 +31,7 @@ export async function getAssistants(token: string) {
   try {
     const response = await fetch(`${config.apiUrl}/doc/assistants`, {
       headers: {
-        authorization: token || "",
+        authorization: token,
       },
     });
     return handleResponse(response);
@@ -48,7 +48,7 @@ export async function getDrugs(token: string) {
   try {
     const response = await fetch(`${config.apiUrl}/drug`, {
       headers: {
-        authorization: token || "",
+        authorization: token,
       },
     });
     return handleResponse(response);
@@ -67,7 +67,7 @@ export async function getPrescriptions(
   try {
     const response = await fetch(`${config.apiUrl}/pat/prescriptions`, {
       headers: {
-        authorization: token || "",
+        authorization: token,
       },
     });
 
@@ -83,7 +83,7 @@ export async function getDoctors(token: string) {
     // The endpoint is not implemented yet
     const response = await fetch(`${config.apiUrl}/doc/doctors`, {
       headers: {
-        authorization: token || "",
+        authorization: token,
       },
     });
     return handleResponse(response);
