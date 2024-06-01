@@ -90,7 +90,7 @@ export default function Page() {
               <p className="w-inherit p-3" style={{ width: "50ch" }}>
                 According to the international health organization, we are the
                 best medical e-service in Egypt in the last 3 years. As
-                E-Prescribing has won the best medical e-service in Egypt in
+                E-Prescriping has won the best medical e-service in Egypt in
                 2022, 2023 and 2024. We have a team of doctors who are
                 specialized in a variety of fields. We have a team of doctors
                 who are specialized in heart, brain, kidney, liver, etc.

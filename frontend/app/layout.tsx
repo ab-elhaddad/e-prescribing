@@ -17,8 +17,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "E-Prescribing",
-    template: `%s | E-Prescribing`,
+    default: "E-Prescriping",
+    template: `%s | E-Prescriping`,
   },
   description: "A clinic system for managing patients and appointments.",
   icons: {

@@ -19,7 +19,7 @@ export default function Home() {
           <h1 className="text-7xl text-gray-700 font-bold">
             WELCOME TO
             <br />
-            <span className="text-sky-600">E-PRESCRIBING</span>
+            <span className="text-sky-600">E-Prescriping</span>
           </h1>
           <p className="mt-5 text-2xl text-gray-700 font-bold">
             YOUR MUST TRUSTED HEALTH PARTNER
