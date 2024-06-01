@@ -35,12 +35,10 @@ export default function LoginForm() {
   }, [formState.errors.server]);
 
   useEffect(() => {
-    const handleSuccess = async (token: string | null) => {
-      if (!token) return;
-      login();
-      router.push(`/dashboard/${Cookies.get("userType")}`);
-    };
-    handleSuccess(formState.token);
+    if (!formState.token) return;
+    login();
+    window.location.href = `/dashboard/${Cookies.get("userType")}`;
+    // router.push(`/dashboard/${Cookies.get("userType")}`);
   }, [formState.token]);
 
   return (
