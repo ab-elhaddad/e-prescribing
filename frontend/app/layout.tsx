@@ -39,11 +39,11 @@ export default function RootLayout({
       <body className="overflow-x-hidden">
         <IsAuthenticatedProvider>
           <Navbar />
+          <div className="pt-16">
+            {children}
+            <Footer />
+          </div>
         </IsAuthenticatedProvider>
-        <div className="pt-16">
-          {children}
-          <Footer />
-        </div>
       </body>
     </html>
   );
