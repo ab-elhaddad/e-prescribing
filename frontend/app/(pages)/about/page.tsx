@@ -17,7 +17,7 @@ export default function Page() {
         <Header title="About us" />
 
         <div className="mx-20 flex-col justify-center items-center">
-          <div className="flex justify-around my-12 py-4 backdrop-blur-md bg-white/30 rounded-2xl hover:-translate-y-1 hover:shadow-sm transition duration-500 ease-in-out">
+          <div className="flex justify-around my-12 py-4 backdrop-blur-md bg-white/30 rounded-2xl hover:-translate-y-1 shadow-sm transition duration-500 ease-in-out">
             <div>
               <div className="border-b-4 border-sky-500 w-fit p-3 m-3">
                 <h1 className="text-5xl font-bold text-sky-500">
@@ -42,12 +42,12 @@ export default function Page() {
             />
           </div>
 
-          <div className="flex-col items-center justify-center mt-36">
-            <h1 className="text-5xl font-bold text-gray-700 text-center">
+          <div className="flex flex-col items-center justify-center mt-36">
+            <h1 className="text-5xl font-bold text-gray-700 text-center mb-2">
               Meet our <span className="text-sky-500">doctors</span>
             </h1>
             <Divider size={10} />
-            <div className="flex justify-between backdrop-blur-md bg-white/30 rounded-2xl p-3 hover:-translate-y-1 hover:shadow-sm transition duration-500 ease-in-out">
+            <div className="mt-8 flex justify-between backdrop-blur-md bg-white/30 rounded-2xl p-3 hover:-translate-y-1 shadow-sm transition duration-500 ease-in-out">
               <DoctorCard
                 doctor={{
                   name: "John Doe",
@@ -75,7 +75,7 @@ export default function Page() {
             </div>
           </div>
 
-          <div className="flex justify-around mt-40 my-12 py-4 backdrop-blur-md bg-white/30 rounded-2xl hover:-translate-y-1 hover:shadow-sm transition duration-500 ease-in-out">
+          <div className="flex justify-around mt-40 my-12 py-4 backdrop-blur-md bg-white/30 rounded-2xl hover:-translate-y-1 shadow-sm transition duration-500 ease-in-out">
             <img
               src="/medical-survey.jpg"
               alt="Doctors discuss"
