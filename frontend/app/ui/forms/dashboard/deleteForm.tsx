@@ -19,7 +19,6 @@ export default function DeleteForm({
   deleteAction: (prevState: any, formData: FormData) => Promise<any>;
 }) {
   const [formState, formAction] = useFormState(deleteAction, initialState);
-  console.log(formState);
 
   useEffect(() => {
     if (formState.error) toast.error(formState.error);
