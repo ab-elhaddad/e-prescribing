@@ -1,61 +1,67 @@
 "use server";
 
 import config from "@/app/lib/config";
+import snakeToCamel from "./utils/snakeToCamel";
+
+async function handleResponse(
+  response: Response
+): Promise<{ error?: string; data: any[] }> {
+  if (!response.ok) return { error: await response.text(), data: [] };
+  return { data: (await response.json()).reverse() };
+}
 
 export async function getPatients(token: string) {
-  const patients = await fetch(`${config.apiUrl}/pat/patients`, {
-    headers: {
-      authorization: token || "",
-    },
-  });
-
   try {
-    const data: any[] = await patients.json();
-    return data.reverse();
-  } catch (error) {
+    const response = await fetch(`${config.apiUrl}/pat/patients`, {
+      headers: {
+        authorization: token || "",
+      },
+    });
+    return handleResponse(response);
+  } catch (error: any) {
     console.error(error);
-    return [];
+    return {
+      error: error.message || error.msg || "An error occurred",
+      data: [],
+    };
   }
 }
 
 export async function getAssistants(token: string) {
-  const assistants = await fetch(`${config.apiUrl}/doc/assistants`, {
-    headers: {
-      authorization: token || "",
-    },
-  });
-
   try {
-    const data: any[] = await assistants.json();
-    return data.reverse();
-  } catch (error) {
-    return [];
+    const response = await fetch(`${config.apiUrl}/doc/assistants`, {
+      headers: {
+        authorization: token || "",
+      },
+    });
+    return handleResponse(response);
+  } catch (error: any) {
+    console.error(error);
+    return {
+      error: error.message || error.msg || "An error occurred",
+      data: [],
+    };
   }
 }
 
 export async function getDrugs(token: string) {
-  const drugs = await fetch(`${config.apiUrl}/drug`, {
-    headers: {
-      authorization: token || "",
-    },
-  });
   try {
-    const data: any[] = await drugs.json();
-    return data.reverse().map((drug) => {
-      drug.side_effects = drug.side_effects.join(", ");
-      drug.sideEffects = drug.side_effects;
-      delete drug.side_effects;
-
-      drug.similar_drugs = drug.similar_drugs.join(", ");
-      drug.similarDrugs = drug.similar_drugs;
-      delete drug.similar_drugs;
-
-      drug.contraindications = drug.contraindications.join(", ");
-
-      return drug;
+    const response = await fetch(`${config.apiUrl}/drug`, {
+      headers: {
+        authorization: token || "",
+      },
     });
-  } catch (error) {
-    return [];
+
+    if (!response.ok) return { error: await response.text(), data: [] };
+
+    const data: any[] = await response.json();
+    return { data: snakeToCamel(data.reverse()) };
+  } catch (error: any) {
+    console.error(error);
+    return {
+      error: error.message || error.msg || "An error occurred",
+      data: [],
+    };
   }
 }
 
@@ -69,28 +75,27 @@ export async function getPrescriptions(
       },
     });
 
-    if (!response.ok) return { error: await response.text(), data: []};
-
-    const data = await response.json();
-    return {data: data.reverse()};
+    return handleResponse(response);
   } catch (error: any) {
     console.error(error);
-    return { error: error.message || "An error occurred", data: []};
+    return { error: error.message || "An error occurred", data: [] };
   }
 }
 
 export async function getDoctors(token: string) {
-  // The endpoint is not implemented yet
-  const doctors = await fetch(`${config.apiUrl}/doc/doctors`, {
-    headers: {
-      authorization: token || "",
-    },
-  });
-
   try {
-    const data: any[] = await doctors.json();
-    return data.reverse();
-  } catch (error) {
-    return [];
+    // The endpoint is not implemented yet
+    const response = await fetch(`${config.apiUrl}/doc/doctors`, {
+      headers: {
+        authorization: token || "",
+      },
+    });
+    return handleResponse(response);
+  } catch (error: any) {
+    console.error(error);
+    return {
+      error: error.message || error.msg || "An error occurred",
+      data: [],
+    };
   }
 }

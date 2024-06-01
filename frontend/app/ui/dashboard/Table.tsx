@@ -1,4 +1,5 @@
 import { cookies } from "next/headers";
+import clsx from "clsx";
 import DeleteForm from "../forms/dashboard/deleteForm";
 
 const styles = {
@@ -11,12 +12,13 @@ export default async function Table({
   headerToAttribute,
   deleteAction,
 }: {
-  getData: (token: string) => Promise<any[]>;
+  getData: (token: string) => Promise<{error?: string, data: any[]}>;
   headerToAttribute: Record<string, string>;
-  deleteAction: (prevState: any, formData: FormData) => Promise<any>;
+  deleteAction?: (prevState: any, formData: FormData) => Promise<any>;
 }) {
-  const data = await getData(cookies().get("authorization")?.value || "");
-  // const data = [];
+  const { error, data } = await getData(
+    cookies().get("authorization")?.value || ""
+  );
   return (
     <>
       <div className="max-h-96 overflow-y-auto mt-10 p-3 pt-0 bg-gray-50 rounded-md">
@@ -24,7 +26,9 @@ export default async function Table({
           <thead className="bg-white sticky top-0">
             <tr>
               {Object.keys(headerToAttribute).map((el) => (
-                <th key={el} className={styles.th}>{el}</th>
+                <th key={el} className={styles.th}>
+                  {el}
+                </th>
               ))}
             </tr>
           </thead>
@@ -34,7 +38,7 @@ export default async function Table({
                 <tr key={el._id}>
                   {Object.keys(headerToAttribute).map((header) => (
                     <td key={header} className={styles.td}>
-                      {el[headerToAttribute[header]] || '-'}
+                      {el[headerToAttribute[header]] || "-"}
                     </td>
                   ))}
                   {deleteAction && (
@@ -51,9 +55,9 @@ export default async function Table({
               <tr>
                 <td
                   colSpan={Object.keys(headerToAttribute).length}
-                  className="text-center py-5"
+                  className={clsx("text-center py-5", error && "text-red-500")}
                 >
-                  No data found
+                  {error || "No data found"}
                 </td>
               </tr>
             )}
