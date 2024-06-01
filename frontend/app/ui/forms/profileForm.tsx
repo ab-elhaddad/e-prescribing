@@ -7,7 +7,7 @@ import FullBorderInput from "../custom/FullBorderInput";
 import Button from "../custom/Button";
 
 import { updateProfile } from "@/app/lib/actions/profileActions";
-import { initialState } from "./signupForm";
+import { initialState } from "@/app/ui/forms/auth/signupForm";
 import { useAuth } from "@/app/context/AuthProvider";
 
 export default function ProfileForm({

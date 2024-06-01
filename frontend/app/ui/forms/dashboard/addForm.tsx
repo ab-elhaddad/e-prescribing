@@ -25,7 +25,7 @@ export default function AddForm({
   useEffect(() => {
     if (formState.error) toast.error(formState.error);
     if (formState.isSubmitted) toast.success(`${entity} added successfully!`);
-  }, [formState]);
+  }, [formState, entity]);
 
   return (
     <form
