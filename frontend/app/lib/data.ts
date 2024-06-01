@@ -2,12 +2,40 @@
 
 import config from "@/app/lib/config";
 import snakeToCamel from "./utils/snakeToCamel";
+import { typeShorten } from "./constants";
 
 async function handleResponse(
   response: Response
 ): Promise<{ error?: string; data: any[] }> {
   if (!response.ok) return { error: await response.text(), data: [] };
-  return { data: (await response.json()).reverse() };
+  const data = await response.json();
+  const camelData = data.map((item: any) => snakeToCamel(item));
+  return { data: camelData.reverse() };
+}
+
+export async function getUser(
+  token: string,
+  type: string
+): Promise<{ user: any; error?: string }> {
+  const shortType = typeShorten[type];
+  try {
+    const response = await fetch(`${config.apiUrl}/${shortType}/`, {
+      headers: {
+        authorization: token,
+      },
+    });
+
+    if (!response.ok) return { error: await response.text(), user: {} };
+
+    const user = await response.json();
+    return { user: { ...user, type } };
+  } catch (error: any) {
+    console.error(error);
+    return {
+      error: error.message || error.msg || "An error occurred",
+      user: {},
+    };
+  }
 }
 
 export async function getPatients(token: string) {
@@ -61,9 +89,7 @@ export async function getDrugs(token: string) {
   }
 }
 
-export async function getPrescriptions(
-  token: string
-) {
+export async function getPrescriptions(token: string) {
   try {
     const response = await fetch(`${config.apiUrl}/pat/prescriptions`, {
       headers: {
