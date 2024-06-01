@@ -4,11 +4,11 @@ import { ReactNode, CSSProperties, JSXElementConstructor } from "react";
 import Button from "@/app/ui/custom/Button";
 import Divider from "@/app/ui/custom/Divider";
 import PurpleHaloGroup from '@/app/ui/custom/PurpleHaloGroup'
+import HomeSwipper from "@/app/ui/home/HomeSwipper";
 
 import { FaHouseMedical } from "react-icons/fa6";
 import { IoChatbox } from "react-icons/io5";
 import { FaHeadphonesAlt } from "react-icons/fa";
-import HomeSwipper from "../ui/home/HomeSwipper";
 
 export default function Home() {
   return (

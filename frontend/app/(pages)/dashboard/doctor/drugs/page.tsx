@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 import Table from "@/app/ui/dashboard/Table";
-import Breadcrumps from '@/app/ui/custom/Breadcrumbs'
+import Breadcrumps from "@/app/ui/custom/Breadcrumbs";
 import Button from "@/app/ui/custom/Button";
 import InvoicesTableSkeleton from "@/app/ui/skeletons";
 import {
@@ -21,8 +21,12 @@ export default async function Page() {
   return (
     <div className="w-full">
       <div className="flex justify-between">
-        <Breadcrumps breadcrumbs={[{href: "/dashborad/drugs", label: "Drugs", active: true}]}/>
-        <Link href={"/dashboard/drugs/add"}>
+        <Breadcrumps
+          breadcrumbs={[
+            { href: "doctor/drugs", label: "Drugs", active: true },
+          ]}
+        />
+        <Link href={"drugs/add"}>
           <Button
             body={
               <div className="flex justify-between items-center w-full">
@@ -42,9 +46,9 @@ export default async function Page() {
         <Table
           getData={getDrugs}
           headerToAttribute={{
-            Name: 'name',
-            Usage: 'usage',
-            'Side Effects': 'sideEffects'
+            Name: "name",
+            Usage: "usage",
+            "Side Effects": "sideEffects",
           }}
           deleteAction={deleteDrugAction}
         />

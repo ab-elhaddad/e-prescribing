@@ -1,16 +1,17 @@
-import LoginForm from "@/app/ui/forms/loginForm";
+import Image from "next/image";
+import SignupForm from "@/app/ui/forms/auth/signupForm";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Login",
+  title: "Signup",
 };
 
 export default function Page() {
   return (
     <>
       <img
-        src="/male-doctor-c.png"
-        alt="Male Doctor"
+        src="/female-doctor-c.png"
+        alt="Female Doctor"
         style={{
           zIndex: 10,
           width: "75vh",
@@ -19,7 +20,7 @@ export default function Page() {
         }}
         className="hidden md:block object-cover h-full"
       />
-      <LoginForm />
+      <SignupForm />
     </>
   );
 }

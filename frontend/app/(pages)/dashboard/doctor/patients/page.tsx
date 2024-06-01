@@ -15,12 +15,12 @@ export const metadata: Metadata = {
   title: "Patients",
 };
 
-export default async function Page() {
+export default function Page() {
   return (
     <div className="w-full">
       <Breadcrumps
         breadcrumbs={[
-          { href: "/dashborad/patients", label: "Patients", active: true },
+          { href: ".", label: "Patients", active: true },
         ]}
       />
 

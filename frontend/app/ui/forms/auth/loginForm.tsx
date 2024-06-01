@@ -4,15 +4,15 @@ import { useFormState, useFormStatus } from "react-dom";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
+import Cookies from "js-cookie";
+import { useEffect } from "react";
 
-import SelectRole from "../custom/selectRole";
-import BottomBorderInput from "../custom/BottomBorderInput";
-import Button from "../custom/Button";
+import SelectRole from "@/app/ui/custom/selectRole";
+import BottomBorderInput from "@/app/ui/custom/BottomBorderInput";
+import Button from "@/app/ui/custom/Button";
 
 import { loginAction } from "@/app/lib/actions/authActions";
 import { useAuth } from "@/app/context/AuthProvider";
-import { ZodError } from "../custom/ZodError";
-import { useEffect } from "react";
 
 const initialState = {
   data: null,
@@ -38,7 +38,7 @@ export default function LoginForm() {
     const handleSuccess = async (token: string | null) => {
       if (!token) return;
       login();
-      router.push("/dashboard");
+      router.push(`/dashboard/${Cookies.get("userType")}`);
     };
     handleSuccess(formState.token);
   }, [formState.token]);

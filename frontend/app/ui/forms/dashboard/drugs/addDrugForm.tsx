@@ -32,8 +32,8 @@ export default function AddDrugForm() {
       <Toaster />
       <Breadcrumbs
         breadcrumbs={[
-          { href: "/dashboard/drugs", label: "Drugs" },
-          { href: "/dashboard/drugs/add", label: "Add Drug", active: true },
+          { href: ".", label: "Drugs" },
+          { href: "add", label: "Add Drug", active: true },
         ]}
       />
       <form action={formAction}>
@@ -86,7 +86,7 @@ export default function AddDrugForm() {
           </div>
         </div>
         <div className="flex gap-x-5 justify-end mt-5">
-          <Link href={"/dashboard/drugs"}>
+          <Link href={"."}>
             <Button body="Cancel" variant="secondary" type="button"/>
           </Link>
           <SubmitButton />

@@ -5,11 +5,9 @@ import { useEffect } from "react";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 
-import BottomBorderInput from "../custom/BottomBorderInput";
-
+import BottomBorderInput from "@/app/ui/custom/BottomBorderInput";
+import Button from "@/app/ui/custom/Button";
 import { signupAction } from "@/app/lib/actions/authActions";
-import { ZodError } from "../custom/ZodError";
-import Button from "../custom/Button";
 
 export const initialState = {
   data: null,

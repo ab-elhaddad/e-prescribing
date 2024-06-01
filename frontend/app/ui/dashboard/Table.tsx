@@ -37,9 +37,14 @@ export default async function Table({
                       {el[headerToAttribute[header]] || '-'}
                     </td>
                   ))}
-                  <td className="px-5 py-3 border-b border-gray-200 flex justify-end gap-x-3">
-                    <DeleteForm entityId={el._id} deleteAction={deleteAction} />
-                  </td>
+                  {deleteAction && (
+                    <td className="px-5 py-3 border-b border-gray-200 flex justify-end gap-x-3">
+                      <DeleteForm
+                        entityId={el._id}
+                        deleteAction={deleteAction}
+                      />
+                    </td>
+                  )}
                 </tr>
               ))
             ) : (

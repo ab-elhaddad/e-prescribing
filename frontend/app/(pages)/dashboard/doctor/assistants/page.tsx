@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 export default async function Page() {
   return (
     <div className="w-full">
-      <Breadcrumps breadcrumbs={[{href: "/dashborad/assistants", label: "Assistants", active: true}]}/>
+      <Breadcrumps breadcrumbs={[{href: ".", label: "Assistants", active: true}]}/>
       <AddForm addAction={addAssistantAction} entity="Assistant" inputPlaceholder="Write assistant's email address"/>
       <Suspense fallback={<InvoicesTableSkeleton />}>
         <Table

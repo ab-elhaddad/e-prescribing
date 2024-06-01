@@ -4,10 +4,10 @@ import { cookies } from "next/headers";
 import Header from "@/app/ui/custom/Header";
 import ProfileForm from "@/app/ui/forms/profileForm";
 import PurpleHaloGroup from '@/app/ui/custom/PurpleHaloGroup'
-import config from "../lib/config";
+import config from "@/app/lib/config";
 
 import { FaUserDoctor, FaUserInjured, FaUserNurse } from "react-icons/fa6";
-import { typeShorten } from "../lib/constants";
+import { typeShorten } from "@/app/lib/constants";
 
 export const metadata: Metadata = {
   title: "Profile",
