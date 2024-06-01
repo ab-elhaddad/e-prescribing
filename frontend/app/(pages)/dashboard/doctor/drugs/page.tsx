@@ -23,7 +23,7 @@ export default async function Page() {
       <div className="flex justify-between">
         <Breadcrumps
           breadcrumbs={[
-            { href: "doctor/drugs", label: "Drugs", active: true },
+            { href: "/dashboard/doctor/drugs", label: "Drugs", active: true },
           ]}
         />
         <Link href={"drugs/add"}>

@@ -20,7 +20,7 @@ export default function Page() {
     <div className="w-full">
       <Breadcrumps
         breadcrumbs={[
-          { href: ".", label: "Patients", active: true },
+          { href: "./patients", label: "Patients", active: true },
         ]}
       />
 

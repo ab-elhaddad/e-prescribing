@@ -4,6 +4,7 @@ import Link from "next/link";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
 import { IconType } from "react-icons";
+import Cookies from "js-cookie";
 
 import { LiaUserInjuredSolid } from "react-icons/lia";
 import { RiMedicineBottleLine, RiSurveyLine } from "react-icons/ri";
@@ -23,7 +24,8 @@ export default function NavLinks({ links }: { links: string[] }) {
     <>
       {links.map((link) => {
         const LinkIcon = linkToIcon[link];
-        const linkHref = link.toLowerCase();
+        const userType = Cookies.get('userType');
+        const linkHref = `/dashboard/${userType}/${link.toLowerCase()}`;
         return (
           <Link
             key={link}
@@ -31,7 +33,7 @@ export default function NavLinks({ links }: { links: string[] }) {
             className={clsx(
               "flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 text-gray-800 p-3 text-sm font-medium hover:bg-sky-100 hover:text-sky-600 md:flex-none md:justify-start md:p-2 md:px-3",
               {
-                "bg-sky-100 text-sky-600": pathName.startsWith(linkHref),
+                "bg-sky-100 text-sky-600": pathName.includes(linkHref),
               }
             )}
           >
