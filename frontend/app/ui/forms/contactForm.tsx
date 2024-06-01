@@ -1,18 +1,18 @@
 "use client";
 
 import { useFormState } from "react-dom";
-import FullBorderInput from "../custom/FullBorderInput";
+import FullBorderInput from "@/app/ui/custom/FullBorderInput";
+import Button from "@/app/ui/custom/Button";
+import { initialState } from "@/app/ui/forms/auth/signupForm";
+import { ZodError } from "@/app/ui/custom/ZodError";
 import { sendMessage } from "@/app/lib/actions/contactActions";
-import { initialState } from "./signupForm";
-import Button from "../custom/Button";
-import { ZodError } from "./../custom/ZodError";
 
 export default function ContactForm() {
   const [formState, formAction] = useFormState(sendMessage, initialState);
   return (
     <form
       action={formAction}
-      className="py-10 px-16 rounded-lg flex flex-col gap-5 w-full bg-gray-50 shadow-md relative z-50"
+      className="py-10 px-16 rounded-lg flex flex-col gap-5 w-full bg-gray-50 shadow-md relative z-40"
     >
       <div className="w-full flex justify-between gap-x-5">
         <div className="w-1/2">
