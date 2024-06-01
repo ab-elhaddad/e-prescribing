@@ -7,7 +7,7 @@ import Breadcrumps from "@/app/ui/custom/Breadcrumbs";
 import { getPrescriptions } from "@/app/lib/data";
 
 export const metadata: Metadata = {
-  title: "Prescribtions",
+  title: "Prescriptions",
 };
 
 export default function Page() {
@@ -16,8 +16,8 @@ export default function Page() {
       <Breadcrumps
         breadcrumbs={[
           {
-            href: "prescribtions",
-            label: "Prescribtions",
+            href: "prescriptions",
+            label: "Prescriptions",
             active: true,
           },
         ]}

@@ -14,7 +14,7 @@ const linkToIcon: Record<string, IconType> = {
   Assistants: FaUserNurse,
   Drugs: RiMedicineBottleLine,
   Doctors: FaUserDoctor,
-  Prescribtions: RiSurveyLine,
+  Prescriptions: RiSurveyLine,
 };
 
 export default function NavLinks({ links }: { links: string[] }) {
