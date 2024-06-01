@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import InvoicesTableSkeleton from "@/app/ui/skeletons";
 import Table from "@/app/ui/dashboard/Table";
 import Breadcrumps from "@/app/ui/custom/Breadcrumbs";
-import { getPrescriptions } from "@/app/lib/data";
+import { getDoctors } from "@/app/lib/data";
 
 export const metadata: Metadata = {
   title: "Doctors",
@@ -23,9 +23,9 @@ export default function Page() {
         ]}
       />
 
-      {/* <Suspense fallback={<InvoicesTableSkeleton />}>
+      <Suspense fallback={<InvoicesTableSkeleton />}>
         <Table
-          getData={getPrescriptions}
+          getData={getDoctors}
           headerToAttribute={{
             Doctor: "doctor",
             Drugs: "drugs",
@@ -33,7 +33,7 @@ export default function Page() {
             "Last Updated": "updatedAt",
           }}
         />
-      </Suspense> */}
+      </Suspense>
     </div>
   );
 }
