@@ -8,18 +8,30 @@ import toast, { Toaster } from "react-hot-toast";
 import BottomBorderInput from "@/app/ui/custom/BottomBorderInput";
 import Button from "@/app/ui/custom/Button";
 import { signupAction } from "@/app/lib/actions/authActions";
+import { useRouter } from "next/navigation";
 
 export const initialState = {
-  data: null,
   errors: {},
 };
 
 export default function SignupForm() {
+  const router = useRouter();
   const [formState, formAction] = useFormState(signupAction, initialState);
 
   useEffect(() => {
-    if (formState.errors.server) toast.error(formState.errors.server, {className: 'text-sm'});
-  }, [formState.errors.server]);
+    if (formState.errors.server)
+      toast.error(formState.errors.server, { className: "text-sm" });
+  }, [formState.errors]);
+
+  useEffect(() => {
+    if (formState.redirect) {
+      toast.success(
+        "Account created successfully.\n You will be redirected to Login page.",
+        { className: "text-sm" }
+      );
+      setTimeout(() => router.push("/login"), 3000);
+    }
+  }, [formState.redirect]);
 
   return (
     <>

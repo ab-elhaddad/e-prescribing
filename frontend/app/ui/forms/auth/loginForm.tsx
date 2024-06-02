@@ -32,7 +32,7 @@ export default function LoginForm() {
   useEffect(() => {
     if (formState.errors.server)
       toast.error(formState.errors.server, { className: "text-sm" });
-  }, [formState.errors.server]);
+  }, [formState.errors]);
 
   useEffect(() => {
     if (!formState.token) return;

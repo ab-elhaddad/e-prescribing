@@ -55,7 +55,7 @@ export async function signupAction(prevState: any, formData: FormData) {
   const fullName = `${firstName} ${lastName}`;
 
   try {
-    await fetch(`${apiUrl}/pat/signup`, {
+    const response = await fetch(`${apiUrl}/pat/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -67,16 +67,16 @@ export async function signupAction(prevState: any, formData: FormData) {
         birthday: dateOfBirth,
       }),
     });
+    if (!response.ok) return { errors: { server: await response.text() } };
+    return { redirect: true, errors: {} };
   } catch (error: any) {
     console.log(error);
     return {
-      ...prevState,
       errors: {
         server: error.error || error.message || "Something went wrong!",
       },
     };
   }
-  redirect("/login");
 }
 
 const LoginFormSchema = z.object({
@@ -116,12 +116,17 @@ export async function loginAction(prevState: any, formData: FormData) {
         email,
         password,
       }),
-    }).then((value) => value.json());
+    });
+    if (!response.ok) {
+      throw { message: await response.text() };
+    }
+
+    const data = JSON.parse(await response.text());
 
     const {
       tokens,
     }: { tokens: Array<{ token: string; _id: string; userType: string }> } =
-      response;
+      data;
 
     const token = tokens?.at(-1)?.token || "";
 
@@ -141,7 +146,6 @@ export async function loginAction(prevState: any, formData: FormData) {
     });
 
     return {
-      data,
       errors: {},
       token: token,
     };
@@ -150,7 +154,7 @@ export async function loginAction(prevState: any, formData: FormData) {
     return {
       ...prevState,
       errors: {
-        server: error.error|| error.message || "Something went wrong!",
+        server: error.error || error.message || "Something went wrong!",
       },
     };
   }
