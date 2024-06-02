@@ -6,6 +6,7 @@ export default function snakeToCamel(obj: Record<string, any>) {
       $1.toUpperCase().replace("-", "").replace("_", "")
     );
     camelObj[camelKey] = obj[key];
+    if (key === "_id") camelObj[key] = obj[key];
   }
 
   return camelObj;
