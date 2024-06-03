@@ -9,6 +9,7 @@ import Button from "../custom/Button";
 import { updateProfile } from "@/app/lib/actions/profileActions";
 import { initialState } from "@/app/ui/forms/auth/signupForm";
 import { useAuth } from "@/app/context/AuthProvider";
+import FullBorderGenderSelect from "../custom/FullBorderGenderSelect";
 
 export default function ProfileForm({
   user,
@@ -115,15 +116,7 @@ export default function ProfileForm({
       </div>
 
       <div className="flex gap-x-5 w-full">
-        <select
-          name="gender"
-          id="gender"
-          defaultValue={user.gender}
-          className="focus:outline-none bg-transparent text-md px-3 py-2 border border-gray-200 bg-white rounded-xl focus:border-sky-500 focus:border-2 my-2 w-full h-fit text-start"
-        >
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-        </select>
+        <FullBorderGenderSelect defaultValue={user.gender}/>
         <FullBorderInput
           type="date"
           placeholder="Birth Date"
