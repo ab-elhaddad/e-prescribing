@@ -27,10 +27,10 @@ export default function Page() {
         <Table
           getData={getDoctors}
           headerToAttribute={{
-            Doctor: "doctor",
-            Drugs: "drugs",
-            Created: "createdAt",
-            "Last Updated": "updatedAt",
+            Doctor: "name",
+            Department: "department",
+            Email: "email",
+            Phone: "phoneNumber"
           }}
         />
       </Suspense>
