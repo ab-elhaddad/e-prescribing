@@ -100,8 +100,17 @@ export async function getPrescriptions(token: string) {
         authorization: token,
       },
     });
+    const { error, data } = await handleResponse(response);
 
-    return handleResponse(response);
+    const handledData = data.map((item: any) => {
+      item.drugs = item.drugs.map((drug: any) => drug.name).join(", ");
+      item.doctor = item.doctor.name;
+      item.createdAt = new Date(item.createdAt).toLocaleString();
+      item.updatedAt = new Date(item.updatedAt).toLocaleString();
+      return item;
+    });
+
+    return { error, data: handledData };
   } catch (error: any) {
     console.error(error);
     return { error: error.message || "An error occurred", data: [] };
