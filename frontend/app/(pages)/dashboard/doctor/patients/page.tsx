@@ -10,6 +10,9 @@ import {
   deletePatientAction,
 } from "@/app/lib/actions/patientsActions";
 import { getPatients } from "@/app/lib/data";
+import Button from "@/app/ui/custom/Button";
+import Link from "next/link";
+import { GoPlus } from "react-icons/go";
 
 export const metadata: Metadata = {
   title: "Patients",
@@ -18,17 +21,27 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div className="w-full">
-      <Breadcrumps
-        breadcrumbs={[
-          { href: "./patients", label: "Patients", active: true },
-        ]}
-      />
-
-      <AddForm
-        addAction={addPatientAction}
-        entity="Patient"
-        inputPlaceholder="Write patient's email address"
-      />
+      <div className="flex justify-between">
+        <Breadcrumps
+          breadcrumbs={[
+            { href: "./patients", label: "Patients", active: true },
+          ]}
+        />
+        <Link href="patients/add">
+          <Button
+            body={
+              <div className="flex justify-between items-center w-full">
+                Add Patient
+                <GoPlus className="text-2xl" />
+              </div>
+            }
+            type="button"
+            style={{
+              width: "12vw"
+            }}
+          />
+        </Link>
+      </div>
       <Suspense fallback={<InvoicesTableSkeleton />}>
         <Table
           deleteAction={deletePatientAction}
@@ -38,6 +51,7 @@ export default function Page() {
             Email: "email",
             Phone: "phoneNumber",
           }}
+          entity="Patient"
         />
       </Suspense>
     </div>
