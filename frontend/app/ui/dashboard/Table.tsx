@@ -1,10 +1,9 @@
 import { cookies } from "next/headers";
 import clsx from "clsx";
-import DeleteForm from "../forms/dashboard/deleteForm";
+import Row from "./Row";
 
 const styles = {
   th: "text-left p-5 font-semibold bg-gray-50",
-  td: "text-left px-5 py-3 border-b border-gray-200 rounded-md",
 };
 
 export default async function Table({
@@ -59,31 +58,3 @@ export default async function Table({
   );
 }
 
-function Row({
-  el,
-  deleteAction,
-  headerToAttribute,
-}: {
-  el: any;
-  deleteAction?: (prevState: any, formData: FormData) => Promise<any>;
-  headerToAttribute: Record<string, string>;
-}) {
-  return (
-    <tr>
-      {Object.keys(headerToAttribute).map((header) => {
-        let value = el[headerToAttribute[header]] || "N/A";
-        if (Array.isArray(value)) value = value.join(", ");
-        return (
-          <td key={header} className={styles.td}>
-            {value}
-          </td>
-        );
-      })}
-      {deleteAction && (
-        <td className="px-5 py-3 border-b border-gray-200 flex justify-end gap-x-3">
-          <DeleteForm entityId={el._id} deleteAction={deleteAction} />
-        </td>
-      )}
-    </tr>
-  );
-}
