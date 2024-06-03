@@ -17,7 +17,10 @@ export async function addPatientAction(prevState: any, formData: FormData) {
     });
 
     if (!response.ok) {
-      throw await response.text();
+      return {
+        error: await response.text(),
+        isSubmitted: false,
+      }
     }
 
     revalidatePath("/dashboard/patients");
