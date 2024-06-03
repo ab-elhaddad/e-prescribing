@@ -6,11 +6,15 @@ import { typeShorten } from "./constants";
 
 async function handleResponse(
   response: Response
-): Promise<{ error?: string; data: any[] }> {
+): Promise<{ error?: string; data: any[] | any }> {
   if (!response.ok) return { error: await response.text(), data: [] };
   const data = await response.json();
-  const camelData = data.map((item: any) => snakeToCamel(item));
-  return { data: camelData.reverse() };
+  if (Array.isArray(data)) {
+    const camelData = data.map((item: any) => snakeToCamel(item));
+    return { data: camelData.reverse() };
+  } 
+  
+  return { data: snakeToCamel(data) };
 }
 
 export async function getUser(
