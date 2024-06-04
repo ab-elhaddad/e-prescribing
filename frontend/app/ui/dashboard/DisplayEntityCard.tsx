@@ -30,14 +30,14 @@ export default async function DisplayEntityCard({
           {
             label:
               entity === "Patient" || entity === "Assistant"
-                ? data.name.split(" ")[0]
+                ? data.name?.split(" ")[0]
                 : data.name,
             href: ".",
             active: true,
           },
         ]}
       />
-      <div className="bg-gray-50 rounded-md p-5 items-center gap-2 max-h-[65vh] overflow-y-scroll">
+      <div className="bg-gray-50 rounded-md p-5 items-center gap-2 max-h-[60vh] overflow-y-scroll">
         {error ? (
           <h1 className="text-red-500">{error}</h1>
         ) : (
