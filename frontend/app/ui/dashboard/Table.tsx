@@ -10,10 +10,14 @@ export default async function Table({
   getData,
   headerToAttribute,
   deleteAction,
+  entity,
+  owner,
 }: {
   getData: (token: string) => Promise<{ error?: string; data: any[] }>;
   headerToAttribute: Record<string, string>;
   deleteAction?: (prevState: any, formData: FormData) => Promise<any>;
+  entity?: "Doctor" | "Assistant" | "Patient" | "Drug" | "Prescription";
+  owner?: "Doctor" | "Assistant" | "Patient";
 }) {
   const { error, data } = await getData(
     cookies().get("authorization")?.value || ""
@@ -33,14 +37,24 @@ export default async function Table({
           </thead>
           <tbody className="bg-white">
             {data.length !== 0 ? (
-              data.map((el: any) => (
-                <Row
-                  el={el}
-                  deleteAction={deleteAction}
-                  headerToAttribute={headerToAttribute}
-                  key={el._id}
-                />
-              ))
+              data.map((el: any) => {
+                const href = 
+                `/dashboard`
+                + `/${owner?.toLowerCase()}`
+                + `/${entity?.toLocaleLowerCase()}s`
+                + `/${el._id}`;
+
+                return (
+                  <Row
+                    el={el}
+                    deleteAction={deleteAction}
+                    headerToAttribute={headerToAttribute}
+                    key={el._id}
+                    entity={entity}
+                    href={href}
+                  />
+                );
+              })
             ) : (
               <tr>
                 <td
@@ -57,4 +71,3 @@ export default async function Table({
     </>
   );
 }
-
