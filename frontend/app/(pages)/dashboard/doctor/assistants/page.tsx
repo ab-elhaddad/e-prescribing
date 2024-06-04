@@ -30,6 +30,8 @@ export default async function Page() {
             Phone: "phoneNumber",
           }}
           deleteAction={deleteAssistantAction}
+          owner="Doctor"
+          entity="Assistant"
         />
       </Suspense>
     </div>

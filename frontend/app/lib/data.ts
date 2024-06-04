@@ -170,6 +170,42 @@ export async function getPatient(
   }
 }
 
+export async function getAssistant(
+  token: string,
+  id: string
+): Promise<{ error?: string; data: any }> {
+  try {
+    const response = await fetch(`${config.apiUrl}/doc/spec_assistant/${id}`, {
+      headers: {
+        authorization: token,
+      },
+    });
+
+    const { error, data } = await handleResponse(response);
+    if (error) return { error, data: {} };
+    console.log(data);
+    return {
+      error,
+      data: {
+        name: data.name,
+        age: data.age,
+        gender: data.gender,
+        email: data.email,
+        address: data.address,
+        phoneNumber: data.phoneNumber,
+        nationalityNumber: data.nationalityNumber
+      }
+    }
+  }
+  catch (error: any) {
+    console.error(error);
+    return {
+      error: error.message || error.msg || "An error occurred",
+      data: {},
+    };
+  }
+}
+
 export async function getDrug(token: string, id: string) {
   try {
     const response = await fetch(`${config.apiUrl}/drug/spec_drug/${id}`, {
