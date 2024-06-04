@@ -134,3 +134,34 @@ export async function getDoctors(token: string) {
     };
   }
 }
+
+
+export async function getDrug(token: string, id: string) {
+  try {
+    const response = await fetch(`${config.apiUrl}/drug/spec_drug/${id}`, {
+      headers: {
+        authorization: token,
+      },
+    });
+
+    const { error, data } = await handleResponse(response);
+    if (error) return { error, data: {} };
+
+    return {
+      error,
+      data: {
+        name: data.name,
+        usage: data.usage,
+        sideEffects: data.sideEffects.join(", "),
+        similarDrugs: data.similarDrugs.join(", "),
+        contraindications: data.contraindications.join(", "),
+      },
+    };
+  } catch (error: any) {
+    console.error(error);
+    return {
+      error: error.message || error.msg || "An error occurred",
+      data: {},
+    };
+  }
+}

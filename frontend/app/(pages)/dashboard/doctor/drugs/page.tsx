@@ -51,6 +51,8 @@ export default async function Page() {
             "Side Effects": "sideEffects",
           }}
           deleteAction={deleteDrugAction}
+          owner="Doctor"
+          entity="Drug"
         />
       </Suspense>
     </div>
