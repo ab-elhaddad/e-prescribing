@@ -9,7 +9,7 @@ export default function Page({ params }: { params: { id: string } }) {
     <div>
       <Suspense fallback={<InvoicesTableSkeleton />}>
         <DisplayEntityCard
-          entity="Drugs"
+          entity="Drug"
           entityId={id}
           getEntity={getDrug}
           attributeToLabel={{

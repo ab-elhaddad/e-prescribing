@@ -13,7 +13,7 @@ export default async function DisplayEntityCard({
   getEntity,
 }: {
   entityId: string;
-  entity: "Drugs" | "Patients" | "Assistants";
+  entity: "Drug" | "Patient" | "Assistant";
   attributeToLabel: Record<string, string>;
   getEntity: (token: string, entityId: string) => Promise<any>;
 }) {
@@ -27,10 +27,17 @@ export default async function DisplayEntityCard({
             label: entity,
             href: "/dashboard/doctor/drugs",
           },
-          { label: data.name, href: ".", active: true },
+          {
+            label:
+              entity === "Patient" || entity === "Assistant"
+                ? data.name.split(" ")[0]
+                : data.name,
+            href: ".",
+            active: true,
+          },
         ]}
       />
-      <div className="bg-gray-50 rounded-md p-5 flex flex-col items-center gap-y-2">
+      <div className="bg-gray-50 rounded-md p-5 items-center gap-2 max-h-[65vh] overflow-y-scroll">
         {error ? (
           <h1 className="text-red-500">{error}</h1>
         ) : (
@@ -41,11 +48,12 @@ export default async function DisplayEntityCard({
               defaultValue={value as string}
               type="text"
               disabled={true}
+              key={attribute}
             />
           ))
         )}
       </div>
-      <Link href="/dashboard/doctor/drugs">
+      <Link href=".">
         <Button body="Back" variant="secondary" />
       </Link>
     </div>
