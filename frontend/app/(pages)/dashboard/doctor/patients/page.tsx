@@ -52,6 +52,7 @@ export default function Page() {
             Phone: "phoneNumber",
           }}
           entity="Patient"
+          owner="Doctor"
         />
       </Suspense>
     </div>
