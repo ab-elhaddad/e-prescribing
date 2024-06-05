@@ -42,6 +42,7 @@ export default async function DisplayEntityCard({
           <h1 className="text-red-500">{error}</h1>
         ) : (
           Object.entries(data).map(([attribute, value]) => (
+            attributeToLabel[attribute] &&
             <FullBorderInput
               label={attributeToLabel[attribute]}
               name={attribute}

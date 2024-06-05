@@ -146,21 +146,7 @@ export async function getPatient(
       },
     });
 
-    const { error, data } = await handleResponse(response);
-    if (error) return { error, data: {} };
-
-    return {
-      error,
-      data: {
-        name: data.name,
-        age: data.age,
-        gender: data.gender,
-        email: data.email,
-        address: data.address,
-        phoneNumber: data.phoneNumber,
-        nationalityNumber: data.nationalityNumber
-      }
-    }
+    return handleResponse(response);
   } catch (error: any) {
     console.error(error);
     return {
@@ -181,23 +167,8 @@ export async function getAssistant(
       },
     });
 
-    const { error, data } = await handleResponse(response);
-    if (error) return { error, data: {} };
-    console.log(data);
-    return {
-      error,
-      data: {
-        name: data.name,
-        age: data.age,
-        gender: data.gender,
-        email: data.email,
-        address: data.address,
-        phoneNumber: data.phoneNumber,
-        nationalityNumber: data.nationalityNumber
-      }
-    }
-  }
-  catch (error: any) {
+    return handleResponse(response);
+  } catch (error: any) {
     console.error(error);
     return {
       error: error.message || error.msg || "An error occurred",
@@ -214,19 +185,7 @@ export async function getDrug(token: string, id: string) {
       },
     });
 
-    const { error, data } = await handleResponse(response);
-    if (error) return { error, data: {} };
-
-    return {
-      error,
-      data: {
-        name: data.name,
-        usage: data.usage,
-        sideEffects: data.sideEffects.join(", "),
-        similarDrugs: data.similarDrugs.join(", "),
-        contraindications: data.contraindications.join(", "),
-      },
-    };
+    return handleResponse(response);
   } catch (error: any) {
     console.error(error);
     return {
