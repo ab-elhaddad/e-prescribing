@@ -119,8 +119,7 @@ export async function getPrescriptions(token: string) {
 
 export async function getDoctors(token: string) {
   try {
-    // The endpoint is not implemented yet
-    const response = await fetch(`${config.apiUrl}/doc/doctors`, {
+    const response = await fetch(`${config.apiUrl}/pat/doctors`, {
       headers: {
         authorization: token,
       },

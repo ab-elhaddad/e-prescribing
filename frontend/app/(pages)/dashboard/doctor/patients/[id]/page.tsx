@@ -20,7 +20,8 @@ export default function Page({ params }: { params: { id: string } }) {
             email: "Email",
             phoneNumber: "Phone Number",
             address: "Address",
-            nationalityNumber: "Nationality Number"
+            nationalityNumber: "Nationality Number",
+            prescriptions: "Prescriptions"
           }}
         />
       </Suspense>
