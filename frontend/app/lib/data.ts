@@ -83,7 +83,12 @@ export async function getDrugs(token: string) {
         authorization: token,
       },
     });
-    return handleResponse(response);
+
+    const { data, error } = await handleResponse(response);
+    if (error) return { error, data: [] };
+
+    data.forEach((el: any) => (el.sideEffects = el.sideEffects.join(", ")));
+    return { error, data };
   } catch (error: any) {
     console.error(error);
     return {
@@ -145,7 +150,10 @@ export async function getPatient(
       },
     });
 
-    return handleResponse(response);
+    const { data, error } = await handleResponse(response);
+    if (error) return { error, data: {} };
+
+    return { data: { ...data.patient, prescriptions: data.prescriptions } };
   } catch (error: any) {
     console.error(error);
     return {
