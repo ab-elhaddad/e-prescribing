@@ -3,7 +3,7 @@ import { ReactNode, CSSProperties, JSXElementConstructor } from "react";
 
 import Button from "@/app/ui/custom/Button";
 import Divider from "@/app/ui/custom/Divider";
-import PurpleHaloGroup from '@/app/ui/custom/PurpleHaloGroup'
+import PurpleHaloGroup from "@/app/ui/custom/PurpleHaloGroup";
 import HomeSwipper from "@/app/ui/home/HomeSwipper";
 
 import { FaHouseMedical } from "react-icons/fa6";
@@ -13,7 +13,7 @@ import { FaHeadphonesAlt } from "react-icons/fa";
 export default function Home() {
   return (
     <main>
-      <PurpleHaloGroup hiddenIds={[1]}/>
+      <PurpleHaloGroup hiddenIds={[1]} />
       <div className="flex flex-col items-center justify-between w-full">
         <header className="absolute top-40 left-0 z-10 mx-20">
           <h1 className="text-7xl text-gray-700 font-bold">
