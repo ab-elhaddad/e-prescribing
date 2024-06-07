@@ -1,3 +1,4 @@
+import { MdOutlineChangeCircle } from "react-icons/md";
 import { ZodError } from "./ZodError";
 import { clsx } from "clsx";
 
@@ -10,6 +11,7 @@ export default function FullBorderInput({
   defaultValue,
   disabled,
   label,
+  onChange,
 }: {
   type: string;
   placeholder?: string;
@@ -19,6 +21,7 @@ export default function FullBorderInput({
   defaultValue?: string;
   disabled?: boolean;
   label?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
   return (
     <div className="w-full">
@@ -39,6 +42,7 @@ export default function FullBorderInput({
           disabled ? "bg-gray-200" : "bg-transparent"
         )}
         style={style}
+        onChange={onChange}
       />
       <ZodError error={error} style={{ width: "fit-content" }} />
     </div>

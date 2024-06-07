@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import clsx from "clsx";
 import DeleteForm from "../forms/dashboard/deleteForm";
 import CreatePrescriptionButton from "./CreatePrescriptionButton";
 
@@ -19,29 +20,38 @@ export default function Row({
   deleteAction?: (prevState: any, formData: FormData) => Promise<any>;
   headerToAttribute: Record<string, string>;
   entity?: "Doctor" | "Assistant" | "Patient" | "Drug" | "Prescription";
-  href: string;
+  href?: string;
 }) {
   const router = useRouter();
   const handleClick = () => {
-    router.push(href);
+    router.push(href as string);
   };
 
   return (
     <tr
-      className="rounded-md hover:bg-sky-100 hover:text-sky-500 duration-200 cursor-pointer"
-      onClick={handleClick}
+      className={clsx(
+        "rounded-md hover:bg-sky-100 hover:text-sky-500 duration-200",
+        { "cursor-pointer": href }
+      )}
     >
       {Object.values(headerToAttribute).map((attribute: string) => (
-        <td className={styles.td}> {el[attribute] || "N/A"} </td>
+        <td
+          key={el._id}
+          className={styles.td}
+          onClick={href ? handleClick : undefined}
+        >
+          {" "}
+          {el[attribute] || "N/A"}{" "}
+        </td>
       ))}
-      <td className="px-5 py-3 border-b border-gray-200 flex justify-end gap-x-3">
-        {entity === "Patient" && (
-          <CreatePrescriptionButton patientId={el._id} />
-        )}
-        {deleteAction && (
+      {deleteAction && (
+        <td className="px-5 py-3 border-b border-gray-200 flex justify-end gap-x-3">
+          {entity === "Patient" && (
+            <CreatePrescriptionButton patientId={el._id} />
+          )}
           <DeleteForm entityId={el._id} deleteAction={deleteAction} />
-        )}
-      </td>
+        </td>
+      )}
     </tr>
   );
 }
