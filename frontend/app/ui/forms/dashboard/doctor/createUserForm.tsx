@@ -32,7 +32,7 @@ export default function CreateUserForm({
 
   useEffect(() => {
     if (isSubmitted) toast.success(`${entity} created successfully`);
-  }, [isSubmitted]);
+  }, [isSubmitted, entity]);
 
   return (
     <form action={formAction}>
