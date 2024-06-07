@@ -1,15 +1,14 @@
+import Link from "next/link";
 import { Suspense } from "react";
 import { Metadata } from "next";
+import { GoPlus } from "react-icons/go";
 
 import Table from "@/app/ui/dashboard/Table";
+import Button from "@/app/ui/custom/Button";
 import Breadcrumps from "@/app/ui/custom/Breadcrumbs";
-import AddForm from "@/app/ui/forms/dashboard/addForm";
 import InvoicesTableSkeleton from "@/app/ui/skeletons";
 
-import {
-  addAssistantAction,
-  deleteAssistantAction,
-} from "@/app/lib/actions/assistantsActions";
+import { deleteAssistantAction } from "@/app/lib/actions/assistantsActions";
 import { getAssistants } from "@/app/lib/data";
 
 export const metadata: Metadata = {
@@ -19,8 +18,27 @@ export const metadata: Metadata = {
 export default async function Page() {
   return (
     <div className="w-full">
-      <Breadcrumps breadcrumbs={[{href: "./assistants", label: "Assistants", active: true}]}/>
-      <AddForm addAction={addAssistantAction} entity="Assistant" inputPlaceholder="Write assistant's email address"/>
+      <div className="flex justify-between">
+        <Breadcrumps
+          breadcrumbs={[
+            { href: "./assistants", label: "Assistants", active: true },
+          ]}
+        />
+        <Link href="assistants/add">
+          <Button
+            body={
+              <div className="flex justify-between items-center w-full">
+                Add Assistant
+                <GoPlus className="text-2xl" />
+              </div>
+            }
+            type="button"
+            style={{
+              width: "12vw",
+            }}
+          />
+        </Link>
+      </div>
       <Suspense fallback={<InvoicesTableSkeleton />}>
         <Table
           getData={getAssistants}
