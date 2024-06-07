@@ -8,13 +8,22 @@ import toast, { Toaster } from "react-hot-toast";
 import FullBorderInput from "@/app/ui/custom/FullBorderInput";
 import FullBorderGenderSelect from "@/app/ui/custom/FullBorderGenderSelect";
 import Button from "@/app/ui/custom/Button";
-import { createPatientAction } from "@/app/lib/actions/patientsActions";
 
-export default function AddPatientForm() {
-  const [formState, formAction] = useFormState(createPatientAction, {
+export default function CreateUserForm({
+  createUserAction,
+  entity,
+}: {
+  createUserAction: (
+    prevState: any,
+    formData: FormData
+  ) => Promise<{ errors: any; isSubmitted: boolean }>;
+  entity: "Patient" | "Assistant";
+}) {
+  const [formState, formAction] = useFormState(createUserAction, {
     errors: {},
     isSubmitted: false,
   });
+
   const { errors, isSubmitted } = formState;
 
   useEffect(() => {
@@ -22,8 +31,8 @@ export default function AddPatientForm() {
   }, [errors]);
 
   useEffect(() => {
-    if (isSubmitted) toast.success('Patient added successfully');
-  }, [isSubmitted])
+    if (isSubmitted) toast.success(`${entity} created successfully`);
+  }, [isSubmitted]);
 
   return (
     <form action={formAction}>
