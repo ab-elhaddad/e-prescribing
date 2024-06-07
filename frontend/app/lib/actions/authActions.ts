@@ -121,14 +121,7 @@ export async function loginAction(prevState: any, formData: FormData) {
       throw { message: await response.text() };
     }
 
-    const data = JSON.parse(await response.text());
-
-    const {
-      tokens,
-    }: { tokens: Array<{ token: string; _id: string; userType: string }> } =
-      data;
-
-    const token = tokens?.at(-1)?.token || "";
+    const { token } = JSON.parse(await response.text());
 
     cookies().set("authorization", `Bearer ${token}`, {
       sameSite: "strict",
