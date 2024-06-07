@@ -31,7 +31,7 @@ export default function SignupForm() {
       );
       setTimeout(() => router.push("/login"), 3000);
     }
-  }, [formState.redirect]);
+  }, [formState.redirect, router]);
 
   return (
     <>

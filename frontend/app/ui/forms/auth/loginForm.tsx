@@ -39,7 +39,7 @@ export default function LoginForm() {
     login();
     window.location.href = `/dashboard/${Cookies.get("userType")}`;
     // router.push(`/dashboard/${Cookies.get("userType")}`);
-  }, [formState.token]);
+  }, [formState.token, login]);
 
   return (
     <>
