@@ -81,7 +81,7 @@ export const updateProfile = async (
   };
 
   try {
-    await fetch(`${apiUrl}/${typeShorten[type]}/update`, {
+    const reponse = await fetch(`${apiUrl}/${typeShorten[type]}/update`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -89,21 +89,26 @@ export const updateProfile = async (
       },
       body: JSON.stringify(dataToSend),
     });
+
+    if (!reponse.ok) {
+      throw { message: await reponse.json() };
+    }
   } catch (error: any) {
     console.error(error);
     return {
-      ...prevState,
-      message: "",
+      isSuccessful: false,
       errors: {
-        server: error.error || "An error occurred while updating your profile",
+        server:
+          error.error ||
+          error.message ||
+          "An error occurred while updating your profile",
       },
     };
   }
 
   revalidatePath("/profile");
   return {
-    data: validatedFields.data,
-    message: "Profile updated successfully",
-    errors: null,
+    isSuccessful: true,
+    errors: {},
   };
 };
