@@ -40,6 +40,7 @@ export async function createPrescriptionAction(
 
     if (!response.ok) throw { message: await response.text() };
 
+    revalidatePath(`/dashboard/doctor/patients/${data.patient}`)
     return { errors: {}, isSuccess: true };
   } catch (error: any) {
     return {
