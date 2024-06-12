@@ -32,6 +32,8 @@ export default function Page() {
             Created: "createdAt",
             "Last Updated": "updatedAt",
           }}
+          owner="Patient"
+          entity="Prescription"
         />
       </Suspense>
     </div>

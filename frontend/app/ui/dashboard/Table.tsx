@@ -51,7 +51,7 @@ export default async function Table({
                     headerToAttribute={headerToAttribute}
                     key={el._id}
                     entity={entity}
-                    href={owner === "Doctor" ? href : undefined}
+                    href={owner === "Doctor" || entity === "Prescription" ? href : undefined}
                   />
                 );
               })
