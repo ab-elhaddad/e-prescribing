@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
 export async function createPrescriptionAction(
-  selectedDrugs: string[],
+  selectedDrugs: any[],
   prevState: any,
   formData: FormData
 ): Promise<{
@@ -17,7 +17,7 @@ export async function createPrescriptionAction(
 }> {
   const data = {
     patient: formData.get("id"),
-    drugs: selectedDrugs,
+    drugs: selectedDrugs.map((drug) => drug._id),
   };
 
   if (selectedDrugs.length === 0) {
@@ -49,10 +49,13 @@ export async function createPrescriptionAction(
   }
 }
 
-export async function deletePrescriptionAction(prevState: any, formData: FormData): Promise<{
+export async function deletePrescriptionAction(
+  prevState: any,
+  formData: FormData
+): Promise<{
   success: string | null;
   error: string | null;
-  }> {
+}> {
   const id = formData.get("id");
   try {
     const response = await fetch(`${config.apiUrl}/pre/del/${id}`, {
@@ -63,7 +66,7 @@ export async function deletePrescriptionAction(prevState: any, formData: FormDat
       },
     });
 
-    if (!response.ok) throw { success: null, error: await response.text()};
+    if (!response.ok) throw { success: null, error: await response.text() };
 
     revalidatePath(`/dashboard/doctor/patients/${id}`);
     return { success: "Prescription deleted successfully!", error: null };
@@ -71,6 +74,40 @@ export async function deletePrescriptionAction(prevState: any, formData: FormDat
     return {
       success: null,
       error: error.error || error.message || "Something went wrong!",
+    };
+  }
+}
+
+export async function updatePrescription(
+  drugs: string[],
+  prevState: any,
+  formData: FormData
+) {
+  const data = {
+    drugs,
+  };
+  console.log(drugs);
+  try {
+    const response = await fetch(
+      `${config.apiUrl}/pre/update/${formData.get("id")}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: cookies().get("authorization")?.value || "",
+        },
+        body: JSON.stringify(data),
+      }
+    );
+    console.log(response);
+    if (!response.ok) throw { message: await response.text() };
+
+    revalidatePath(`/dashboard/doctor/prescriptions/${formData.get("id")}`);
+    return { isSuccessful: true, erorr: "" };
+  } catch (error: any) {
+    return {
+      error: error.message as string || "Something went wrong!",
+      isSuccessful: false,
     };
   }
 }

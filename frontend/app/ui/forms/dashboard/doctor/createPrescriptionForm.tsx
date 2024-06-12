@@ -29,7 +29,7 @@ export default function CreatePrescriptionForm({
     toast.error((patientError as string) || (drugsError as string));
   }
 
-  const [selectedDrugs, setSelectedDrugs] = useState<string[]>([]);
+  const [selectedDrugs, setSelectedDrugs] = useState<any[]>([]);
   const createPrescriptionWithDrugs = createPrescriptionAction.bind(null, selectedDrugs);
   const [formState, formAction] = useFormState(createPrescriptionWithDrugs, {errors: {}, isSuccess: false});
 
@@ -91,7 +91,7 @@ export default function CreatePrescriptionForm({
             </div>
           </div>
           <DrugsList
-            drugsData={drugsData.map((drug) => drug.name)}
+            drugsData={drugsData}
             selectedDrugs={selectedDrugs}
             setSelectedDrugs={setSelectedDrugs}
           />
@@ -107,37 +107,37 @@ export default function CreatePrescriptionForm({
   );
 }
 
-function DrugsList({
+export function DrugsList({
   drugsData: drugs,
   selectedDrugs,
   setSelectedDrugs,
 }: {
-  drugsData: string[];
-  selectedDrugs: string[];
-  setSelectedDrugs: (selectedDrugs: string[]) => void;
+  drugsData: any[];
+  selectedDrugs: any[];
+  setSelectedDrugs: (selectedDrugs: any[]) => void;
 }) {
   const [filteredDrugs, setFilteredDrugs] = useState(drugs);
 
   const handleDrugsSearch: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     const search = e.target.value;
     const filteredDrugs = drugs.filter((drug) =>
-      drug.toLowerCase().includes(search.toLowerCase())
+      drug.name.toLowerCase().includes(search.toLowerCase())
     );
     setFilteredDrugs(filteredDrugs);
   };
 
   const handleDrugSelect: React.MouseEventHandler<HTMLOptionElement> = (e) => {
-    const drug = e.currentTarget.value;
-    const isSelected = selectedDrugs.includes(drug);
+    const drug = JSON.parse(e.currentTarget.value) ;
+    let isSelected = false;
+    selectedDrugs.forEach((el) => isSelected ||= el.name === drug.name);
     if (isSelected) return;
     setSelectedDrugs([...selectedDrugs, drug]);
   };
 
   const handleDrugDelete: React.MouseEventHandler<HTMLButtonElement> = (e) => {
-    // @ts-ignore
-    const drug = e.currentTarget.value;
+    const drug = JSON.parse(e.currentTarget.value);
     const updatedDrugs = selectedDrugs.filter(
-      (selectedDrug) => selectedDrug !== drug
+      (selectedDrug) => selectedDrug.name !== drug.name
     );
     setSelectedDrugs(updatedDrugs);
   };
@@ -158,11 +158,11 @@ function DrugsList({
             filteredDrugs.map((drug) => (
               <option
                 className="p-2 border-b border-gray-200 text-md"
-                key={drug}
+                key={drug.name}
                 onClick={handleDrugSelect}
-                value={drug}
+                value={JSON.stringify(drug)}
               >
-                {drug}
+                {drug.name}
               </option>
             ))
           ) : (
@@ -171,17 +171,18 @@ function DrugsList({
         </div>
       </div>
       <div className="flex gap-x-3 gap-y-2">
-        {selectedDrugs.map((drug) => (
+        {selectedDrugs.map((drug) => {
+          return (
           <div
-            key={drug}
-            className="flex gap-x-3 text-sky-700 bg-sky-200 p-2 px-3 rounded-full w-fit"
+            key={drug.name}
+            className="flex gap-x-3 text-sky-600 bg-sky-100 p-2 px-3 rounded-full w-fit"
           >
-            <span>{drug}</span>
-            <button onClick={handleDrugDelete} value={drug}>
+            <span>{drug.name}</span>
+            <button onClick={handleDrugDelete} value={JSON.stringify(drug)} type="button">
               <IoCloseOutline className="text-red-500 text-xl font-bold hover:text-red-700 hover:rotate-90 duration-300" />
             </button>
           </div>
-        ))}
+        )})}
       </div>
     </div>
   );

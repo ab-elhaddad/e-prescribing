@@ -8,6 +8,7 @@ import Link from "next/link";
 import Table from "./Table";
 import { deletePrescriptionAction } from "@/app/lib/actions/doctorActions";
 import { RiSurveyLine } from "react-icons/ri";
+import { getDoctorPrescriptions } from "@/app/lib/data";
 
 export default async function DisplayEntityCard({
   entityId,
@@ -51,7 +52,7 @@ export default async function DisplayEntityCard({
             ([attribute, value]) =>
               attributeToLabel[attribute] &&
               (attribute === "prescriptions" ? (
-                <Prescriptions prescriptions={value as any[]} />
+                <Prescriptions token={token} id={entityId} />
               ) : (
                 <FullBorderInput
                   label={attributeToLabel[attribute]}
@@ -72,21 +73,9 @@ export default async function DisplayEntityCard({
   );
 }
 
-function Prescriptions({ prescriptions }: { prescriptions: any[] }) {
-  prescriptions.forEach((prescription) => {
-    prescription.drugs = prescription.drugs
-      .map((drug: any) => drug.name)
-      .join(", ");
-
-    prescription.doctor = prescription.doctor.name;
-
-    prescription.createdAt = new Date(prescription.createdAt)
-      .toUTCString()
-      .slice(0, -12);
-  });
-
-  const getData = async () => {
-    return { data: prescriptions, error: undefined };
+async function Prescriptions({ token, id }: { token: string; id: string }) {
+  const getData = async (token: string) => {
+    return getDoctorPrescriptions(token, id);
   };
 
   return (
