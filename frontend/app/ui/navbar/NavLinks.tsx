@@ -1,8 +1,8 @@
 "use client";
 
-import { useAuth } from "@/app/context/AuthProvider";
 import Link from "next/link";
 import Cookies from "js-cookie";
+import { useAuth } from "@/app/context/AuthProvider";
 
 export default function NavLinks() {
   const links: Record<string, string> = {

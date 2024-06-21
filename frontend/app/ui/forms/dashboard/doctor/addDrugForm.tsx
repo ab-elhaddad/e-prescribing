@@ -6,8 +6,8 @@ import { useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
 import Breadcrumbs from "@/app/ui/custom/Breadcrumbs";
-import Button from "@/app/ui/custom/Button";
-import FullBorderInput from "@/app/ui/custom/FullBorderInput";
+import Button from "@/app/ui/custom/inputs/Button";
+import FullBorderInput from "@/app/ui/custom/inputs/FullBorderInput";
 import { addDrugAction } from "@/app/lib/actions/drugsActions";
 
 const initialState = {

@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import Header from "@/app/ui/custom/Header";
+import PageHeader from "@/app/ui/custom/PageHeader";
 import PurpleHaloGroup from "@/app/ui/custom/PurpleHaloGroup";
 import Divider from '@/app/ui/custom/Divider'
 
@@ -14,7 +14,7 @@ export default function Page() {
       <PurpleHaloGroup />
 
       <div className="flex-col justify-center relative z-30">
-        <Header title="About us" />
+        <PageHeader title="About us" />
 
         <div className="mx-20 flex-col justify-center items-center">
           <div className="flex justify-around my-12 py-4 backdrop-blur-md bg-white/30 rounded-2xl hover:-translate-y-1 shadow-sm transition duration-500 ease-in-out">

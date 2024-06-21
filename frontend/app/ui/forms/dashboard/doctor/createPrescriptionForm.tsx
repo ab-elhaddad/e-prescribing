@@ -5,8 +5,8 @@ import React, { useEffect, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 
 import Breadcrumbs from "@/app/ui/custom/Breadcrumbs";
-import FullBorderInput from "@/app/ui/custom/FullBorderInput";
-import Button from "@/app/ui/custom/Button";
+import FullBorderInput from "@/app/ui/custom/inputs/FullBorderInput";
+import Button from "@/app/ui/custom/inputs/Button";
 import Link from "next/link";
 import { IoCloseOutline } from "react-icons/io5";
 import { createPrescriptionAction } from "@/app/lib/actions/doctorActions";

@@ -2,8 +2,8 @@ import Link from "next/link";
 import { cookies } from "next/headers";
 
 import Breadcrumbs from "@/app/ui/custom/Breadcrumbs";
-import FullBorderInput from "@/app/ui/custom/FullBorderInput";
-import Button from "@/app/ui/custom/Button";
+import FullBorderInput from "@/app/ui/custom/inputs/FullBorderInput";
+import Button from "@/app/ui/custom/inputs/Button";
 import { getPrescription } from "@/app/lib/data";
 
 export default function Page({ params }: { params: { id: string } }) {

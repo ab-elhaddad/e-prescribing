@@ -2,7 +2,7 @@
 
 import { useFormState, useFormStatus } from "react-dom";
 import toast, { Toaster } from "react-hot-toast";
-import Button from "@/app/ui/custom/Button";
+import Button from "@/app/ui/custom/inputs/Button";
 import { GoPlus } from "react-icons/go";
 import { useEffect } from "react";
 

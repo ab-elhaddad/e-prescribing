@@ -10,7 +10,7 @@ import {
   deletePatientAction,
 } from "@/app/lib/actions/patientsActions";
 import { getPatients } from "@/app/lib/data";
-import Button from "@/app/ui/custom/Button";
+import Button from "@/app/ui/custom/inputs/Button";
 import Link from "next/link";
 import { GoPlus } from "react-icons/go";
 

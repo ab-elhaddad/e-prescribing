@@ -5,8 +5,8 @@ import { useEffect } from "react";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 
-import BottomBorderInput from "@/app/ui/custom/BottomBorderInput";
-import Button from "@/app/ui/custom/Button";
+import BottomBorderInput from "@/app/ui/custom/inputs/BottomBorderInput";
+import Button from "@/app/ui/custom/inputs/Button";
 import { signupAction } from "@/app/lib/actions/authActions";
 import { useRouter } from "next/navigation";
 

@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+
 import "./globals.css";
-import Footer from "./ui/custom/Footer";
-import Navbar from "./ui/navbar/Navbar";
-import PurpleHaloGroup from "./ui/custom/PurpleHaloGroup";
-import IsAuthenticatedProvider from "./context/AuthProvider";
+import Footer from "@/app/ui/Footer";
+import Navbar from "@/app/ui/Navbar";
+import IsAuthenticatedProvider from "@/app/context/AuthProvider";
 
 import { register } from "swiper/element/bundle";
 register();

@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { cookies } from "next/headers";
 import { Suspense } from "react";
 
-import Header from "@/app/ui/custom/Header";
+import PageHeader from "@/app/ui/custom/PageHeader";
 import ProfileForm from "@/app/ui/forms/profileForm";
 import PurpleHaloGroup from "@/app/ui/custom/PurpleHaloGroup";
 import InvoicesTableSkeleton from "@/app/ui/skeletons";
@@ -30,7 +30,7 @@ export default function Page() {
     <>
       <PurpleHaloGroup hiddenIds={[1, 4, 5]} />
       <div>
-        <Header title="Your Profile" />
+        <PageHeader title="Your Profile" />
         <Suspense fallback={<InvoicesTableSkeleton />}>
           <ProfileCard />
         </Suspense>

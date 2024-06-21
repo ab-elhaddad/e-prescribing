@@ -1,5 +1,5 @@
 import { MdOutlineChangeCircle } from "react-icons/md";
-import { ZodError } from "./ZodError";
+import { ZodError } from "../ZodError";
 import { clsx } from "clsx";
 
 export default function FullBorderInput({

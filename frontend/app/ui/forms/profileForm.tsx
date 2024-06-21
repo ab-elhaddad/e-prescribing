@@ -5,10 +5,9 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
-import FullBorderInput from "../custom/FullBorderInput";
-import Button from "../custom/Button";
-import FullBorderGenderSelect from "../custom/FullBorderGenderSelect";
-
+import FullBorderInput from "@/app/ui/custom/inputs/FullBorderInput";
+import Button from "@/app/ui/custom/inputs/Button";
+import FullBorderGenderSelect from "@/app/ui/custom/inputs/FullBorderGenderSelect";
 import { updateProfile } from "@/app/lib/actions/profileActions";
 import { useAuth } from "@/app/context/AuthProvider";
 

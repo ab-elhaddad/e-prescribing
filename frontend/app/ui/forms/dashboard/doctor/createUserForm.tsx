@@ -5,9 +5,9 @@ import { useFormState, useFormStatus } from "react-dom";
 import { useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
-import FullBorderInput from "@/app/ui/custom/FullBorderInput";
-import FullBorderGenderSelect from "@/app/ui/custom/FullBorderGenderSelect";
-import Button from "@/app/ui/custom/Button";
+import FullBorderInput from "@/app/ui/custom/inputs/FullBorderInput";
+import FullBorderGenderSelect from "@/app/ui/custom/inputs/FullBorderGenderSelect";
+import Button from "@/app/ui/custom/inputs/Button";
 
 export default function CreateUserForm({
   createUserAction,

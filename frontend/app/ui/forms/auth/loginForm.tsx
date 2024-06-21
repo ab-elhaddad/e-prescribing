@@ -1,16 +1,15 @@
 "use client";
 
+import Link from "next/link";
+import Cookies from "js-cookie";
+import toast, { Toaster } from "react-hot-toast";
 import { useFormState, useFormStatus } from "react-dom";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
-import toast, { Toaster } from "react-hot-toast";
-import Cookies from "js-cookie";
 import { useEffect } from "react";
 
-import SelectRole from "@/app/ui/custom/selectRole";
-import BottomBorderInput from "@/app/ui/custom/BottomBorderInput";
-import Button from "@/app/ui/custom/Button";
-
+import SelectRole from "@/app/ui/custom/inputs/SelectRole";
+import BottomBorderInput from "@/app/ui/custom/inputs/BottomBorderInput";
+import Button from "@/app/ui/custom/inputs/Button";
 import { loginAction } from "@/app/lib/actions/authActions";
 import { useAuth } from "@/app/context/AuthProvider";
 

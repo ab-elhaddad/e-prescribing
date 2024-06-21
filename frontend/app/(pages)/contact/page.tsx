@@ -1,11 +1,11 @@
 import { FaEnvelope, FaLocationArrow, FaPhoneAlt } from "react-icons/fa";
-import Header from "@/app/ui/custom/Header";
+import PageHeader from "@/app/ui/custom/PageHeader";
 import ContactForm from "@/app/ui/forms/contactForm";
 
 export default function Page() {
   return (
     <div>
-      <Header title="Contact us" />
+      <PageHeader title="Contact us" />
       <div className="mx-24 my-24 flex gap-5">
         {/* Contact Info */}
         <div

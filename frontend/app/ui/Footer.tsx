@@ -1,7 +1,6 @@
 import { FaXTwitter } from "react-icons/fa6";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
-const projectName = process.env.PROJECT_NAME;
 const Footer = () => {
   return (
     <footer className="bg-white text-black z-10 sticky top-0 flex justify-center">
@@ -78,7 +77,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-8 text-center text-gray-400">
-          &copy; {new Date().getFullYear()} {projectName}. All rights reserved.
+          &copy; {new Date().getFullYear()} E-Prescriping. All rights reserved.
         </div>
       </div>
     </footer>

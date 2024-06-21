@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import { GoPlus } from "react-icons/go";
 
 import Table from "@/app/ui/dashboard/Table";
-import Button from "@/app/ui/custom/Button";
+import Button from "@/app/ui/custom/inputs/Button";
 import Breadcrumps from "@/app/ui/custom/Breadcrumbs";
 import InvoicesTableSkeleton from "@/app/ui/skeletons";
 

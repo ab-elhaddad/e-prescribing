@@ -1,4 +1,4 @@
-import { ZodError } from "./ZodError";
+import { ZodError } from "../ZodError";
 
 export default function BottomBorderInput({
   type,
