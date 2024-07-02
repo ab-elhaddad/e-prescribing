@@ -91,7 +91,7 @@ export const updateProfile = async (
     });
 
     if (!reponse.ok) {
-      throw { message: await reponse.json() };
+      throw { message: await reponse.text() };
     }
   } catch (error: any) {
     console.error(error);
