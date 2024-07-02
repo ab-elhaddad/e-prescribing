@@ -131,7 +131,7 @@ export async function deletePendingPrescriptionAction(
   prevState: any,
   formData: FormData
 ) {
-  const id = formData.get("id");
+  const id = formData.get("id") as string;
   const token = cookies().get("authorization")?.value || "";
   return deletePendingPrescription(id, token);
 }
