@@ -1,9 +1,9 @@
 "use server";
 
 import { cookies } from "next/headers";
-import config from "@/app/lib/config";
-import { revalidatePath } from "next/cache";
 import { z } from "zod";
+import { revalidatePath } from "next/cache";
+import config from "@/app/lib/config";
 
 export async function addPatientAction(prevState: any, formData: FormData) {
   const patientEmail = formData.get("email");

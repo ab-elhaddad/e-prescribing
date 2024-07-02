@@ -19,7 +19,7 @@ export async function addAssistantAction(prevState: any, formData: FormData) {
     console.log(await response.text());
 
     if (!response.ok) {
-      throw {message: await response.text()};
+      throw { message: await response.text() };
     }
 
     revalidatePath("/dashboard/assistants");
@@ -95,7 +95,10 @@ const CreateAssistantSchema = z
     path: ["confirmPassword"],
   });
 
-export async function createAssistantAction(prevState: any, formData: FormData) {
+export async function createAssistantAction(
+  prevState: any,
+  formData: FormData
+) {
   const validatedData = CreateAssistantSchema.safeParse({
     firstName: formData.get("firstName") as string,
     lastName: formData.get("lastName") as string,
