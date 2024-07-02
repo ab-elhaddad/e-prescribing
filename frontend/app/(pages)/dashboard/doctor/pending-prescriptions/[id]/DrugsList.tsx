@@ -44,7 +44,7 @@ export default function ClientDrugsList({
       toast.success("Prescription created successfully!");
       deletePendingPrescription(pendingPrescriptionId, doctorToken);
     };
-  }, [formState])
+  }, [formState, doctorToken, pendingPrescriptionId])
 
   return (
     <form action={formAction} className="w-full flex flex-col gap-y-5">
