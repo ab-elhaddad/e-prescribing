@@ -6,9 +6,8 @@ import Divider from "@/app/ui/custom/Divider";
 import PurpleHaloGroup from "@/app/ui/custom/PurpleHaloGroup";
 import HomeSwipper from "@/app/ui/home/HomeSwipper";
 
-import { FaHouseMedical } from "react-icons/fa6";
 import { IoChatbox } from "react-icons/io5";
-import { FaHeadphonesAlt } from "react-icons/fa";
+import { RiSurveyLine } from "react-icons/ri";
 
 export default function Home() {
   return (
@@ -54,9 +53,15 @@ export default function Home() {
             </p>
           </BlueCard>
           <TransparentCard
-            Icon={FaHouseMedical}
-            title="Appointment"
-            describtion="You can book an appointment with our doctors at any time. We are
+            title="Welcome to the future of healthcare!"
+            describtion="
+            Our cutting-edge electronic prescription system is designed to empower doctors and medical staff with an efficient platform to manage patient profiles and create prescriptions.
+          "
+          />
+          <TransparentCard
+            Icon={RiSurveyLine}
+            title="Prescription"
+            describtion="You can get a prescription from our doctors at any time. We are
               available 24/7 to help you with any medical issues you may have."
           />
           <TransparentCard
@@ -65,14 +70,6 @@ export default function Home() {
             describtion="You can chat with our doctors online to get help with any medical
               issues you may have. We are available 24/7 to help you with any
               medical issues you may have."
-          />
-
-          <TransparentCard
-            Icon={FaHeadphonesAlt}
-            title="Emegency Cases"
-            describtion="
-            You can call us at any time for emergency cases. We are available 24/7 to help you with any medical issues you may have.
-          "
           />
         </div>
 
@@ -180,8 +177,8 @@ function TransparentCard({
   describtion,
   style,
 }: {
-  Icon: JSXElementConstructor<{ className: string }>;
-  title: string;
+  Icon?: JSXElementConstructor<{ className: string }>;
+  title?: string;
   describtion: string;
   style?: CSSProperties;
 }) {
@@ -195,7 +192,7 @@ function TransparentCard({
         ...style,
       }}
     >
-      <Icon className="text-6xl mb-5 text-sky-600" />
+      {Icon && <Icon className="text-6xl mb-5 text-sky-600" />}
       <h1 className="text-2xl font-bold mb-5">{title}</h1>
       <p className="text-md">{describtion}</p>
     </div>

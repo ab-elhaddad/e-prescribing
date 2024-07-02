@@ -43,9 +43,9 @@ const Footer = () => {
           <div>
             <h2 className="text-xl font-bold mb-4">Contact Us</h2>
             <ul>
-              <li className="mb-2">Email: info@example.com</li>
+              <li className="mb-2">Email: e_prescriping@menoufia.com</li>
               <li className="mb-2">Phone: (123) 456-7890</li>
-              <li className="mb-2">Address: 123 Main St, Anytown, USA</li>
+              <li className="mb-2">Address: Shiben El-Kom, Menoufia, Egypt</li>
             </ul>
           </div>
 

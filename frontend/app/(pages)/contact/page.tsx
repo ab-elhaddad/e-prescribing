@@ -16,9 +16,7 @@ export default function Page() {
             <div>
               <h4 className="text-lg font-semibold text-sky-700">Location:</h4>
               <p className="text-xs text-gray-600">
-                1212 Dhaka, Kazi Nozrul Avenur,
-                <br />
-                Sylhet, Bangladesh 03214
+                Shiben El-Kom, Menoufia, Egypt
               </p>
             </div>
           </div>
@@ -27,7 +25,7 @@ export default function Page() {
             <FaEnvelope className="bg-sky-200 p-1 rounded-full text-sky-600 text-xl mt-1" />
             <div>
               <h4 className="text-lg font-semibold text-sky-700">Email:</h4>
-              <p className="text-xs text-gray-600">ujjalzaman@gmail.com</p>
+              <p className="text-xs text-gray-600">e_prescriping@menoufia.com</p>
             </div>
           </div>
 
@@ -35,7 +33,7 @@ export default function Page() {
             <FaPhoneAlt className="bg-sky-200 p-1 rounded-full text-sky-600 text-xl mt-1" />
             <div>
               <h4 className="text-lg font-semibold text-sky-700">Call:</h4>
-              <p className="text-xs text-gray-600">+88 01751 040425</p>
+              <p className="text-xs text-gray-600">(123) 456-7890</p>
             </div>
           </div>
         </div>
