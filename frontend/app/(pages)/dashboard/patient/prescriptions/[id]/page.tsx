@@ -5,6 +5,7 @@ import Breadcrumbs from "@/app/ui/custom/Breadcrumbs";
 import FullBorderInput from "@/app/ui/custom/inputs/FullBorderInput";
 import Button from "@/app/ui/custom/inputs/Button";
 import { getPrescription } from "@/app/lib/data";
+import FullBorderParagraph from "@/app/ui/custom/FullBorderParagraph";
 
 export default function Page({ params }: { params: { id: string } }) {
   return (
@@ -50,7 +51,7 @@ async function PrescriptionDetails({ id }: { id: string }) {
 
   handleData(data);
   return (
-    <div className="w-full p-5 bg-gray-50 rounded-md flex flex-col gap-y-3">
+    <div className="w-full p-5 bg-gray-50 rounded-md flex flex-col gap-y-5">
       <div className="flex justify-between gap-x-5 mb-3">
         <FullBorderInput
           name="doctorName"
@@ -76,41 +77,27 @@ async function PrescriptionDetails({ id }: { id: string }) {
 
 function SingleDrug({ drug }: { drug: any }) {
   return (
-    <div className="flex justify-between gap-x-3">
-      <FullBorderInput
-        name="name"
-        disabled={true}
-        label="Drug Name"
-        defaultValue={drug.name}
-        type="text"
-      />
-      <FullBorderInput
-        name="usage"
-        disabled={true}
+    <div className="flex justify-between gap-x-3 border-b border-b-gray-200">
+      <FullBorderParagraph label="Drug Name" content={drug.name} name="name" />
+      <FullBorderParagraph
         label="Drug Usage"
-        defaultValue={drug.usage}
-        type="text"
+        content={drug.usage}
+        name="usage"
       />
-      <FullBorderInput
-        name="sideEffects"
-        disabled={true}
+      <FullBorderParagraph
         label="Drug Side Effects"
-        defaultValue={drug.sideEffects}
-        type="text"
+        content={drug.sideEffects}
+        name="sideEffects"
       />
-      <FullBorderInput
-        name="contraindications"
-        disabled={true}
+      <FullBorderParagraph
         label="Drug Contraindications"
-        defaultValue={drug.contraindications}
-        type="text"
+        content={drug.contraindications}
+        name="contraindications"
       />
-      <FullBorderInput
-        name="similarDrugs"
-        disabled={true}
+      <FullBorderParagraph
         label="Drug Similar Drugs"
-        defaultValue={drug.similarDrugs}
-        type="text"
+        content={drug.similarDrugs}
+        name="similarDrugs"
       />
     </div>
   );
