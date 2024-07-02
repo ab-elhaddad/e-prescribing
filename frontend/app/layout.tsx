@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 
 import "./globals.css";
 import Footer from "@/app/ui/Footer";
-import Navbar from "@/app/ui/Navbar";
+import Navbar from "@/app/ui/Navbar/.";
 import IsAuthenticatedProvider from "@/app/context/AuthProvider";
 
 import { register } from "swiper/element/bundle";
