@@ -16,7 +16,7 @@ export default async function Table({
   getData: (token: string) => Promise<{ error?: string; data: any[] }>;
   headerToAttribute: Record<string, string>;
   deleteAction?: (prevState: any, formData: FormData) => Promise<any>;
-  entity?: "Doctor" | "Assistant" | "Patient" | "Drug" | "Prescription";
+  entity?: "Doctor" | "Assistant" | "Patient" | "Drug" | "Prescription" | "Pending-Prescription";
   owner?: "Doctor" | "Assistant" | "Patient";
 }) {
   const { error, data } = await getData(

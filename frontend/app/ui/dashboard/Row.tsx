@@ -19,7 +19,7 @@ export default function Row({
   el: any;
   deleteAction?: (prevState: any, formData: FormData) => Promise<any>;
   headerToAttribute: Record<string, string>;
-  entity?: "Doctor" | "Assistant" | "Patient" | "Drug" | "Prescription";
+  entity?: "Doctor" | "Assistant" | "Patient" | "Drug" | "Prescription" | "Pending-Prescription";
   href?: string;
 }) {
   const router = useRouter();
