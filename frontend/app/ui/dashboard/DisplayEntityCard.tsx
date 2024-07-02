@@ -29,7 +29,7 @@ export default async function DisplayEntityCard({
         <Breadcrumbs
           breadcrumbs={[
             {
-              label: entity,
+              label: `${entity}s`,
               href: "/dashboard/doctor/drugs",
             },
             {
