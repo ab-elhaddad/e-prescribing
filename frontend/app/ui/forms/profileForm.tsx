@@ -139,6 +139,7 @@ export default function ProfileForm({
           error={formState.errors?.birthDate}
         />
       </div>
+      <FullBorderInput name="password" type="password" placeholder="Password"/>
     </form>
 </div>
   );

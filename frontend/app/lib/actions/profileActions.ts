@@ -42,6 +42,7 @@ const profileFormSchema = z.object({
     .max(100, "Address cannot be more than 100 characters")
     .or(z.string().max(0)),
   birthDate: z.date({ message: "Please enter a valid date" }),
+  password: z.string().min(8, 'Password must be at least 8 characters')
 });
 
 export const updateProfile = async (
@@ -59,6 +60,7 @@ export const updateProfile = async (
     address: formData.get("address"),
     birthDate: new Date(formData.get("birthDate") as string),
     gender: formData.get("gender"),
+    password: formData.get('password')
   };
   const validatedFields = profileFormSchema.safeParse(data);
 
@@ -78,6 +80,7 @@ export const updateProfile = async (
     address: data.address,
     birthday: data.birthDate,
     gender: data.gender,
+    password: data.password
   };
 
   try {
