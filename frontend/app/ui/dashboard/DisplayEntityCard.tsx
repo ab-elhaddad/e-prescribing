@@ -25,7 +25,7 @@ export default async function DisplayEntityCard({
   const { error, data } = await getEntity(token, entityId);
   return (
     <div className="flex flex-col gap-y-3">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col md:flex-row justify-between items-center">
         <Breadcrumbs
           breadcrumbs={[
             {
@@ -104,7 +104,7 @@ function AddPrescriptionButton({ id }: { id: string }) {
           </div>
         }
         style={{
-          width: "15vw",
+          width: "35vh"
         }}
       />
     </Link>

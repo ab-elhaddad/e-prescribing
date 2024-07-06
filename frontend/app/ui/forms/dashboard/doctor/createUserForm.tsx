@@ -37,7 +37,7 @@ export default function CreateUserForm({
   return (
     <form action={formAction}>
       <Toaster />
-      <div className="flex flex-col gap-y-3 p-3 bg-gray-50 rounded-md">
+      <div className="flex flex-col gap-y-3 p-3 bg-gray-50 rounded-md text-sm md:text-md">
         <div className="flex gap-x-3">
           <div className="w-1/4">
             <FullBorderInput

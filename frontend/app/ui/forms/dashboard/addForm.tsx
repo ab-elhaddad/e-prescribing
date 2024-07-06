@@ -53,7 +53,7 @@ function SubmitButton({ entity }: { entity: string }) {
       pending={pending}
       body={
         <div className="flex justify-between items-center w-full">
-          Add {entity}
+          <span className="hidden md:block">Add {entity}</span>
           <GoPlus className="text-2xl" />
         </div>
       }

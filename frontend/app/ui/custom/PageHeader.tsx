@@ -2,7 +2,7 @@ import Divider from "./Divider";
 
 export default function PageHeader({ title }: { title: string }) {
   return (
-    <div className="flex justify-center items-center">
+    <div className="hidden md:flex justify-center items-center">
       <div className="md:text-5xl text-white font-bold absolute z-20 flex flex-col items-center gap-y-3">
         <h1>
           {title}

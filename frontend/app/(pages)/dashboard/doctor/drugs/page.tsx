@@ -34,11 +34,6 @@ export default async function Page() {
                 <GoPlus className="text-2xl" />
               </div>
             }
-            style={{
-              width: "15vw",
-              marginTop: "0",
-              fontWeight: "500",
-            }}
           />
         </Link>
       </div>

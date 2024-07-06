@@ -27,7 +27,7 @@ export default function Page() {
             { href: "./patients", label: "Patients", active: true },
           ]}
         />
-        <Link href="patients/add">
+        <Link href="patients/add" className="md:w-[12vw]">
           <Button
             body={
               <div className="flex justify-between items-center w-full">
@@ -36,9 +36,6 @@ export default function Page() {
               </div>
             }
             type="button"
-            style={{
-              width: "12vw"
-            }}
           />
         </Link>
       </div>

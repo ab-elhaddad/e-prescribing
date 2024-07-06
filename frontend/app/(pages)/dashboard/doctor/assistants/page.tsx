@@ -24,7 +24,7 @@ export default async function Page() {
             { href: "./assistants", label: "Assistants", active: true },
           ]}
         />
-        <Link href="assistants/add">
+        <Link href="assistants/add" className="md:w-[12vw]">
           <Button
             body={
               <div className="flex justify-between items-center w-full">
@@ -33,9 +33,6 @@ export default async function Page() {
               </div>
             }
             type="button"
-            style={{
-              width: "12vw",
-            }}
           />
         </Link>
       </div>

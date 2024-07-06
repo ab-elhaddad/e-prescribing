@@ -156,28 +156,28 @@ export function DrugsList({
         <div className="w-full bg-white rounded-b-md min-h-10 max-h-40 overflow-y-scroll flex flex-col">
           {filteredDrugs.length ? (
             filteredDrugs.map((drug) => (
-              <option
+              <div
                 className="p-2 border-b border-gray-200 text-md"
                 key={drug.name}
                 onClick={handleDrugSelect}
                 value={JSON.stringify(drug)}
               >
                 {drug.name}
-              </option>
+              </div>
             ))
           ) : (
-            <option className="self-center pt-2">No matched drugs.</option>
+            <div className="self-center pt-2">No matched drugs.</div>
           )}
         </div>
       </div>
-      <div className="flex gap-x-3 gap-y-2">
+      <div className="flex flex-wrap gap-x-3 gap-y-2">
         {selectedDrugs.map((drug) => {
           return (
           <div
             key={drug.name}
-            className="flex gap-x-3 text-sky-600 bg-sky-100 p-2 px-3 rounded-full w-fit"
+            className="flex gap-x-3 text-sky-600 bg-sky-100 p-2 px-3 rounded-full h-fit w-fit"
           >
-            <span>{drug.name}</span>
+            <span className="h-fit w-fit text-sm md:text-md">{drug.name}</span>
             <button onClick={handleDrugDelete} value={JSON.stringify(drug)} type="button">
               <IoCloseOutline className="text-red-500 text-xl font-bold hover:text-red-700 hover:rotate-90 duration-300" />
             </button>

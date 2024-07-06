@@ -52,35 +52,40 @@ export default function AddDrugForm() {
               error={formState.errors.usage}
             />
           </div>
-          <div className="w-full flex gap-x-5">
-            <div className="flex-flex-col gap-y-1 w-full">
+          <div className="w-full flex gap-x-5 mb-3">
+            <div className="flex flex-col gap-y-1 w-full">
               <FullBorderInput
                 name="sideEffects"
                 type="text"
                 placeholder="Side Effects"
+                style={{marginBottom: "0"}}
               />
-              <p className="m-0 p-0 ml-2 text-xs text-gray-500 ">
+              <p className="m-0 p-0 ml-2 text-[10px] md:text-xs text-gray-500 ">
                 {`ie. 'Headache, Dizziness, Flushing'`}
               </p>
             </div>
-            <div className="flex-flex-col gap-y-1 w-full">
+            <div className="flex flex-col gap-y-1 w-full">
               <FullBorderInput
                 name="contraindications"
                 type="text"
                 placeholder="Contraindications"
+                                style={{marginBottom: "0"}}
+
               />
-              <p className="m-0 p-0 ml-2 text-xs text-gray-500 ">
+              <p className="m-0 p-0 ml-2 text-[10px] md:text-xs text-gray-500 ">
                 {`ie. 'Ungina, Cardiac failure, Prignancy'`}
               </p>
             </div>
           </div>
-          <div className="flex-flex-col gap-y-1 w-full">
+          <div className="flex flex-col gap-y-1 w-full">
             <FullBorderInput
               name="similarDrugs"
               type="text"
               placeholder="Similar Drugs"
+                              style={{marginBottom: "0"}}
+
             />
-            <p className="m-0 p-0 ml-2 text-xs text-gray-500 ">
+            <p className="m-0 p-0 ml-2 text-[10px] md:text-xs text-gray-500 ">
               {`ie. 'blockadibine 10, blockadibine 20'`}
             </p>
           </div>
