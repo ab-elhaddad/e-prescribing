@@ -6,7 +6,7 @@ export default function SideNav({ links }: { links: string[] }) {
   return (
     <div className="flex h-full flex-col px-3 py-4 md:px-2">
       <Link
-        className="mb-2 flex h-20 justify-center items-center rounded-md bg-sky-600 p-4 md:h-40 pl-2"
+        className="mb-2 flex h-fit justify-center items-center rounded-md bg-sky-600 p-4 md:h-40 pl-2"
         href="/home"
       >
         <Logo size={100} color="white" />
