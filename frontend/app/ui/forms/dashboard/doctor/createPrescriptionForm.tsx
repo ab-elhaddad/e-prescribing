@@ -126,10 +126,10 @@ export function DrugsList({
     setFilteredDrugs(filteredDrugs);
   };
 
-  const handleDrugSelect: React.MouseEventHandler<HTMLOptionElement> = (e) => {
-    const drug = JSON.parse(e.currentTarget.value) ;
+  const handleDrugSelect: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    const drug = JSON.parse(e.currentTarget.value);
     let isSelected = false;
-    selectedDrugs.forEach((el) => isSelected ||= el.name === drug.name);
+    selectedDrugs.forEach((el) => (isSelected ||= el.name === drug.name));
     if (isSelected) return;
     setSelectedDrugs([...selectedDrugs, drug]);
   };
@@ -156,14 +156,15 @@ export function DrugsList({
         <div className="w-full bg-white rounded-b-md min-h-10 max-h-40 overflow-y-scroll flex flex-col">
           {filteredDrugs.length ? (
             filteredDrugs.map((drug) => (
-              <div
-                className="p-2 border-b border-gray-200 text-md"
-                key={drug.name}
+              <button
+                className="flex p-2 border-b border-gray-200 text-md"
+                key={JSON.stringify(drug)}
                 onClick={handleDrugSelect}
                 value={JSON.stringify(drug)}
+                type="button"
               >
                 {drug.name}
-              </div>
+              </button>
             ))
           ) : (
             <div className="self-center pt-2">No matched drugs.</div>
