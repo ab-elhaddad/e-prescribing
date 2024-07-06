@@ -47,7 +47,7 @@ async function ProfileCard() {
   const Icon = getUserIcon(user.type);
   return (
     <>
-      <Icon className="text-10xl text-sky-100 bg-sky-700 p-5 rounded-full absolute top-64 left-44 z-30" />
+      <Icon className="text-10xl text-sky-100 bg-sky-700 p-5 rounded-full absolute top-20 md:top-64 left-28 md:left-44 z-30" />
       <div className="container mx-auto px-4 py-4">
         {error ? (
           <h1 className="text-red-500"> {error} </h1>

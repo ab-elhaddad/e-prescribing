@@ -56,14 +56,14 @@ export default function ProfileForm({
       <Toaster />
     <form
       action={formAction}
-      className="my-20 pb-10 pt-6 px-10 rounded-lg flex flex-col gap-5 w-full bg-gray-50 relative z-20 shadow-md"
+      className="mt-36 md:mt-20 mb-20 pb-10 pt-6 px-10 rounded-lg flex flex-col gap-3 md:gap-5 w-full bg-gray-50 relative z-20 shadow-md text-sm md:text-base"
       >
       <div className="flex justify-between items-start mb-5">
         {/* <h1 className="text-3xl text-sky-700 font-bold ml-44">Your Profile</h1> */}
         <SubmitButton />
       </div>
-      <div className="flex gap-x-5 w-full">
-        <div className="flex justify-between gap-x-3 w-full">
+      <div className="flex flex-col md:flex-row gap-x-3 md:gap-x-5 w-full">
+        <div className="flex justify-between gap-x-3 md:gap-x-5 w-full">
           <div className="w-1/2">
             <FullBorderInput
               type="text"
@@ -148,10 +148,11 @@ export default function ProfileForm({
 function SubmitButton() {
   const { pending } = useFormStatus();
   return (
+    <div className="flex justify-center m-0 md:ml-auto w-full md:w-[15vw]">
     <Button
       body="Update Profile"
       pending={pending}
-      style={{ margin: "0", marginLeft: "auto", width: "15vw" }}
-    />
+      />
+      </div>
   );
 }
