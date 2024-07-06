@@ -36,10 +36,9 @@ export default function MySwiper({
           <SwiperSlide key={slide.title} className="text-sky-600">
             <div className="flex flex-col h-full w-full items-center justify-center">
               <slide.Icon
-                className="bg-white p-5 rounded-full mb-5 shadow-md"
-                style={{ fontSize: "7rem" }}
+                className="bg-white md:p-5 rounded-full mb-5 shadow-md text-xs md:text-[7rem]"
               />
-              <p className="font-bold text-gray-700 text-lg">{slide.title}</p>
+              <p className="font-bold text-gray-700 text-xs md:text-lg">{slide.title}</p>
             </div>
           </SwiperSlide>
         ))}

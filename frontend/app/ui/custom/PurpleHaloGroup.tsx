@@ -2,7 +2,7 @@ import PurpleHalo from "./PurpleHalo";
 
 export default function PurpleHaloGroup({ hiddenIds }: { hiddenIds?: number[] }) {
   return (
-    <div className="opacity-50">
+    <div className="opacity-50 hidden md:block">
       <PurpleHalo
         style={{
           marginLeft: "40vw",

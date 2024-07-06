@@ -1,4 +1,5 @@
 import Link from "next/link";
+import clsx from "clsx";
 import { ReactNode, CSSProperties, JSXElementConstructor } from "react";
 
 import Button from "@/app/ui/custom/inputs/Button";
@@ -14,36 +15,46 @@ export default function Home() {
     <main>
       <PurpleHaloGroup hiddenIds={[1]} />
       <div className="flex flex-col items-center justify-between w-full">
-        <header className="absolute top-40 left-0 z-10 mx-20">
-          <h1 className="text-7xl text-gray-700 font-bold">
+        <header
+          className={clsx(
+            "w-full absolute top-28 md:top-40 left-0 z-10 md:mx-20",
+            "flex flex-col justify-center md:items-start",
+            "items-center"
+          )}
+        >
+          <h1 className="text-[8vw] md:text-[4.5vw] text-gray-700 font-bold">
             WELCOME TO
             <br />
             <span className="text-sky-600">E-Prescriping</span>
           </h1>
-          <p className="mt-5 text-2xl text-gray-700 font-bold">
+          <p className="mt-5 text-[3vw] md:text-[1.3vw] text-gray-700 font-bold">
             YOUR MUST TRUSTED HEALTH PARTNER
           </p>
-          <div className="flex mt-10">
+          <div className="flex mt-10 flex gap-x-3">
             <Link href="/about">
-              <Button body="ABOUT US" style={{ marginRight: "3vw" }} />
+              <div className="md:w-[10vw] md:text-[1vw]">
+                <Button body="ABOUT US" style={{ marginRight: "3vw" }} />
+              </div>
             </Link>
             <Link href="/contact">
-              <Button body="CONTACT US" />
+              <div className="md:w-[10vw] md:text-[1vw]">
+                <Button body="CONTACT US" />
+              </div>
             </Link>
           </div>
         </header>
 
         <div
-          className="flex justify-between absolute left-0 z-20"
-          style={{
-            top: "75vh",
-            marginLeft: "5vw",
-            width: "89vw",
-          }}
+          className={clsx(
+            "flex flex-col absolute left-0 top-[60vh] z-20 w-full justify-center items-center gap-y-5",
+            "md:flex-row md:gap-x-5 md:top-[80vh]"
+          )}
         >
           <BlueCard>
-            <h1 className="text-4xl font-bold mb-8">WHY CHOOSE US?</h1>
-            <p className="text-md">
+            <h1 className="text-[5vw] md:text-[2vw] font-bold mb-8">
+              WHY CHOOSE US?
+            </h1>
+            <p className="md:text-[1vw]">
               Our doctors are available 24/7 to help you with any medical issues
               you may have, no matter how big or small, we are here to help. We
               would be more than happy to serve you at any time. We have a team
@@ -76,15 +87,15 @@ export default function Home() {
         <img
           src="/home-banner.png"
           alt="Doctor holding a medical headphone"
-          className="w-full object-cover"
+          className="hidden md:block w-full object-cover"
         />
 
-        <div
-          className="flex flex-col items-center mb-32"
-          style={{ marginTop: "65vh" }}
-        >
+        {/* To place the footer at the end of the page in mobile mood*/}
+        <div className="md:mt-0 mt-[275vh]" />
+
+        <div className="hidden md:flex flex-col items-center mb-32 md:mt-[65vh] mt-[200vh]">
           <div className="flex flex-col items-center mb-12 z-30">
-            <h1 className="text-4xl font-bold text-gray-700 mb-3">
+            <h1 className="text-sm md:text-4xl font-bold text-gray-700 mb-3">
               CLINIC AND SPECIALITIES
             </h1>
             <p className="text-gray-500 font-light text-sm mb-2">
@@ -95,7 +106,7 @@ export default function Home() {
           <HomeSwipper />
         </div>
 
-        <div className="container flex flex-row items-center gap-x-5 rounded-3xl mb-20 z-20">
+        <div className="hidden md:flex container flex flex-row items-center gap-x-5 rounded-3xl mb-20 z-20">
           <div className="flex flex-col gap-y-5">
             <img
               src="/operation-1.jpg"
@@ -159,12 +170,12 @@ function BlueCard({
 }) {
   return (
     <div
-      className="w-96 p-10 bg-sky-600 text-white hover:-translate-y-1 shadow-md transition duration-500 ease-in-out"
-      style={{
-        height: "55vh",
-        width: "28vw",
-        ...style,
-      }}
+      className={clsx(
+        "p-10 bg-sky-600 text-white hover:-translate-y-1 shadow-md transition duration-500 ease-in-out",
+        "md:h-[55vh] md:w-96",
+        "w-[90vw]"
+      )}
+      style={style}
     >
       {children}
     </div>
@@ -184,13 +195,11 @@ function TransparentCard({
 }) {
   return (
     <div
-      className="w-96 p-10 backdrop-blur-md bg-white/30 hover:-translate-y-1 shadow-md transition duration-500 ease-in-out flex flex-col items-center text-gray-700 text-center"
-      style={{
-        borderRadius: "30px",
-        height: "55vh",
-        width: "19vw",
-        ...style,
-      }}
+      className={clsx(
+        "p-10 bg-gray-50 md:bg-white/30 md:backdrop-blur-md hover:-translate-y-1 shadow-md transition duration-500 ease-in-out flex flex-col items-center text-gray-700 text-center w-[90vw]",
+        "md:h-[55vh] md:w-[19vw] rounded-[30px]"
+      )}
+      style={style}
     >
       {Icon && <Icon className="text-6xl mb-5 text-sky-600" />}
       <h1 className="text-2xl font-bold mb-5">{title}</h1>
