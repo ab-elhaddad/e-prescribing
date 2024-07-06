@@ -24,7 +24,7 @@ export default async function Table({
   );
   return (
     <>
-      <div className="max-h-96 overflow-y-auto mt-10 p-3 pt-0 bg-gray-50 rounded-md">
+      <div className="max-h-96 overflow-y-auto mt-10 p-3 pt-0 bg-gray-50 rounded-md text-sm md:text-md">
         <table className="w-full rounded-md">
           <thead className="bg-white sticky top-0">
             <tr>
