@@ -96,13 +96,13 @@ function Sidebar({
             </svg>
           </button>
         </div>
-        <nav className="flex flex-col justify-between">
+        <nav className="flex flex-col justify-between h-[90%]">
           <div className="flex flex-col p-4 space-y-3">
             <NavLinks />
           </div>
-          {/* <div className="mt-96 text-5xl">
+          <div className="mt-auto text-5xl p-4">
             <LoginLink isSidebarOpen={isSidebarOpen} />
-          </div> */}
+          </div>
         </nav>
       </div>
       {/* Overlay to close sidebar when clicking outside */}
