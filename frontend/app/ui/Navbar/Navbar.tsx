@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import clsx from "clsx";
 import { useState } from "react";
 
 import NavLinks from "./NavLinks";
 import LoginLink from "./LoginLink";
 import Logo from "../custom/Logo";
+import { useAuth } from "@/app/context/AuthProvider";
 
 export default function Navbar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -70,6 +72,8 @@ function Sidebar({
   isSidebarOpen: boolean;
   toggleSidebar: () => void;
 }) {
+  const { user } = useAuth();
+
   return (
     <>
       <div
@@ -96,11 +100,14 @@ function Sidebar({
             </svg>
           </button>
         </div>
-        <nav className="flex flex-col justify-between h-[90%]">
+        <nav
+          className=
+            "flex flex-col justify-between"
+        >
           <div className="flex flex-col p-4 space-y-3">
             <NavLinks />
           </div>
-          <div className="mt-auto text-5xl p-4">
+          <div className={clsx("text-5xl p-4", {"mt-[57vh]": user}, {"mt-[102vw]": !user})}>
             <LoginLink isSidebarOpen={isSidebarOpen} />
           </div>
         </nav>
