@@ -25,7 +25,7 @@ export default function UploadImage({
 
   return (
     <>
-      <label htmlFor={inputName} className="text-sm ml-2 text-gray-500">
+      <label htmlFor={inputName} className="text-xs md:text-sm ml-2 text-gray-500">
         {label}
         {" "}
         <span className="text-xs text-gray-400">{hint}</span>
