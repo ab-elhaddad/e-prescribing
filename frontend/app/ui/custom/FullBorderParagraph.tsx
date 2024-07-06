@@ -8,11 +8,11 @@ export default function FullBorderParagraph(props: PropsTypes) {
   const { label, content, name } = props;
   return (
     <div className="w-full">
-      <label htmlFor={name} className="text-sm ml-2 text-gray-500 mt-1">
+      <label htmlFor={name} className="text-xs md:text-sm ml-2 text-gray-500 mt-1">
         {label}
       </label>
       <p
-        className="text-sm px-3 py-2 mb-3 mt-1 border rounded-xl bg-white h-fit min-h-[5vh] w-full"
+        className="text-xs md:text-sm px-3 py-2 mb-3 mt-1 border rounded-xl bg-white h-fit min-h-[5vh] w-full"
       >
         {content}
       </p>

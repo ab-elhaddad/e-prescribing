@@ -51,7 +51,7 @@ async function PrescriptionDetails({ id }: { id: string }) {
 
   handleData(data);
   return (
-    <div className="w-full p-5 bg-gray-50 rounded-md flex flex-col gap-y-5">
+    <div className="w-full p-5 bg-gray-50 rounded-md flex flex-col gap-y-5 text-sm md:text-base">
       <div className="flex justify-between gap-x-5 mb-3">
         <FullBorderInput
           name="doctorName"
@@ -62,7 +62,7 @@ async function PrescriptionDetails({ id }: { id: string }) {
         />
         <FullBorderInput
           name="doctorPhoneNumber"
-          label="Doctor Phone Number"
+          label="Phone Number"
           type="tel"
           disabled={true}
           defaultValue={data.doctor.phoneNumber}
@@ -77,7 +77,7 @@ async function PrescriptionDetails({ id }: { id: string }) {
 
 function SingleDrug({ drug }: { drug: any }) {
   return (
-    <div className="flex justify-between gap-x-3 border-b border-b-gray-200">
+    <div className="flex flex-wrap md:flex-nowrap justify-between gap-x-3 border-b border-b-gray-200">
       <FullBorderParagraph label="Drug Name" content={drug.name} name="name" />
       <FullBorderParagraph
         label="Drug Usage"
@@ -85,17 +85,17 @@ function SingleDrug({ drug }: { drug: any }) {
         name="usage"
       />
       <FullBorderParagraph
-        label="Drug Side Effects"
+        label="Side Effects"
         content={drug.sideEffects}
         name="sideEffects"
       />
       <FullBorderParagraph
-        label="Drug Contraindications"
+        label="Contraindications"
         content={drug.contraindications}
         name="contraindications"
       />
       <FullBorderParagraph
-        label="Drug Similar Drugs"
+        label="Similar Drugs"
         content={drug.similarDrugs}
         name="similarDrugs"
       />
