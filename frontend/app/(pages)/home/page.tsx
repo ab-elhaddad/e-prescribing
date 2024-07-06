@@ -22,12 +22,12 @@ export default function Home() {
             "items-center"
           )}
         >
-          <h1 className="text-[8vw] md:text-[4.5vw] text-gray-700 font-bold">
+          <h1 className="text-[11vw] md:text-[4.5vw] text-gray-700 font-bold">
             WELCOME TO
             <br />
             <span className="text-sky-600">E-Prescriping</span>
           </h1>
-          <p className="mt-5 text-[3vw] md:text-[1.3vw] text-gray-700 font-bold">
+          <p className="mt-5 text-[3.7vw] md:text-[1.3vw] text-gray-700 font-bold">
             YOUR MUST TRUSTED HEALTH PARTNER
           </p>
           <div className="flex mt-10 flex gap-x-3">
