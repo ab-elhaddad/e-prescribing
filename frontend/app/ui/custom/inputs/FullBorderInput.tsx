@@ -37,7 +37,7 @@ export default function FullBorderInput({
         defaultValue={defaultValue}
         disabled={disabled === undefined ? false : disabled}
         className={clsx(
-          "focus:outline-none focus:border-sky-500 focus:border-2 text-md px-3 py-2 mb-3 mt-1 border rounded-xl bg-white w-80 w-full",
+          "focus:outline-none focus:border-sky-500 focus:border-2 px-3 py-2 mb-3 mt-1 border rounded-xl bg-white w-80 w-full",
           error ? "border-red-500" : "border-gray-200",
           disabled ? "bg-gray-200" : "bg-transparent"
         )}

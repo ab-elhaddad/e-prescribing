@@ -12,9 +12,9 @@ export default function ContactForm() {
   return (
     <form
       action={formAction}
-      className="py-10 px-16 rounded-lg flex flex-col gap-5 w-full bg-gray-50 shadow-md relative z-40"
+      className="py-10 px-6 md:px-16 rounded-lg flex flex-col gap-5 w-full bg-gray-50 shadow-md relative z-40"
     >
-      <div className="w-full flex justify-between gap-x-5">
+      <div className="text-md md:text-base w-full flex justify-between gap-x-5">
         <div className="w-1/2">
           <FullBorderInput
             type="text"
