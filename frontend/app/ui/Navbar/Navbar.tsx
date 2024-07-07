@@ -53,7 +53,7 @@ export default function Navbar() {
           </button>
         </div>
 
-        <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+        <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} setIsSidebarOpen={setIsSidebarOpen}/>
 
         <div className="hidden lg:flex lg:gap-x-12">
           <NavLinks />
@@ -68,11 +68,14 @@ export default function Navbar() {
 function Sidebar({
   isSidebarOpen,
   toggleSidebar,
+  setIsSidebarOpen,
 }: {
   isSidebarOpen: boolean;
   toggleSidebar: () => void;
+  setIsSidebarOpen: (state: boolean) => void;
 }) {
   const { user } = useAuth();
+  const closeSidenav = () => setIsSidebarOpen(false);
 
   return (
     <>
@@ -100,14 +103,17 @@ function Sidebar({
             </svg>
           </button>
         </div>
-        <nav
-          className=
-            "flex flex-col justify-between"
-        >
+        <nav className="flex flex-col justify-between" onClick={closeSidenav}>
           <div className="flex flex-col p-4 space-y-3">
             <NavLinks />
           </div>
-          <div className={clsx("text-5xl p-4", {"mt-[57vh]": user}, {"mt-[102vw]": !user})}>
+          <div
+            className={clsx(
+              "text-5xl p-4",
+              { "mt-[57vh]": user },
+              { "mt-[102vw]": !user }
+            )}
+          >
             <LoginLink isSidebarOpen={isSidebarOpen} />
           </div>
         </nav>
