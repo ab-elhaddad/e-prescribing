@@ -21,7 +21,6 @@ export async function scanPrescriptionAction(
     patientEmail: formData.get("patientEmail"),
     doctorEmail: formData.get("doctorEmail"),
   };
-
   const validatedData = z
     .object({
       prescriptionImage: z.object({ name: z.string() }),
@@ -29,31 +28,25 @@ export async function scanPrescriptionAction(
       doctorEmail: z.string().email("Invalid email address"),
     })
     .safeParse(data);
-
   if (!validatedData.success) {
     return {
       errors: validatedData.error.formErrors.fieldErrors,
       isSubmitted: false,
     };
   }
-
   const requestFormData = new FormData();
   // requestFormData.append("patientEmail", data.patientEmail as string);
   requestFormData.append("image", data.prescriptionImage as File);
-
   try {
     const response = await fetch(config.aiModelUrl as string, {
       method: "POST",
       body: requestFormData,
       redirect: "follow",
     });
-
     if (!response.ok) {
       throw { message: "Something went wrong!" };
     }
-
     const drugs = (await response.json()).ocr as Array<string>;
-    console.log(drugs);
     const filteredDrugs = drugs.filter(
       (drug) =>
         !drug.includes("*") && !drug.includes("/") && !drug.includes("+")
@@ -62,8 +55,6 @@ export async function scanPrescriptionAction(
       filteredDrugs,
       validatedData.data.doctorEmail
     );
-    console.log(drugsIds);
-
     return await createPendingPrescription(
       drugsIds,
       validatedData.data.patientEmail,
@@ -89,12 +80,10 @@ async function getDrugsIds(drugs: string[], doctorEmail: string) {
     },
     body: JSON.stringify({ drugs, email: doctorEmail }),
   });
-
   if (!response.ok) {
     throw { message: await response.text() };
   }
-
-  return (await response.json()).map((drug) => drug._id);
+  return await response.json();
 }
 
 async function createPendingPrescription(
@@ -112,11 +101,9 @@ async function createPendingPrescription(
       body: JSON.stringify({ drugs, patientEmail, doctorEmail }),
     });
     console.log(response);
-
     if (!response.ok) {
       throw { message: await response.text() };
     }
-
     return { errors: {}, isSubmitted: true };
   } catch (error: any) {
     console.error(error);
@@ -137,23 +124,17 @@ export async function deletePendingPrescriptionAction(
   const token = cookies().get("authorization")?.value || "";
   return deletePendingPrescription(id, token);
 }
-
 export async function deletePendingPrescription(id: string, token: string) {
   try {
-    const response = await fetch(
-      `${config.apiUrl}/pen/del/${id}`,
-      {
-        method: "DELETE",
-        headers: {
-          Authorization: token,
-        },
-      }
-    );
-
+    const response = await fetch(`${config.apiUrl}/pen/del/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: token,
+      },
+    });
     if (!response.ok) {
       throw { message: await response.text() };
     }
-
     return { errors: {} };
   } catch (error: any) {
     console.error(error);
