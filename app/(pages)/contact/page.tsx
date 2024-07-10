@@ -28,7 +28,7 @@ export default function Page() {
                 Email:
               </h4>
               <p className="text-xs text-gray-600">
-                e_prescriping@menoufia.com
+                e_prescribing@menoufia.com
               </p>
             </div>
           </div>

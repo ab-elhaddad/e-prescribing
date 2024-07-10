@@ -43,7 +43,7 @@ const Footer = () => {
           <div>
             <h2 className="text-xl font-bold mb-4">Contact Us</h2>
             <ul>
-              <li className="mb-2">Email: e_prescriping@menoufia.com</li>
+              <li className="mb-2">Email: e_prescribing@menoufia.com</li>
               <li className="mb-2">Phone: (123) 456-7890</li>
               <li className="mb-2">Address: Shiben El-Kom, Menoufia, Egypt</li>
             </ul>
@@ -77,7 +77,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-8 text-center text-gray-400">
-          &copy; {new Date().getFullYear()} E-Prescriping. All rights reserved.
+          &copy; {new Date().getFullYear()} E-Prescribing. All rights reserved.
         </div>
       </div>
     </footer>

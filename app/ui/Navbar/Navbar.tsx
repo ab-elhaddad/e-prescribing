@@ -25,7 +25,7 @@ export default function Navbar() {
           <Link href="/home" className="-m-1.5 p-1.5 flex">
             <Logo size={32} />
             {/* <span className="h-8 w-auto text-blue-500 text-lg font-semibold">
-              E-Prescriping
+              E-Prescribing
             </span> */}
           </Link>
         </div>
