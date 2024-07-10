@@ -53,6 +53,7 @@ export async function scanPrescriptionAction(
     }
 
     const drugs = (await response.json()).ocr as Array<string>;
+    console.log(drugs);
     const filteredDrugs = drugs.filter(
       (drug) =>
         !drug.includes("*") && !drug.includes("/") && !drug.includes("+")
@@ -61,6 +62,7 @@ export async function scanPrescriptionAction(
       filteredDrugs,
       validatedData.data.doctorEmail
     );
+    console.log(drugsIds);
 
     return await createPendingPrescription(
       drugsIds,
@@ -92,7 +94,7 @@ async function getDrugsIds(drugs: string[], doctorEmail: string) {
     throw { message: await response.text() };
   }
 
-  return await response.json();
+  return (await response.json()).map((drug) => drug._id);
 }
 
 async function createPendingPrescription(
