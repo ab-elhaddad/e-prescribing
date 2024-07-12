@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Suspense } from "react";
-import { Metadata } from "next";
 import { GoPlus } from "react-icons/go";
 
 import Table from "@/app/ui/dashboard/Table";
@@ -10,10 +9,6 @@ import InvoicesTableSkeleton from "@/app/ui/skeletons";
 
 import { deleteAssistantAction } from "@/app/lib/actions/assistantsActions";
 import { getAssistants } from "@/app/lib/data";
-
-export const metadata: Metadata = {
-  title: "Assistants",
-};
 
 export default async function Page() {
   return (

@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import { Metadata } from "next";
 
 import InvoicesTableSkeleton from "@/app/ui/skeletons";
 import AddForm from "@/app/ui/forms/dashboard/addForm";
@@ -13,10 +12,6 @@ import { getPatients } from "@/app/lib/data";
 import Button from "@/app/ui/custom/inputs/Button";
 import Link from "next/link";
 import { GoPlus } from "react-icons/go";
-
-export const metadata: Metadata = {
-  title: "Patients",
-};
 
 export default function Page() {
   return (

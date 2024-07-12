@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import { Metadata } from "next";
 
 import InvoicesTableSkeleton from "@/app/ui/skeletons";
 import Table from "@/app/ui/dashboard/Table";

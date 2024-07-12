@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import { Metadata } from "next";
 import Link from "next/link";
 
 import Table from "@/app/ui/dashboard/Table";
@@ -12,10 +11,6 @@ import {
 } from "@/app/lib/actions/drugsActions";
 import { getDrugs } from "@/app/lib/data";
 import { GoPlus } from "react-icons/go";
-
-export const metadata: Metadata = {
-  title: "Drugs",
-};
 
 export default async function Page() {
   return (
