@@ -1,6 +1,6 @@
 import { FaEnvelope, FaLocationArrow, FaPhoneAlt } from "react-icons/fa";
-import PageHeader from "@/app/ui/custom/PageHeader";
-import ContactForm from "@/app/ui/forms/contactForm";
+import PageHeader from "@/components/PageHeader";
+import ContactForm from "@/forms/contactForm";
 
 export default function Page() {
   return (

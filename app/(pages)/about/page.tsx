@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
-import PageHeader from "@/app/ui/custom/PageHeader";
-import PurpleHaloGroup from "@/app/ui/custom/PurpleHaloGroup";
-import Divider from '@/app/ui/custom/Divider'
+import PageHeader from "@/components/PageHeader";
+import PurpleHaloGroup from "@/components/PurpleHaloGroup";
+import Divider from '@/components/Divider'
 
 export const metadata: Metadata = {
   title: "About us",

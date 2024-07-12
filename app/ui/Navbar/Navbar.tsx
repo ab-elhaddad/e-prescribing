@@ -6,7 +6,7 @@ import { useState } from "react";
 
 import NavLinks from "./NavLinks";
 import LoginLink from "./LoginLink";
-import Logo from "../custom/Logo";
+import Logo from "@/components/Logo";
 import { useAuth } from "@/app/context/AuthProvider";
 
 export default function Navbar() {

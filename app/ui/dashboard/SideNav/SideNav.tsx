@@ -1,6 +1,6 @@
 import Link from "next/link";
 import NavLinks from "./NavLinks";
-import Logo from "@/app/ui/custom/Logo";
+import Logo from "@/components/Logo";
 
 export default function SideNav({ links }: { links: string[] }) {
   return (

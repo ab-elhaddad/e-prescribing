@@ -1,7 +1,7 @@
 import { addPatientAction, createPatientAction } from "@/app/lib/actions/patientsActions";
-import Breadcrumbs from "@/app/ui/custom/Breadcrumbs";
-import AddForm from "@/app/ui/forms/dashboard/addForm";
-import CreateUserForm from "@/app/ui/forms/dashboard/doctor/createUserForm";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import AddForm from "@/forms/dashboard/addForm";
+import CreateUserForm from "@/forms/dashboard/doctor/createUserForm";
 
 export default function Page() {
   return (

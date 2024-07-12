@@ -2,9 +2,9 @@ import Link from "next/link";
 import clsx from "clsx";
 import { ReactNode, CSSProperties, JSXElementConstructor } from "react";
 
-import Button from "@/app/ui/custom/inputs/Button";
-import Divider from "@/app/ui/custom/Divider";
-import PurpleHaloGroup from "@/app/ui/custom/PurpleHaloGroup";
+import Button from "@/components/inputs/Button";
+import Divider from "@/components/Divider";
+import PurpleHaloGroup from "@/components/PurpleHaloGroup";
 import HomeSwipper from "@/app/ui/home/HomeSwipper";
 
 import { IoChatbox } from "react-icons/io5";

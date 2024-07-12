@@ -1,4 +1,4 @@
-import Breadcrumbs from "@/app/ui/custom/Breadcrumbs";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import DrugsList from "./DrugsList";
 import { getDrugs, getPendingPrescription } from "@/app/lib/data";
 import { cookies } from "next/headers";

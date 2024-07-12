@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { Suspense } from "react";
-import CreatePrescriptionForm from "@/app/ui/forms/dashboard/doctor/createPrescriptionForm";
+import CreatePrescriptionForm from "@/forms/dashboard/doctor/createPrescriptionForm";
 import { InvoiceSkeleton } from "@/app/ui/skeletons";
 import { getDrugs, getPatient } from "@/app/lib/data";
 

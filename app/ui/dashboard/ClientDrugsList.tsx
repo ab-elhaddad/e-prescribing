@@ -5,8 +5,8 @@ import toast, {Toaster} from 'react-hot-toast';
 import { useEffect, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 
-import Button from "../custom/inputs/Button";
-import { DrugsList } from "../forms/dashboard/doctor/createPrescriptionForm";
+import Button from "@/components/inputs/Button";
+import { DrugsList } from "@/forms/dashboard/doctor/createPrescriptionForm";
 import { updatePrescription } from "@/app/lib/actions/doctorActions";
 
 export function ClientDrugsList({

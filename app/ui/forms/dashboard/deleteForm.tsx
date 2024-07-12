@@ -4,7 +4,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useFormState, useFormStatus } from "react-dom";
 import { useEffect } from "react";
 import { MdDeleteOutline } from "react-icons/md";
-import LoadingSpinner from "@/app/ui/custom/LoadingSpinner";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 const initialState = {
   error: null,

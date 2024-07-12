@@ -2,7 +2,7 @@ import { Suspense } from "react";
 
 import InvoicesTableSkeleton from "@/app/ui/skeletons";
 import Table from "@/app/ui/dashboard/Table";
-import Breadcrumps from "@/app/ui/custom/Breadcrumbs";
+import Breadcrumps from "@/components/Breadcrumbs";
 import { deletePendingPrescriptionAction } from "@/app/lib/actions/pendingPrescriptionActions";
 import { getPendingPrescriptions } from "@/app/lib/data";
 

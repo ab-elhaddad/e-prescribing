@@ -1,15 +1,15 @@
 import { Suspense } from "react";
 
 import InvoicesTableSkeleton from "@/app/ui/skeletons";
-import AddForm from "@/app/ui/forms/dashboard/addForm";
+import AddForm from "@/forms/dashboard/addForm";
 import Table from "@/app/ui/dashboard/Table";
-import Breadcrumps from "@/app/ui/custom/Breadcrumbs";
+import Breadcrumps from "@/components/Breadcrumbs";
 import {
   addPatientAction,
   deletePatientAction,
 } from "@/app/lib/actions/patientsActions";
 import { getPatients } from "@/app/lib/data";
-import Button from "@/app/ui/custom/inputs/Button";
+import Button from "@/components/inputs/Button";
 import Link from "next/link";
 import { GoPlus } from "react-icons/go";
 

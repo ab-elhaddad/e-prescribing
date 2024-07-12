@@ -1,5 +1,5 @@
-import CircelItem from "@/app/ui/custom/CircleItem";
-import PurpleHaloGroup from "@/app/ui/custom/PurpleHaloGroup";
+import CircelItem from "@/components/CircleItem";
+import PurpleHaloGroup from "@/components/PurpleHaloGroup";
 
 export default function Layout({
   children,

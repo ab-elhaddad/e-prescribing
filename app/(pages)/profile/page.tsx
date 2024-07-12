@@ -2,9 +2,9 @@ import { Metadata } from "next";
 import { cookies } from "next/headers";
 import { Suspense } from "react";
 
-import PageHeader from "@/app/ui/custom/PageHeader";
-import ProfileForm from "@/app/ui/forms/profileForm";
-import PurpleHaloGroup from "@/app/ui/custom/PurpleHaloGroup";
+import PageHeader from "@/components/PageHeader";
+import ProfileForm from "@/forms/profileForm";
+import PurpleHaloGroup from "@/components/PurpleHaloGroup";
 import InvoicesTableSkeleton from "@/app/ui/skeletons";
 
 import { FaUserDoctor, FaUserInjured, FaUserNurse } from "react-icons/fa6";

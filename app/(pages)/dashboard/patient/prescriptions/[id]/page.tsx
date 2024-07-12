@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { cookies } from "next/headers";
 
-import Breadcrumbs from "@/app/ui/custom/Breadcrumbs";
-import FullBorderInput from "@/app/ui/custom/inputs/FullBorderInput";
-import Button from "@/app/ui/custom/inputs/Button";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import FullBorderInput from "@/components/inputs/FullBorderInput";
+import Button from "@/components/inputs/Button";
 import { getPrescription } from "@/app/lib/data";
-import FullBorderParagraph from "@/app/ui/custom/FullBorderParagraph";
+import FullBorderParagraph from "@/components/FullBorderParagraph";
 
 export default function Page({ params }: { params: { id: string } }) {
   return (

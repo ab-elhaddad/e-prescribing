@@ -1,7 +1,7 @@
 "use client"
 
 import {useRouter} from 'next/navigation'
-import Button from "@/app/ui/custom/inputs/Button"
+import Button from "@/components/inputs/Button"
 
 export default function Error() {
   const router = useRouter();

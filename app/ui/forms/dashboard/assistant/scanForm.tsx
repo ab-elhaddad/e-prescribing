@@ -5,9 +5,9 @@ import toast, { Toaster } from "react-hot-toast";
 import { useFormState, useFormStatus } from "react-dom";
 import { useEffect } from "react";
 
-import Button from "@/app/ui/custom/inputs/Button";
-import FullBorderInput from "@/app/ui/custom/inputs/FullBorderInput";
-import UploadImage from "@/app/ui/custom/inputs/UploadImage";
+import Button from "@/components/inputs/Button";
+import FullBorderInput from "@/components/inputs/FullBorderInput";
+import UploadImage from "@/components/inputs/UploadImage";
 import { scanPrescriptionAction } from "@/app/lib/actions/pendingPrescriptionActions";
 
 const initialState = {

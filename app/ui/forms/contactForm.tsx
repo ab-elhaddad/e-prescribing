@@ -1,10 +1,10 @@
 "use client";
 
 import { useFormState } from "react-dom";
-import FullBorderInput from "@/app/ui/custom/inputs/FullBorderInput";
-import Button from "@/app/ui/custom/inputs/Button";
-import { initialState } from "@/app/ui/forms/auth/signupForm";
-import { ZodError } from "@/app/ui/custom/ZodError";
+import FullBorderInput from "@/components/inputs/FullBorderInput";
+import Button from "@/components/inputs/Button";
+import { initialState } from "@/forms/auth/signupForm";
+import { ZodError } from "@/components/ZodError";
 import { sendMessage } from "@/app/lib/actions/contactActions";
 
 export default function ContactForm() {

@@ -1,5 +1,5 @@
-import Breadcrumbs from "@/app/ui/custom/Breadcrumbs";
-import ScanForm from "@/app/ui/forms/dashboard/assistant/scanForm";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import ScanForm from "@/forms/dashboard/assistant/scanForm";
 
 export default function Page() {
   return (

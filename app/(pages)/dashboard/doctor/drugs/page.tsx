@@ -2,8 +2,8 @@ import { Suspense } from "react";
 import Link from "next/link";
 
 import Table from "@/app/ui/dashboard/Table";
-import Breadcrumps from "@/app/ui/custom/Breadcrumbs";
-import Button from "@/app/ui/custom/inputs/Button";
+import Breadcrumps from "@/components/Breadcrumbs";
+import Button from "@/components/inputs/Button";
 import InvoicesTableSkeleton from "@/app/ui/skeletons";
 import {
   addDrugAction,

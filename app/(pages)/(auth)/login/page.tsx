@@ -1,4 +1,4 @@
-import LoginForm from "@/app/ui/forms/auth/loginForm";
+import LoginForm from "@/forms/auth/loginForm";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

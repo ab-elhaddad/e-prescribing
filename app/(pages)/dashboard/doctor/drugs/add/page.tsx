@@ -1,4 +1,4 @@
-import  AddDrugForm from "@/app/ui/forms/dashboard/doctor/addDrugForm";
+import  AddDrugForm from "@/forms/dashboard/doctor/addDrugForm";
 
 export default function Page() {
   return (

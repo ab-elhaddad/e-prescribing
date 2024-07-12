@@ -7,9 +7,9 @@ import { useFormState, useFormStatus } from "react-dom";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-import SelectRole from "@/app/ui/custom/inputs/SelectRole";
-import BottomBorderInput from "@/app/ui/custom/inputs/BottomBorderInput";
-import Button from "@/app/ui/custom/inputs/Button";
+import SelectRole from "@/components/inputs/SelectRole";
+import BottomBorderInput from "@/components/inputs/BottomBorderInput";
+import Button from "@/components/inputs/Button";
 import { loginAction } from "@/app/lib/actions/authActions";
 import { useAuth } from "@/app/context/AuthProvider";
 

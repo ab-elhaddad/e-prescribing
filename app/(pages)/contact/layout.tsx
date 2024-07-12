@@ -1,4 +1,4 @@
-import PurpleHaloGroup from '@/app/ui/custom/PurpleHaloGroup';
+import PurpleHaloGroup from '@/components/PurpleHaloGroup';
 
 export default function Layout({children}:{children: React.ReactNode}) {
   return (

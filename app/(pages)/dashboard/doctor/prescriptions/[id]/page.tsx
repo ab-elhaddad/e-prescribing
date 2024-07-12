@@ -1,5 +1,5 @@
 import { getDrugs, getPrescription } from "@/app/lib/data";
-import Breadcrumbs from "@/app/ui/custom/Breadcrumbs";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { ClientDrugsList } from "@/app/ui/dashboard/ClientDrugsList";
 import { InvoicesTableSkeleton } from "@/app/ui/skeletons";
 import { cookies } from "next/headers";

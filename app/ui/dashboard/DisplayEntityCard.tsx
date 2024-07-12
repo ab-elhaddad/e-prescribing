@@ -1,9 +1,9 @@
 import React from "react";
 import { cookies } from "next/headers";
 
-import Breadcrumbs from "@/app/ui/custom/Breadcrumbs";
-import Button from "@/app/ui/custom/inputs/Button";
-import FullBorderInput from "@/app/ui/custom/inputs/FullBorderInput";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import Button from "@/components/inputs/Button";
+import FullBorderInput from "@/components/inputs/FullBorderInput";
 import Link from "next/link";
 import Table from "./Table";
 import { deletePrescriptionAction } from "@/app/lib/actions/doctorActions";

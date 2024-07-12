@@ -3,8 +3,8 @@ import { Suspense } from "react";
 import { GoPlus } from "react-icons/go";
 
 import Table from "@/app/ui/dashboard/Table";
-import Button from "@/app/ui/custom/inputs/Button";
-import Breadcrumps from "@/app/ui/custom/Breadcrumbs";
+import Button from "@/components/inputs/Button";
+import Breadcrumps from "@/components/Breadcrumbs";
 import InvoicesTableSkeleton from "@/app/ui/skeletons";
 
 import { deleteAssistantAction } from "@/app/lib/actions/assistantsActions";
