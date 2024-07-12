@@ -156,7 +156,7 @@ E-Prescribing is a web application that allows doctors to create and send prescr
 
 #### Creating an Account on Nanonets
 
-1. Visit the Nanonets Website:
+1. Visit the [Nanonets Website](https://nanonets.com/):
     - Go to Nanonets.
 
 2. Sign Up:
