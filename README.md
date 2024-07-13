@@ -208,7 +208,7 @@ cd e-prescribing
 npm install
 ```
 
-3. Create a `.env.local` file in the root directory and add the following environment variables
+3. Create a `.env` file in the root directory and add the following environment variables
 
 ```bash
 # Database
