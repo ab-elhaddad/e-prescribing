@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FullBorderInput from "@/components/inputs/FullBorderInput";
 import Button from "@/components/inputs/Button";
-import { getPrescription } from "@/app/lib/data";
+import { getPrescription } from "@/app/lib/data/prescriptionData";
 import FullBorderParagraph from "@/components/FullBorderParagraph";
 
 export default function Page({ params }: { params: { id: string } }) {

@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import InvoicesTableSkeleton from "@/app/ui/skeletons";
 import Table from "@/app/ui/dashboard/Table";
 import Breadcrumps from "@/components/Breadcrumbs";
-import { getPatientPrescriptions } from "@/app/lib/data";
+import { getPatientPrescriptions } from "@/app/lib/data/prescriptionData";
 
 export default function Page() {
   return (

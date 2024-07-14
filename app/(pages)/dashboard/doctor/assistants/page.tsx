@@ -8,7 +8,7 @@ import Breadcrumps from "@/components/Breadcrumbs";
 import InvoicesTableSkeleton from "@/app/ui/skeletons";
 
 import { deleteAssistantAction } from "@/app/lib/actions/assistantsActions";
-import { getAssistants } from "@/app/lib/data";
+import { getAssistants } from "@/app/lib/data/assistantData";
 
 export default async function Page() {
   return (

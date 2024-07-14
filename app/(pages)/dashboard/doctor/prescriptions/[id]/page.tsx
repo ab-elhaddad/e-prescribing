@@ -1,9 +1,11 @@
-import { getDrugs, getPrescription } from "@/app/lib/data";
+import { Suspense } from "react";
+import { cookies } from "next/headers";
+
 import Breadcrumbs from "@/components/Breadcrumbs";
+import { getPrescription } from "@/app/lib/data/prescriptionData";
+import { getDrugs } from "@/app/lib/data/drugData";
 import { ClientDrugsList } from "@/app/ui/dashboard/ClientDrugsList";
 import { InvoicesTableSkeleton } from "@/app/ui/skeletons";
-import { cookies } from "next/headers";
-import { Suspense } from "react";
 
 export default function Page({ params }: { params: { id: string } }) {
   const { id } = params;
