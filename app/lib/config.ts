@@ -1,6 +1,6 @@
 const config = {
-  apiUrl: process.env.API_URL,
-  aiModelUrl: process.env.AI_MODEL_URL,
+  mongoUri: process.env.MONGO_URI,
+  mongoDb: process.env.MONGO_DB,
 };
 
 export default config;
