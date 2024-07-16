@@ -1,18 +1,26 @@
 "use client";
 
 import Link from "next/link";
-import Cookies from "js-cookie";
-import { useAuth } from "@/app/context/AuthProvider";
+import { useClerk } from "@clerk/nextjs";
 
-export default function NavLinks() {
+type Props = {
+  closeSidenav?: () => void;
+};
+
+export default function NavLinks({ closeSidenav }: Props) {
   const links: Record<string, string> = {
     Home: "/home",
     About: "/about",
     Contact: "/contact",
   };
-  const { user } = useAuth();
-  if (user && Cookies.get("authorization"))
-    links.Dashboard = `/dashboard/${Cookies.get("userType")}`;
+
+  const { user } = useClerk();
+
+  if (user) {
+    // The only role we don't set in clerk portal is 'patient'
+    const role = user?.publicMetadata.role ?? "patient";
+    links.Dashboard = `/dashboard/${role}`;
+  }
 
   return (
     <>
@@ -22,6 +30,7 @@ export default function NavLinks() {
             href={href}
             className="text-sm font-semibold leading-6 text-sky-900 hover:underline"
             key={header}
+            onClick={closeSidenav}
           >
             {header}
           </Link>

@@ -4,9 +4,9 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Footer from "@/app/ui/Footer";
 import Navbar from "@/app/ui/Navbar";
-import IsAuthenticatedProvider from "@/app/context/AuthProvider";
 
 import { register } from "swiper/element/bundle";
+import { ClerkProvider } from "@clerk/nextjs";
 register();
 
 const inter = Inter({
@@ -37,13 +37,13 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body className="overflow-x-hidden">
-        <IsAuthenticatedProvider>
-          <Navbar />
-          <div className="pt-16">
-            {children}
-            <Footer />
-          </div>
-        </IsAuthenticatedProvider>
+          <ClerkProvider afterSignOutUrl='/home'>
+            <Navbar />
+            <div className="pt-16">
+              {children}
+              <Footer />
+            </div>
+          </ClerkProvider>
       </body>
     </html>
   );

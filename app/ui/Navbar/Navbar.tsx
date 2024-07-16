@@ -1,13 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import clsx from "clsx";
 import { useState } from "react";
 
 import NavLinks from "./NavLinks";
-import LoginLink from "./LoginLink";
 import Logo from "@/components/Logo";
-import { useAuth } from "@/app/context/AuthProvider";
+import Auth from "./Auth";
+import Sidebar from "./Sidbar";
 
 export default function Navbar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -21,7 +20,7 @@ export default function Navbar() {
         className="flex items-center justify-between p-5 lg:px-8 bg-white border-b-2"
         aria-label="Global"
       >
-        <div className="flex lg:flex-1">
+        <div className="flex">
           <Link href="/home" className="-m-1.5 p-1.5 flex">
             <Logo size={32} />
             {/* <span className="h-8 w-auto text-blue-500 text-lg font-semibold">
@@ -53,78 +52,20 @@ export default function Navbar() {
           </button>
         </div>
 
-        <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} setIsSidebarOpen={setIsSidebarOpen}/>
+        <Sidebar
+          isSidebarOpen={isSidebarOpen}
+          toggleSidebar={toggleSidebar}
+          setIsSidebarOpen={setIsSidebarOpen}
+        />
 
         <div className="hidden lg:flex lg:gap-x-12">
           <NavLinks />
         </div>
 
-        <LoginLink isSidebarOpen={isSidebarOpen} />
+        <div className="hidden md:block">
+          <Auth />
+        </div>
       </nav>
     </div>
-  );
-}
-
-function Sidebar({
-  isSidebarOpen,
-  toggleSidebar,
-  setIsSidebarOpen,
-}: {
-  isSidebarOpen: boolean;
-  toggleSidebar: () => void;
-  setIsSidebarOpen: (state: boolean) => void;
-}) {
-  const { user } = useAuth();
-  const closeSidenav = () => setIsSidebarOpen(false);
-
-  return (
-    <>
-      <div
-        className={`fixed top-0 right-0 w-64 h-full bg-white text-white transform ${
-          isSidebarOpen ? "translate-x-0" : "translate-x-full"
-        } transition-transform duration-300 ease-in-out md:hidden`}
-      >
-        <div className="p-4 flex justify-between items-center bg-sky-600">
-          <div className="text-lg">Menu</div>
-          <button onClick={toggleSidebar} className="text-white">
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M6 18L18 6M6 6l12 12"
-              ></path>
-            </svg>
-          </button>
-        </div>
-        <nav className="flex flex-col justify-between" onClick={closeSidenav}>
-          <div className="flex flex-col p-4 space-y-3">
-            <NavLinks />
-          </div>
-          <div
-            className={clsx(
-              "text-5xl p-4",
-              { "mt-[57vh]": user },
-              { "mt-[102vw]": !user }
-            )}
-          >
-            <LoginLink isSidebarOpen={isSidebarOpen} />
-          </div>
-        </nav>
-      </div>
-      {/* Overlay to close sidebar when clicking outside */}
-      {/* {isSidebarOpen && (
-          <div
-            className="fixed inset-0 bg-black opacity-50 z-20"
-            onClick={toggleSidebar}
-            ></div>
-          )} */}
-    </>
   );
 }

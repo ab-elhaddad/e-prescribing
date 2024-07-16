@@ -4,7 +4,7 @@ import Link from "next/link";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
 import { IconType } from "react-icons";
-import Cookies from "js-cookie";
+import { useClerk } from "@clerk/nextjs";
 
 import { LiaUserInjuredSolid } from "react-icons/lia";
 import { RiMedicineBottleLine, RiSurveyLine } from "react-icons/ri";
@@ -24,12 +24,15 @@ const linkToIcon: Record<string, IconType> = {
 
 export default function NavLinks({ links }: { links: string[] }) {
   const pathName = usePathname();
+  const { user } = useClerk();
+  // The only role we don't set in clerk portal is 'patient'
+  const role = user?.publicMetadata.role ?? "patient";
+
   return (
     <>
       {links.map((link) => {
         const LinkIcon = linkToIcon[link];
-        const userType = Cookies.get("userType");
-        const linkHref = `/dashboard/${userType}/${link.toLowerCase()}`;
+        const linkHref = `/dashboard/${role}/${link.toLowerCase()}`;
         return (
           <Link
             key={link}
