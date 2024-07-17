@@ -2,7 +2,7 @@
 
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
-import { updateUser } from "../data/userData";
+import { updateUser } from "../data-access/userData";
 
 const profileFormSchema = z.object({
   firstName: z

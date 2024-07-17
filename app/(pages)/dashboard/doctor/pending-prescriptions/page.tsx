@@ -4,7 +4,7 @@ import InvoicesTableSkeleton from "@/app/ui/skeletons";
 import Table from "@/app/ui/dashboard/Table";
 import Breadcrumps from "@/components/Breadcrumbs";
 import { deletePendingPrescriptionAction } from "@/app/lib/actions/pendingPrescriptionActions";
-import { getPendingPrescriptions } from "@/app/lib/data/pendingPrescriptionData";
+import { getPendingPrescriptions } from "@/app/lib/data-access/pendingPrescriptionData";
 
 export default function Page() {
   return (

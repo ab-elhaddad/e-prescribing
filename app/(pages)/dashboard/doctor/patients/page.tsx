@@ -8,7 +8,7 @@ import {
   addPatientAction,
   deletePatientAction,
 } from "@/app/lib/actions/patientsActions";
-import { getPatients } from "@/app/lib/data/patientData";
+import { getPatients } from "@/app/lib/data-access/patientData";
 import Button from "@/components/inputs/Button";
 import Link from "next/link";
 import { GoPlus } from "react-icons/go";

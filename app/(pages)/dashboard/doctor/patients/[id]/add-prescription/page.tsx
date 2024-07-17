@@ -2,8 +2,8 @@ import { cookies } from "next/headers";
 import { Suspense } from "react";
 import CreatePrescriptionForm from "@/forms/dashboard/doctor/createPrescriptionForm";
 import { InvoiceSkeleton } from "@/app/ui/skeletons";
-import { getDrugs } from "@/app/lib/data/drugData";
-import { getPatient } from "@/app/lib/data/patientData";
+import { getDrugs } from "@/app/lib/data-access/drugData";
+import { getPatient } from "@/app/lib/data-access/patientData";
 
 export default function Page({ params }: { params: { id: string } }) {
   const { id } = params;

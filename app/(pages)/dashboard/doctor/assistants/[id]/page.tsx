@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 
 import DisplayEntityCard from "@/app/ui/dashboard/DisplayEntityCard";
-import { getAssistant } from "@/app/lib/data/assistantData";
+import { getAssistant } from "@/app/lib/data-access/assistantData";
 import { InvoicesTableSkeleton } from "@/app/ui/skeletons";
 
 export default function Page({ params }: { params: { id: string } }) {

@@ -7,7 +7,7 @@ import PurpleHaloGroup from "@/components/PurpleHaloGroup";
 import InvoicesTableSkeleton from "@/app/ui/skeletons";
 
 import { FaUserDoctor, FaUserInjured, FaUserNurse } from "react-icons/fa6";
-import { getUser } from "@/app/lib/data/userData";
+import { getUser } from "@/app/lib/data-access/userData";
 
 export const metadata: Metadata = {
   title: "Profile",

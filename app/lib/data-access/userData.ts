@@ -1,7 +1,7 @@
 "use server";
 
-import getUserDto, { GetUserDto } from "@/app/dtos/data/getUserDto";
-import { UpdateUserDto } from "@/app/dtos/data/updateUserDto";
+import getUserDto, { GetUserDto } from "@/app/dtos/data-access/getUserDto";
+import { UpdateUserDto } from "@/app/dtos/data-access/updateUserDto";
 import UserPersistenceDto from "@/app/dtos/persistence/UserPersistenceDto";
 import { auth, clerkClient } from "@clerk/nextjs/server";
 

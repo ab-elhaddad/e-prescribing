@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 
 import DisplayEntityCard from "@/app/ui/dashboard/DisplayEntityCard";
-import { getPatient } from "@/app/lib/data/patientData";
+import { getPatient } from "@/app/lib/data-access/patientData";
 import { InvoicesTableSkeleton } from "@/app/ui/skeletons";
 
 export default function Page({ params }: { params: { id: string } }) {

@@ -1,7 +1,7 @@
 import Breadcrumbs from "@/components/Breadcrumbs";
 import DrugsList from "./DrugsList";
-import { getPendingPrescription } from "@/app/lib/data/pendingPrescriptionData";
-import { getDrugs } from "@/app/lib/data/drugData";
+import { getPendingPrescription } from "@/app/lib/data-access/pendingPrescriptionData";
+import { getDrugs } from "@/app/lib/data-access/drugData";
 import { cookies } from "next/headers";
 import { Suspense } from "react";
 import { InvoicesTableSkeleton } from "@/app/ui/skeletons";

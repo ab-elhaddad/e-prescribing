@@ -9,7 +9,7 @@ import {
   addDrugAction,
   deleteDrugAction,
 } from "@/app/lib/actions/drugsActions";
-import { getDrugs } from "@/app/lib/data/drugData";
+import { getDrugs } from "@/app/lib/data-access/drugData";
 import { GoPlus } from "react-icons/go";
 
 export default async function Page() {

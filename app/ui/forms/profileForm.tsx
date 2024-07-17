@@ -7,7 +7,7 @@ import toast, { Toaster } from "react-hot-toast";
 import FullBorderInput from "@/components/inputs/FullBorderInput";
 import Button from "@/components/inputs/Button";
 import FullBorderGenderSelect from "@/components/inputs/FullBorderGenderSelect";
-import { GetUserDto } from "@/app/dtos/data/getUserDto";
+import { GetUserDto } from "@/app/dtos/data-access/getUserDto";
 import { updateProfileAction } from "@/app/lib/actions/profileActions";
 
 const initialState = {

@@ -8,7 +8,7 @@ import Link from "next/link";
 import Table from "./Table";
 import { deletePrescriptionAction } from "@/app/lib/actions/doctorActions";
 import { RiSurveyLine } from "react-icons/ri";
-import { getDoctorPrescriptions } from "@/app/lib/data/prescriptionData";
+import { getDoctorPrescriptions } from "@/app/lib/data-access/prescriptionData";
 
 export default async function DisplayEntityCard({
   entityId,
