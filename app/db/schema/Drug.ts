@@ -1,20 +1,9 @@
+import DrugPersistenceDto from "@/app/dtos/persistence/DrugPersistenceDto";
 import mongoose from "mongoose";
 
-export interface Drugs extends mongoose.Document {
-  doctorEmail: mongoose.ObjectId;
-  name: string;
-  price: number;
-  quantity: number;
-  usage: string;
-  sideEffects: string[];
-  contraindications: string[];
-  similarDrugs: string[];
-  createdAt: Date;
-}
-
-const drugSchema = new mongoose.Schema<Drugs>(
+const drugSchema = new mongoose.Schema<DrugPersistenceDto>(
   {
-    doctorEmail: { type: mongoose.Types.ObjectId, required: true },
+    doctorId: { type: String, required: true },
     name: { type: String, required: true },
     price: { type: Number, required: true },
     quantity: { type: Number, required: true },
