@@ -62,7 +62,8 @@ export default function Navbar() {
           <NavLinks />
         </div>
 
-        <div className="hidden md:block">
+        <div className="hidden md:flex items-center gap-x-3">
+          <Link href={"/profile"} className="text-sm">Profile</Link>
           <Auth />
         </div>
       </nav>

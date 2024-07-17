@@ -1,12 +1,8 @@
 "use server";
 
 import { z } from "zod";
-
-import config from "../config";
-import { typeShorten } from "../constants";
-import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
-const { apiUrl } = config;
+import { updateUser } from "../data/userData";
 
 const profileFormSchema = z.object({
   firstName: z
@@ -21,97 +17,52 @@ const profileFormSchema = z.object({
     .max(50, {
       message: "Last name cannot be more than 50 characters",
     }),
-  department: z
-    .string()
-    .max(50, "Department cannot be more than 50 characters")
-    .or(z.null()),
-  email: z.string().email({ message: "Please enter a valid email address" }),
-  phoneNumber: z
-    .string()
-    .min(11, "Phone number must be 11 characters")
-    .max(11, "Phone number must be 11 characters")
-    .or(z.string().max(0)),
-  nationalityId: z
-    .string()
-    .min(11, "Nationality ID must be 11 characters")
-    .max(11, "Nationality ID must be 11 characters")
-    .or(z.string().max(0)),
   address: z
     .string()
     .min(10, "Address must be at least 10 characters")
     .max(100, "Address cannot be more than 100 characters")
     .or(z.string().max(0)),
-  birthDate: z.date({ message: "Please enter a valid date" }),
-  password: z.string().min(8, 'Password must be at least 8 characters')
+  dob: z.date({ message: "Please enter a valid date" }),
+  gender: z.enum(["male", "female"], {
+    message: "Please select a valid gender",
+  }),
 });
 
-export const updateProfile = async (
-  type: string,
+type UpdateProfileErrors = {
+  firstName?: string[];
+  lastName?: string[];
+  address?: string[];
+  dob?: string[];
+  gender?: string[];
+  server?: string;
+};
+
+export const updateProfileAction = async (
   prevState: any,
   formData: FormData
-) => {
-  const data = {
+): Promise<{ isSuccessful: boolean; errors: UpdateProfileErrors }> => {
+  const validatedFields = profileFormSchema.safeParse({
     firstName: formData.get("firstName"),
     lastName: formData.get("lastName"),
-    department: formData.get("department"),
-    email: formData.get("email"),
-    phoneNumber: formData.get("phoneNumber"),
-    nationalityId: formData.get("nationalityId"),
     address: formData.get("address"),
-    birthDate: new Date(formData.get("birthDate") as string),
+    dob: new Date(formData.get("dob") as string),
     gender: formData.get("gender"),
-    password: formData.get('password')
-  };
-  const validatedFields = profileFormSchema.safeParse(data);
+  });
 
   if (!validatedFields.success)
     return {
-      ...prevState,
-      message: "",
+      isSuccessful: false,
       errors: validatedFields.error.flatten().fieldErrors,
     };
 
-  const dataToSend = {
-    name: `${data.firstName} ${data.lastName}`,
-    department: data.department || "",
-    email: data.email,
-    phoneNumber: data.phoneNumber,
-    nationalityNumber: data.nationalityId,
-    address: data.address,
-    birthday: data.birthDate,
-    gender: data.gender,
-    password: data.password
-  };
+  const { isSuccessful, error } = await updateUser(validatedFields.data);
 
-  try {
-    const reponse = await fetch(`${apiUrl}/${typeShorten[type]}/update`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: cookies().get("authorization")?.value || "",
-      },
-      body: JSON.stringify(dataToSend),
-    });
-
-    if (!reponse.ok) {
-      throw { message: await reponse.text() };
-    }
-  } catch (error: any) {
-    console.error(error);
-    return {
-      isSuccessful: false,
-      errors: {
-        server:
-          error.error ||
-          error.message ||
-          "An error occurred while updating your profile",
-      },
-    };
+  if (isSuccessful) {
+    revalidatePath("/profile");
   }
 
-  revalidatePath("/profile");
   return {
-    isSuccessful: true,
-    errors: {},
+    isSuccessful,
+    errors: { server: error },
   };
 };

@@ -18,7 +18,7 @@ export default function Auth() {
       </SignedOut>
       <SignedIn>
         <Link href="/profile">
-          <UserButton showName />
+          <UserButton />
         </Link>
       </SignedIn>
     </div>

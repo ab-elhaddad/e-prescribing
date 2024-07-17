@@ -1,29 +1,58 @@
 "use server";
 
-import config from "../config";
-import { typeShorten } from "../constants";
+import getUserDto, { GetUserDto } from "@/app/dtos/data/getUserDto";
+import { UpdateUserDto } from "@/app/dtos/data/updateUserDto";
+import UserPersistenceDto from "@/app/dtos/persistence/UserPersistenceDto";
+import { auth, clerkClient } from "@clerk/nextjs/server";
 
-export async function getUser(
-  token: string,
-  type: string
-): Promise<{ user: any; error?: string }> {
-  const shortType = typeShorten[type];
+export async function getUser(): Promise<{
+  user?: GetUserDto;
+  error?: string;
+}> {
   try {
-    const response = await fetch(`${config.apiUrl}/${shortType}/`, {
-      headers: {
-        authorization: token,
+    const { userId } = auth() as { userId: string };
+    const user = (await clerkClient().users.getUser(
+      userId
+    )) as UserPersistenceDto;
+    user.publicMetadata.role ||= "patient";
+
+    const mappedUser = getUserDto(user);
+    return {
+      user: mappedUser,
+    };
+  } catch (error: any) {
+    console.error(error);
+    return { error: error.message || error.msg || "Something went wrong!" };
+  }
+}
+
+export async function updateUser(
+  user: UpdateUserDto
+): Promise<{ isSuccessful: boolean; error?: string }> {
+  try {
+    const { userId } = auth() as { userId: string };
+
+    clerkClient().users.updateUser(userId, {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      publicMetadata: {
+        address: user.address,
+        dob: user.dob,
+        gender: user.gender,
       },
     });
 
-    if (!response.ok) return { error: await response.text(), user: {} };
-
-    const user = await response.json();
-    return { user: { ...user, type } };
+    return {
+      isSuccessful: true,
+    };
   } catch (error: any) {
     console.error(error);
     return {
-      error: error.message || error.msg || "An error occurred",
-      user: {},
+      isSuccessful: false,
+      error:
+        error.msg ||
+        error.message ||
+        "An error occurred while updating your profile",
     };
   }
 }

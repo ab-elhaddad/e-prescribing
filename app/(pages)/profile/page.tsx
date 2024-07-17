@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import { cookies } from "next/headers";
 import { Suspense } from "react";
 
 import PageHeader from "@/components/PageHeader";
@@ -40,14 +39,20 @@ export default function Page() {
 }
 
 async function ProfileCard() {
-  const { user, error } = await getUser(
-    cookies().get("authorization")?.value || "",
-    cookies().get("userType")?.value || ""
-  );
-  const Icon = getUserIcon(user.type);
+  const { user, error } = await getUser();
+  if (!user) return null;
+  const Icon = getUserIcon(user.role);
   return (
     <>
-      <Icon className="text-10xl text-sky-100 bg-sky-700 p-5 rounded-full absolute top-20 md:top-64 left-28 md:left-44 z-30" />
+      {user.hasImage ? (
+        <img
+          src={user.imageUrl}
+          alt="User Image"
+          className="w-52 h-52 p-5 rounded-full absolute top-20 md:top-56 left-28 md:left-44 z-30"
+        />
+      ) : (
+        <Icon className="text-10xl text-sky-100 bg-sky-700 p-5 rounded-full absolute top-20 md:top-64 left-28 md:left-44 z-30" />
+      )}
       <div className="container mx-auto px-4 py-4">
         {error ? (
           <h1 className="text-red-500"> {error} </h1>
