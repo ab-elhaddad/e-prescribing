@@ -3,12 +3,11 @@
 import { useFormState } from "react-dom";
 import FullBorderInput from "@/components/inputs/FullBorderInput";
 import Button from "@/components/inputs/Button";
-import { initialState } from "@/forms/auth/signupForm";
 import { ZodError } from "@/components/ZodError";
 import { sendMessage } from "@/app/lib/actions/contactActions";
 
 export default function ContactForm() {
-  const [formState, formAction] = useFormState(sendMessage, initialState);
+  const [formState, formAction] = useFormState(sendMessage, {});
   return (
     <form
       action={formAction}
