@@ -17,9 +17,10 @@ export default function Auth() {
         />
       </SignedOut>
       <SignedIn>
-        <Link href="/profile">
+        <div className="hidden md:flex items-center gap-x-3 text-black font-normal">
+          <Link href={"/profile"} className="text-sm">Profile</Link>
           <UserButton />
-        </Link>
+        </div>
       </SignedIn>
     </div>
   );

@@ -23,9 +23,6 @@ export default function Navbar() {
         <div className="flex">
           <Link href="/home" className="-m-1.5 p-1.5 flex">
             <Logo size={32} />
-            {/* <span className="h-8 w-auto text-blue-500 text-lg font-semibold">
-              E-Prescribing
-            </span> */}
           </Link>
         </div>
         <div className="flex lg:hidden">
@@ -54,18 +51,16 @@ export default function Navbar() {
 
         <Sidebar
           isSidebarOpen={isSidebarOpen}
-          toggleSidebar={toggleSidebar}
           setIsSidebarOpen={setIsSidebarOpen}
+          toggleSidebar={toggleSidebar}
         />
 
         <div className="hidden lg:flex lg:gap-x-12">
           <NavLinks />
         </div>
 
-        <div className="hidden md:flex items-center gap-x-3">
-          <Link href={"/profile"} className="text-sm">Profile</Link>
-          <Auth />
-        </div>
+        <Auth />
+        
       </nav>
     </div>
   );
