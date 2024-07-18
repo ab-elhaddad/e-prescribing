@@ -1,6 +1,8 @@
 import SideNav from "@/app/ui/dashboard/SideNav";
+import { protectDashboardRole } from "../utility";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
+  protectDashboardRole("assistant");
   return (
     <div className="flex flex-col md:flex-row md:overflow-hidden">
       <div className="w-full flex-none md:w-64">
