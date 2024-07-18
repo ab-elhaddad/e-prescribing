@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/badge/license-MIT-red.svg)](LICENSE)
 [![Deployed on Vercel](https://img.shields.io/badge/deployed%20on-Vercel-black.svg)](https://e-prescribing.vercel.app/home)
 
-E-Prescribing is a web application that allows doctors to create and send prescriptions to patients. Patients can view their prescriptions and the instructions for each prescription. Assistants can scan prescriptions and upload them to the system. The application is built using [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/), [Typescript](https://www.typescriptlang.org), [MongoDB](https://www.mongodb.com/), [Mongoose](https://mongoosejs.com), and [Nanonets OCR API](https://nanonets.com/). The application is deployed on [Vercel](https://vercel.com/) and can be accessed [here](https://e-prescribing.vercel.app/home).
+E-Prescribing is a web application that allows doctors to create and send prescriptions to patients. Patients can view their prescriptions and the instructions for each prescription. Assistants can scan prescriptions and upload them to the system. The application is built using [Next.js](https://nextjs.org/), [Typescript](https://www.typescriptlang.org), [Tailwind CSS](https://tailwindcss.com/), [MongoDB](https://www.mongodb.com/), [Mongoose](https://mongoosejs.com), [Clerk](https://clerk.com/) and [Nanonets OCR API](https://nanonets.com/). The application is deployed on [Vercel](https://vercel.com/) and can be accessed [here](https://e-prescribing.vercel.app/home).
 
 ## Table of Contents
 
@@ -55,10 +55,13 @@ E-Prescribing is a web application that allows doctors to create and send prescr
 ## Technologies
 
 - [Next.js](https://nextjs.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
 - [Typescript](https://www.typescriptlang.org)
+- [Zod](https://zod.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
 - [MongoDB](https://www.mongodb.com/)
+- [Mongo Atlas](https://www.mongodb.com/atlas)
 - [Mongoose](https://mongoosejs.com)
+- [Clerk](https://clerk.com/)
 - [Nanonets OCR API](https://nanonets.com/)
 - [Vercel](https://vercel.com/)
 
