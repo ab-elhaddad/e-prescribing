@@ -15,7 +15,7 @@ export async function linkPatientAndDoctorAction(
     .safeParse(patientEmail);
 
   const doctorId = auth().userId;
-  if (!doctorId) return { error: "Not logged in", isSuccessful: false };
+  if (!doctorId) return { error: "Not logged in", success: false };
   const { error } = await linkPatientAndDoctorController(
     patientEmail,
     doctorId
@@ -24,6 +24,6 @@ export async function linkPatientAndDoctorAction(
   revalidatePath("/dashboard/patients");
   return {
     error,
-    isSuccessful: !!error,
+    success: !!error,
   };
 }

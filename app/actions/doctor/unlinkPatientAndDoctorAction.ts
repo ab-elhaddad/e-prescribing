@@ -16,5 +16,5 @@ export async function unlinkPatientAndDoctorAction(
   const { error } = await unlinkPatientAndDoctorController(patientId, doctorId);
 
   revalidatePath("/dashboard/patients");
-  return { error, isSuccessful: !!error };
+  return { error, success: !!error };
 }

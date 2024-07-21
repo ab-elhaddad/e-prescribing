@@ -41,7 +41,7 @@ type UpdateProfileErrors = {
 export async function updateProfileAction(
   prevState: any,
   formData: FormData
-): Promise<{ isSuccessful: boolean; errors: UpdateProfileErrors }> {
+): Promise<{ success: boolean; errors: UpdateProfileErrors }> {
   const validatedFields = profileFormSchema.safeParse({
     firstName: formData.get("firstName"),
     lastName: formData.get("lastName"),
@@ -52,7 +52,7 @@ export async function updateProfileAction(
 
   if (!validatedFields.success)
     return {
-      isSuccessful: false,
+      success: false,
       errors: validatedFields.error.flatten().fieldErrors,
     };
 
@@ -62,7 +62,7 @@ export async function updateProfileAction(
   }
 
   return {
-    isSuccessful: !error,
+    success: !error,
     errors: { server: error },
   };
 }
