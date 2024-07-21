@@ -1,11 +1,10 @@
 import { Suspense } from "react";
-import { cookies } from "next/headers";
 
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { getPrescription } from "@/app/lib/data-access/prescriptionData";
-import { getDrugs } from "@/app/lib/data-access/drugData";
 import { ClientDrugsList } from "@/app/ui/dashboard/ClientDrugsList";
 import { InvoicesTableSkeleton } from "@/app/ui/skeletons";
+import { getDrugsByDoctorController } from "@/app/controllers/drug";
+import { getPrescriptionController } from "@/app/controllers/prescription";
 
 export default function Page({ params }: { params: { id: string } }) {
   const { id } = params;
@@ -19,9 +18,8 @@ export default function Page({ params }: { params: { id: string } }) {
 }
 
 async function FetchDataLayer({ id }: { id: string }) {
-  const token = cookies().get("authorization")?.value || "";
-  const drugsPromise = getDrugs(token);
-  const prescriptionPromise = getPrescription(token, id);
+  const drugsPromise = getDrugsByDoctorController();
+  const prescriptionPromise = getPrescriptionController(id);
 
   const [drugsResult, prescriptionResult] = await Promise.allSettled([
     drugsPromise,
@@ -37,9 +35,15 @@ async function FetchDataLayer({ id }: { id: string }) {
   const { data: drugsData, error: drugsError } = drugsResult.value;
   const { data: prescriptionData, error: prescriptionError } =
     prescriptionResult.value;
-    console.log(prescriptionData);
 
+  if (!drugsData || !prescriptionData)
     return (
+      <p className="text-red-500">
+        Something went wrong! {drugsError || prescriptionError}
+      </p>
+    );
+
+  return (
     <div className="flex flex-col gap-y-5">
       <Breadcrumbs
         breadcrumbs={[
@@ -48,8 +52,8 @@ async function FetchDataLayer({ id }: { id: string }) {
             href: "/dashboard/patients",
           },
           {
-            label: prescriptionData?.patient?.name,
-            href: `/dashboard/doctor/patients/${prescriptionData?.patient?._id}`,
+            label: prescriptionData.patient?.fullName || "",
+            href: `/dashboard/doctor/patients/${prescriptionData.patient?.id}`,
             active: true,
           },
         ]}

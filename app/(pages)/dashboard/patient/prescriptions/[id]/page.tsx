@@ -1,11 +1,10 @@
 import Link from "next/link";
-import { cookies } from "next/headers";
 
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FullBorderInput from "@/components/inputs/FullBorderInput";
 import Button from "@/components/inputs/Button";
-import { getPrescription } from "@/app/lib/data-access/prescriptionData";
 import FullBorderParagraph from "@/components/FullBorderParagraph";
+import { getPrescriptionController } from "@/app/controllers/prescription";
 
 export default function Page({ params }: { params: { id: string } }) {
   return (
@@ -28,28 +27,15 @@ export default function Page({ params }: { params: { id: string } }) {
   );
 }
 
-function handleData(data: any) {
-  data.drugs = data.drugs.map((drug: any) => {
-    drug.similarDrugs = drug.similar_drugs.join(", ");
-    delete drug.similar_drugs;
-    drug.sideEffects = drug.side_effects.join(", ");
-    delete drug.side_effects;
-    drug.contraindications = drug.contraindications.join(", ");
-    return drug;
-  });
-}
-
 async function PrescriptionDetails({ id }: { id: string }) {
-  const token = cookies().get("authorization")?.value || "";
-  const { data, error } = await getPrescription(token, id);
-  if (error)
+  const { error, data } = await getPrescriptionController(id);
+  if (!data)
     return (
       <div className="w-full laign-center p-5 bg-gray-50 text-red-500">
         {error}
       </div>
     );
 
-  handleData(data);
   return (
     <div className="w-full p-5 bg-gray-50 rounded-md flex flex-col gap-y-5 text-sm md:text-base">
       <div className="flex justify-between gap-x-5 mb-3">
@@ -58,7 +44,7 @@ async function PrescriptionDetails({ id }: { id: string }) {
           label="Doctor Name"
           type="text"
           disabled={true}
-          defaultValue={data.doctor.name}
+          defaultValue={data.doctor.fullName || ""}
         />
         <FullBorderInput
           name="doctorPhoneNumber"

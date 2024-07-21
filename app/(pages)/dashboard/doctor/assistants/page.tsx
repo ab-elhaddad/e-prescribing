@@ -7,8 +7,8 @@ import Button from "@/components/inputs/Button";
 import Breadcrumps from "@/components/Breadcrumbs";
 import InvoicesTableSkeleton from "@/app/ui/skeletons";
 
-import { deleteAssistantAction } from "@/app/lib/actions/assistantsActions";
-import { getAssistants } from "@/app/lib/data-access/assistantData";
+import { deleteAssistantAction } from "@/app/actions/doctor";
+import { getAssistantsByDoctorController } from "@/app/controllers/doctor";
 
 export default async function Page() {
   return (
@@ -33,7 +33,7 @@ export default async function Page() {
       </div>
       <Suspense fallback={<InvoicesTableSkeleton />}>
         <Table
-          getData={getAssistants}
+          getData={getAssistantsByDoctorController}
           headerToAttribute={{
             Name: "name",
             Email: "email",

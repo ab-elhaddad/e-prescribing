@@ -6,9 +6,9 @@ import Button from "@/components/inputs/Button";
 import FullBorderInput from "@/components/inputs/FullBorderInput";
 import Link from "next/link";
 import Table from "./Table";
-import { deletePrescriptionAction } from "@/app/lib/actions/doctorActions";
+import { deletePrescriptionAction } from "@/app/actions/doctor";
 import { RiSurveyLine } from "react-icons/ri";
-import { getDoctorPrescriptions } from "@/app/lib/data-access/prescriptionData";
+import { getDoctorPrescriptionsController } from "@/app/controllers/prescription";
 
 export default async function DisplayEntityCard({
   entityId,
@@ -25,7 +25,7 @@ export default async function DisplayEntityCard({
   const { error, data } = await getEntity(token, entityId);
   return (
     <div className="flex flex-col gap-y-3">
-      <div className="flex flex-col md:flex-row justify-between items-center">
+      <div className="flex flex-col items-center justify-between md:flex-row">
         <Breadcrumbs
           breadcrumbs={[
             {
@@ -44,7 +44,7 @@ export default async function DisplayEntityCard({
         />
         {entity === "Patient" && <AddPrescriptionButton id={entityId} />}
       </div>
-      <div className="bg-gray-50 rounded-md p-5 items-center gap-2 max-h-[60vh] overflow-y-scroll">
+      <div className="max-h-[60vh] items-center gap-2 overflow-y-scroll rounded-md bg-gray-50 p-5">
         {error ? (
           <h1 className="text-red-500">{error}</h1>
         ) : (
@@ -62,7 +62,7 @@ export default async function DisplayEntityCard({
                   disabled={true}
                   key={attribute}
                 />
-              ))
+              )),
           )
         )}
       </div>
@@ -74,13 +74,9 @@ export default async function DisplayEntityCard({
 }
 
 async function Prescriptions({ token, id }: { token: string; id: string }) {
-  const getData = async (token: string) => {
-    return getDoctorPrescriptions(token, id);
-  };
-
   return (
     <Table
-      getData={getData}
+      getData={getDoctorPrescriptionsController}
       headerToAttribute={{
         Doctor: "doctor",
         Drugs: "drugs",
@@ -98,13 +94,13 @@ function AddPrescriptionButton({ id }: { id: string }) {
     <Link href={`/dashboard/doctor/patients/${id}/add-prescription`}>
       <Button
         body={
-          <div className="flex justify-between items-center w-full">
+          <div className="flex w-full items-center justify-between">
             Create Prescription
             <RiSurveyLine className="text-2xl" />
           </div>
         }
         style={{
-          width: "35vh"
+          width: "35vh",
         }}
       />
     </Link>

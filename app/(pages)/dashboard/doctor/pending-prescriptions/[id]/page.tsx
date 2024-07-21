@@ -1,10 +1,9 @@
 import Breadcrumbs from "@/components/Breadcrumbs";
 import DrugsList from "./DrugsList";
-import { getPendingPrescription } from "@/app/lib/data-access/pendingPrescriptionData";
-import { getDrugs } from "@/app/lib/data-access/drugData";
-import { cookies } from "next/headers";
 import { Suspense } from "react";
 import { InvoicesTableSkeleton } from "@/app/ui/skeletons";
+import { getDrugsByDoctorController } from "@/app/controllers/drug";
+import { getPendingPrescriptionController } from "@/app/controllers/pendingPrescription";
 
 export default function page({ params }: { params: { id: string } }) {
   return (
@@ -30,21 +29,25 @@ export default function page({ params }: { params: { id: string } }) {
 }
 
 async function DataLayer({ id }: { id: string }) {
-  const { data: drugsData, error: drugsError } = await getDrugs(
-    cookies().get("authorization")?.value || ""
-  );
+  const { data: drugsData, error: drugsError } =
+    await getDrugsByDoctorController();
   const { data: pendingPrescriptionData, error: pendingPrescriptionError } =
-    await getPendingPrescription(
-      cookies().get("authorization")?.value || "",
-      id
+    await getPendingPrescriptionController(id);
+
+  if (!drugsData || !pendingPrescriptionData) {
+    return (
+      <p className="w-full text-center text-red-500">
+        Something went wrong. {drugsError || pendingPrescriptionError}
+      </p>
     );
+  }
+
   return (
     <DrugsList
-      patientId={pendingPrescriptionData.patientId._id}
+      patientId={pendingPrescriptionData?.patientId}
       pendingPrescriptionId={id}
-      doctorToken={cookies().get("authorization")?.value || ""}
       drugsData={drugsData}
-      selectedDrugs={pendingPrescriptionData.drugs}
+      selectedDrugs={pendingPrescriptionData?.drugs}
     />
   );
 }

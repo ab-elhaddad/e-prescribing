@@ -3,7 +3,8 @@ import { Suspense } from "react";
 import InvoicesTableSkeleton from "@/app/ui/skeletons";
 import Table from "@/app/ui/dashboard/Table";
 import Breadcrumps from "@/components/Breadcrumbs";
-import { getPatientPrescriptions } from "@/app/lib/data-access/prescriptionData";
+import { getPatientPrescriptionsController } from "@/app/controllers/prescription";
+import { GetPrescriptionDto } from "@/app/dtos/data-access/getPrescriptionDto";
 
 export default function Page() {
   return (
@@ -20,7 +21,7 @@ export default function Page() {
 
       <Suspense fallback={<InvoicesTableSkeleton />}>
         <Table
-          getData={getPatientPrescriptions}
+          getData={getPatientPrescriptionsController}
           headerToAttribute={{
             Doctor: "doctor",
             Drugs: "drugs",

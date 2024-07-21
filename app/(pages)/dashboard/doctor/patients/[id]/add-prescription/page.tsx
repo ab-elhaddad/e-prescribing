@@ -1,24 +1,22 @@
-import { cookies } from "next/headers";
 import { Suspense } from "react";
 import CreatePrescriptionForm from "@/forms/dashboard/doctor/createPrescriptionForm";
 import { InvoiceSkeleton } from "@/app/ui/skeletons";
-import { getDrugs } from "@/app/lib/data-access/drugData";
-import { getPatient } from "@/app/lib/data-access/patientData";
+import { getPatientByDoctorController } from "@/app/controllers/doctor";
+import { getDrugsByDoctorController } from "@/app/controllers/drug";
 
 export default function Page({ params }: { params: { id: string } }) {
   const { id } = params;
-  const token = cookies().get("authorization")?.value as string;
 
   return (
     <Suspense fallback={<InvoiceSkeleton />}>
-      <DataFetchingLayer token={token} id={id} />
+      <DataFetchingLayer id={id} />
     </Suspense>
   );
 }
 
-async function DataFetchingLayer({ token, id }: { token: string; id: string }) {
-  const patientPromise = getPatient(token, id);
-  const drugsPromise = getDrugs(token);
+async function DataFetchingLayer({id }: { id: string }) {
+  const patientPromise = getPatientByDoctorController(id);
+  const drugsPromise = getDrugsByDoctorController();
   const [patientResponse, drugsResponse] = await Promise.all([
     patientPromise,
     drugsPromise,

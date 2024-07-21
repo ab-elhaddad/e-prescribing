@@ -5,12 +5,9 @@ import Table from "@/app/ui/dashboard/Table";
 import Breadcrumps from "@/components/Breadcrumbs";
 import Button from "@/components/inputs/Button";
 import InvoicesTableSkeleton from "@/app/ui/skeletons";
-import {
-  addDrugAction,
-  deleteDrugAction,
-} from "@/app/lib/actions/drugsActions";
-import { getDrugs } from "@/app/lib/data-access/drugData";
+import { deleteDrugAction } from "@/app/actions/drug";
 import { GoPlus } from "react-icons/go";
+import { getDrugsByDoctorController } from "@/app/controllers/drug";
 
 export default async function Page() {
   return (
@@ -24,7 +21,7 @@ export default async function Page() {
         <Link href={"drugs/add"}>
           <Button
             body={
-              <div className="flex justify-between items-center w-full">
+              <div className="flex w-full items-center justify-between">
                 Add Drug
                 <GoPlus className="text-2xl" />
               </div>
@@ -34,7 +31,7 @@ export default async function Page() {
       </div>
       <Suspense fallback={<InvoicesTableSkeleton />}>
         <Table
-          getData={getDrugs}
+          getData={getDrugsByDoctorController}
           headerToAttribute={{
             Name: "name",
             Usage: "usage",

@@ -7,7 +7,7 @@ import PurpleHaloGroup from "@/components/PurpleHaloGroup";
 import InvoicesTableSkeleton from "@/app/ui/skeletons";
 
 import { FaUserDoctor, FaUserInjured, FaUserNurse } from "react-icons/fa6";
-import { getUser } from "@/app/lib/data-access/userData";
+import { getCurrentUserController } from "@/app/controllers/user";
 
 export const metadata: Metadata = {
   title: "Profile",
@@ -39,8 +39,9 @@ export default function Page() {
 }
 
 async function ProfileCard() {
-  const { user, error } = await getUser();
+  const { data: user, error } = await getCurrentUserController();
   if (!user) return null;
+
   const Icon = getUserIcon(user.role);
   return (
     <>

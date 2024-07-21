@@ -1,13 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import toast, {Toaster} from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 import { useEffect, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 
 import Button from "@/components/inputs/Button";
 import { DrugsList } from "@/forms/dashboard/doctor/createPrescriptionForm";
-import { updatePrescription } from "@/app/lib/actions/doctorActions";
+import { updatePrescriptionAction } from "@/app/actions/doctor";
 
 export function ClientDrugsList({
   id,
@@ -20,22 +20,27 @@ export function ClientDrugsList({
 }) {
   const [selectedDrugs, setSelectedDrugs] = useState(passedSelectedDrugs);
 
-  const updatePrescritpionWithDrugs = updatePrescription.bind(null, selectedDrugs);
+  const updatePrescritpionWithDrugs = updatePrescriptionAction.bind(
+    null,
+    selectedDrugs,
+  );
   const [formState, formAction] = useFormState(updatePrescritpionWithDrugs, {
-    isSuccessful: false,
-    error: "",
+    success: false,
+    errors: {
+      server: undefined,
+    },
   });
 
   useEffect(() => {
-    if (formState.error) toast.error(formState.error);
-    if(formState.isSuccessful) toast.success("Prescription updated successfully!");
-  }, [formState])
+    if (formState?.errors?.server) toast.error(formState.errors.server);
+    if (formState.success) toast.success("Prescription updated successfully!");
+  }, [formState]);
 
   return (
-    <form action={formAction} className="w-full flex flex-col gap-y-5">
+    <form action={formAction} className="flex w-full flex-col gap-y-5">
       <Toaster />
-      <input type="text" name="id" defaultValue={id} hidden/>
-      <div className=" p-5 bg-gray-50 rounded-md">
+      <input type="text" name="id" defaultValue={id} hidden />
+      <div className="rounded-md bg-gray-50 p-5">
         <DrugsList
           drugsData={drugsData}
           selectedDrugs={selectedDrugs}
@@ -46,13 +51,13 @@ export function ClientDrugsList({
         <Link href="..">
           <Button body="Cancel" variant="secondary" type="button" />
         </Link>
-        <SubmitButton/>
+        <SubmitButton />
       </div>
     </form>
   );
 }
 
-function SubmitButton(){
+function SubmitButton() {
   const { pending } = useFormStatus();
-  return <Button body="Update" pending={pending}/>;
+  return <Button body="Update" pending={pending} />;
 }

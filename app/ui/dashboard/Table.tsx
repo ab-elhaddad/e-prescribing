@@ -1,6 +1,7 @@
-import { cookies } from "next/headers";
 import clsx from "clsx";
 import Row from "./Row";
+import { ControllerReturn } from "@/app/controllers/types";
+import { TableEntity, TableOwner } from "./types";
 
 const styles = {
   th: "text-left p-5 font-semibold bg-gray-50",
@@ -13,15 +14,15 @@ export default async function Table({
   entity,
   owner,
 }: {
-  getData: (token: string) => Promise<{ error?: string; data: any[] }>;
+  getData: <T>() => Promise<ControllerReturn<any[]>>;
   headerToAttribute: Record<string, string>;
   deleteAction?: (prevState: any, formData: FormData) => Promise<any>;
-  entity?: "Doctor" | "Assistant" | "Patient" | "Drug" | "Prescription" | "Pending-Prescription";
-  owner?: "Doctor" | "Assistant" | "Patient";
+  entity?: TableEntity;
+  owner?: TableOwner;
 }) {
-  const { error, data } = await getData(
-    cookies().get("authorization")?.value || ""
-  );
+  const { error, data } = await getData();
+  if (!data) return null;
+
   return (
     <>
       <div className="max-h-96 overflow-y-auto mt-10 p-3 pt-0 bg-gray-50 rounded-md text-sm md:text-md">
@@ -38,20 +39,24 @@ export default async function Table({
           <tbody className="bg-white">
             {data.length !== 0 ? (
               data.map((el: any) => {
-                const href = 
-                `/dashboard`
-                + `/${owner?.toLowerCase()}`
-                + `/${entity?.toLocaleLowerCase()}s`
-                + `/${el._id}`;
+                const href =
+                  `/dashboard` +
+                  `/${owner?.toLowerCase()}` +
+                  `/${entity?.toLocaleLowerCase()}s` +
+                  `/${el.id}`;
 
                 return (
                   <Row
                     el={el}
                     deleteAction={deleteAction}
                     headerToAttribute={headerToAttribute}
-                    key={el._id}
+                    key={el.id}
                     entity={entity}
-                    href={owner === "Doctor" || entity === "Prescription" ? href : undefined}
+                    href={
+                      owner === "Doctor" || entity === "Prescription"
+                        ? href
+                        : undefined
+                    }
                   />
                 );
               })

@@ -1,17 +1,16 @@
+import Link from "next/link";
 import { Suspense } from "react";
 
-import InvoicesTableSkeleton from "@/app/ui/skeletons";
-import AddForm from "@/forms/dashboard/addForm";
-import Table from "@/app/ui/dashboard/Table";
 import Breadcrumps from "@/components/Breadcrumbs";
-import {
-  addPatientAction,
-  deletePatientAction,
-} from "@/app/lib/actions/patientsActions";
-import { getPatients } from "@/app/lib/data-access/patientData";
+import InvoicesTableSkeleton from "@/app/ui/skeletons";
+import Table from "@/app/ui/dashboard/Table";
 import Button from "@/components/inputs/Button";
-import Link from "next/link";
 import { GoPlus } from "react-icons/go";
+
+import {
+  unlinkPatientAndDoctorAction
+} from "@/app/actions/doctor";
+import { getPatientsByDoctorController } from "@/app/controllers/doctor";
 
 export default function Page() {
   return (
@@ -36,8 +35,8 @@ export default function Page() {
       </div>
       <Suspense fallback={<InvoicesTableSkeleton />}>
         <Table
-          deleteAction={deletePatientAction}
-          getData={getPatients}
+          deleteAction={unlinkPatientAndDoctorAction}
+          getData={getPatientsByDoctorController}
           headerToAttribute={{
             Name: "name",
             Email: "email",

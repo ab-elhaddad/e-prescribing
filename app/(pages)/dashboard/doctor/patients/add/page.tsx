@@ -1,4 +1,4 @@
-import { addPatientAction, createPatientAction } from "@/app/lib/actions/patientsActions";
+import { createPatientAction, linkPatientAndDoctorAction } from "@/app/actions/doctor";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import AddForm from "@/forms/dashboard/addForm";
 import CreateUserForm from "@/forms/dashboard/doctor/createUserForm";
@@ -20,7 +20,7 @@ export default function Page() {
         <div className="flex flex-col gap-y-2">
           <h1 className="ml-2 text-gray-800">Add by email</h1>
           <AddForm
-            addAction={addPatientAction}
+            addAction={linkPatientAndDoctorAction}
             entity="Patient"
             inputPlaceholder="Write patient's email address"
           />

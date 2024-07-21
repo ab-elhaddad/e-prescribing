@@ -3,8 +3,8 @@ import { Suspense } from "react";
 import InvoicesTableSkeleton from "@/app/ui/skeletons";
 import Table from "@/app/ui/dashboard/Table";
 import Breadcrumps from "@/components/Breadcrumbs";
-import { deletePendingPrescriptionAction } from "@/app/lib/actions/pendingPrescriptionActions";
-import { getPendingPrescriptions } from "@/app/lib/data-access/pendingPrescriptionData";
+import { deletePendingPrescriptionAction } from "@/app/actions/pendingPrescription";
+import { getPendingPrescriptionsController } from "@/app/controllers/pendingPrescription";
 
 export default function Page() {
   return (
@@ -23,7 +23,7 @@ export default function Page() {
       <Suspense fallback={<InvoicesTableSkeleton />}>
         <Table
           deleteAction={deletePendingPrescriptionAction}
-          getData={getPendingPrescriptions}
+          getData={getPendingPrescriptionsController}
           headerToAttribute={{
             Patinet: "patient",
             Drugs: "drugs",

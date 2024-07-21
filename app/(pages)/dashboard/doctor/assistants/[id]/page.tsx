@@ -1,8 +1,8 @@
 import { Suspense } from "react";
 
 import DisplayEntityCard from "@/app/ui/dashboard/DisplayEntityCard";
-import { getAssistant } from "@/app/lib/data-access/assistantData";
 import { InvoicesTableSkeleton } from "@/app/ui/skeletons";
+import { getAssistantsByDoctorController } from "@/app/controllers/doctor";
 
 export default function Page({ params }: { params: { id: string } }) {
   const { id } = params;
@@ -12,7 +12,7 @@ export default function Page({ params }: { params: { id: string } }) {
         <DisplayEntityCard
           entity="Assistant"
           entityId={id}
-          getEntity={getAssistant}
+          getEntity={getAssistantsByDoctorController}
           attributeToLabel={{
             name: "Name",
             age: "Age",

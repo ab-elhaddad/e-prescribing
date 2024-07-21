@@ -1,4 +1,4 @@
-import { getDrug } from "@/app/lib/data-access/drugData";
+import { getDrug } from "@/app/data-access/drug";
 import DisplayEntityCard from "@/app/ui/dashboard/DisplayEntityCard";
 import { InvoicesTableSkeleton } from "@/app/ui/skeletons";
 import { Suspense } from "react";

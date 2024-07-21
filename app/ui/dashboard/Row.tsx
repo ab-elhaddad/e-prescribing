@@ -36,7 +36,7 @@ export default function Row({
     >
       {Object.values(headerToAttribute).map((attribute: string) => (
         <td
-          key={el._id}
+          key={el.id}
           className={styles.td}
           onClick={href ? handleClick : undefined}
         >
@@ -47,9 +47,9 @@ export default function Row({
       {deleteAction && (
         <td className="px-5 py-3 border-b border-gray-200 flex justify-end gap-x-3">
           {entity === "Patient" && (
-            <CreatePrescriptionButton patientId={el._id} />
+            <CreatePrescriptionButton patientId={el.id} />
           )}
-          <DeleteForm entityId={el._id} deleteAction={deleteAction} />
+          <DeleteForm entityId={el.id} deleteAction={deleteAction} />
         </td>
       )}
     </tr>
