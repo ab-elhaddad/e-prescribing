@@ -7,18 +7,18 @@ export default function Auth() {
   return (
     <div className="text-sm font-semibold text-sky-900">
       <SignedOut>
-        <SignInButton
-          children={
-            <div className="flex items-center gap-2 cursor-pointer">
-              <FaSignInAlt />
-              Sign in
-            </div>
-          }
-        />
+        <SignInButton>
+          <div className="flex cursor-pointer items-center gap-2">
+            <FaSignInAlt />
+            Sign in
+          </div>
+        </SignInButton>
       </SignedOut>
       <SignedIn>
-        <div className="hidden md:flex items-center gap-x-3 text-black font-normal">
-          <Link href={"/profile"} className="text-sm">Profile</Link>
+        <div className="hidden items-center gap-x-3 font-normal text-black md:flex">
+          <Link href={"/profile"} className="text-sm">
+            Profile
+          </Link>
           <UserButton />
         </div>
       </SignedIn>
