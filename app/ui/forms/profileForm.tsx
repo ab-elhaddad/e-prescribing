@@ -8,7 +8,7 @@ import FullBorderInput from "@/components/inputs/FullBorderInput";
 import Button from "@/components/inputs/Button";
 import FullBorderGenderSelect from "@/components/inputs/FullBorderGenderSelect";
 import { GetUserDto } from "@/app/dtos/data-access/getUserDto";
-import { updateProfileAction } from "@/app/lib/actions/profileActions";
+import { updateProfileAction } from "@/app/actions/profile";
 
 const initialState = {
   errors: {
@@ -21,7 +21,7 @@ const initialState = {
     gender: undefined,
     server: undefined,
   },
-  isSuccessful: false,
+  success: false,
 };
 
 export default function ProfileForm({ user }: { user: GetUserDto }) {
@@ -30,10 +30,10 @@ export default function ProfileForm({ user }: { user: GetUserDto }) {
     initialState
   );
 
-  const { errors, isSuccessful } = formState;
+  const { errors, success } = formState;
 
   useEffect(() => {
-    if (isSuccessful) {
+    if (success) {
       toast.success("Profile updated successfully");
     }
     if (errors.server) {
@@ -112,7 +112,7 @@ export default function ProfileForm({ user }: { user: GetUserDto }) {
             type="date"
             placeholder="Birth Date"
             name="dob"
-            defaultValue={user.dob.split("T")[0]}
+            defaultValue={user.dob?.split("T")[0]}
             error={errors.dob}
           />
         </div>

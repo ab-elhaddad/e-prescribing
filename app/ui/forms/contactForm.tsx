@@ -4,7 +4,7 @@ import { useFormState } from "react-dom";
 import FullBorderInput from "@/components/inputs/FullBorderInput";
 import Button from "@/components/inputs/Button";
 import { ZodError } from "@/components/ZodError";
-import { sendMessage } from "@/app/lib/actions/contactActions";
+import { sendMessage } from "@/app/actions/contact";
 
 export default function ContactForm() {
   const [formState, formAction] = useFormState(sendMessage, {});

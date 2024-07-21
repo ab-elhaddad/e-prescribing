@@ -8,15 +8,16 @@ import { useEffect } from "react";
 import Button from "@/components/inputs/Button";
 import FullBorderInput from "@/components/inputs/FullBorderInput";
 import UploadImage from "@/components/inputs/UploadImage";
-import { scanPrescriptionAction } from "@/app/lib/actions/pendingPrescriptionActions";
+import { scanPrescriptionAction } from "@/app/actions/assistant";
 
 const initialState = {
   errors: {
     prescriptionImage: undefined,
     patientEmail: undefined,
     doctorEmail: undefined,
+    server: undefined,
   },
-  isSubmitted: false,
+  success: false,
 };
 
 export default function ScanForm() {
@@ -26,7 +27,7 @@ export default function ScanForm() {
   );
 
   useEffect(() => {
-    if (formState.isSubmitted) {
+    if (formState.success) {
       toast.success("Prescription scanned successfully!");
     } else if (formState.errors.server) {
       toast.error(formState.errors.server);

@@ -7,15 +7,15 @@ import { MdDeleteOutline } from "react-icons/md";
 import LoadingSpinner from "@/components/LoadingSpinner";
 
 const initialState = {
-  error: null,
-  success: null,
+  error: undefined,
+  success: false,
 };
 
 export default function DeleteForm({
   entityId,
   deleteAction,
 }: {
-  entityId: number;
+  entityId: string;
   deleteAction: (prevState: any, formData: FormData) => Promise<any>;
 }) {
   const [formState, formAction] = useFormState(deleteAction, initialState);

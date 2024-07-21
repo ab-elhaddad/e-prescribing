@@ -8,7 +8,7 @@ import toast, { Toaster } from "react-hot-toast";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Button from "@/components/inputs/Button";
 import FullBorderInput from "@/components/inputs/FullBorderInput";
-import { addDrugAction } from "@/app/lib/actions/drugsActions";
+import { addDrugAction } from "@/app/actions/drug/addDrugAction";
 
 const initialState = {
   errors: {
@@ -16,16 +16,16 @@ const initialState = {
     name: undefined,
     usage: undefined,
   },
-  success: "",
+  success: false,
 };
 
 export default function AddDrugForm() {
   const [formState, formAction] = useFormState(addDrugAction, initialState);
 
   useEffect(() => {
-    if (formState.success) toast.success(formState.success);
+    if (formState.success) toast.success("Drug added successfully");
     if (formState.errors.server) toast.error(formState.errors.server as string);
-  }, [formState.success, formState.errors.server]);
+  }, [formState]);
 
   return (
     <div>

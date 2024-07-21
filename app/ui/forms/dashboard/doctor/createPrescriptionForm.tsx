@@ -9,55 +9,69 @@ import FullBorderInput from "@/components/inputs/FullBorderInput";
 import Button from "@/components/inputs/Button";
 import Link from "next/link";
 import { IoCloseOutline } from "react-icons/io5";
-import { createPrescriptionAction } from "@/app/lib/actions/doctorActions";
+import { createPrescriptionAction } from "@/app/actions/doctor";
+import { GetUserDto } from "@/app/dtos/data-access/getUserDto";
+import { GetDrugDto } from "@/app/dtos/data-access/getDrugDto";
+import { ControllerReturn } from "@/app/controllers/types";
+
+const initialState = {
+  errors: {
+    server: undefined,
+  },
+  success: false,
+};
 
 export default function CreatePrescriptionForm({
   patientResponse,
   drugsResponse,
 }: {
-  patientResponse: { error?: string; data: any };
-  drugsResponse: { error?: string; data: any[] };
+  patientResponse: ControllerReturn<GetUserDto>;
+  drugsResponse: ControllerReturn<GetDrugDto[]>;
 }) {
   const { data: patientData, error: patientError } = patientResponse;
-  console.log(patientData);
-  const { _id: id, name, email, age } = patientData;
-  const [firstname] = name?.split(" ");
-
   const { data: drugsData, error: drugsError } = drugsResponse;
 
   if (patientError || drugsError) {
-    toast.error((patientError as string) || (drugsError as string));
+    const error = patientError || (drugsError as string);
+    toast.error(error);
+    return <div className="text-red-200">{error}</div>;
   }
 
   const [selectedDrugs, setSelectedDrugs] = useState<any[]>([]);
-  const createPrescriptionWithDrugs = createPrescriptionAction.bind(null, selectedDrugs);
-  const [formState, formAction] = useFormState(createPrescriptionWithDrugs, {errors: {}, isSuccess: false});
+  const createPrescriptionWithDrugs = createPrescriptionAction.bind(
+    null,
+    selectedDrugs,
+  );
+  const [formState, formAction] = useFormState(
+    createPrescriptionWithDrugs,
+    initialState,
+  );
 
   useEffect(() => {
-    if (formState.isSuccess) 
-      toast.success("Prescription created successfully");
-    else if(formState.errors?.server)
-      toast.error(formState.errors?.server);
-  }, [formState.isSuccess, formState.errors]);
+    if (formState.success) toast.success("Prescription created successfully");
+    else if (formState.errors?.server) toast.error(formState.errors?.server);
+  }, [formState.success, formState.errors]);
 
-  
   return (
     <div>
       <Toaster />
       <Breadcrumbs
         breadcrumbs={[
           { label: "Patients", href: "/dashboard/doctor/patients" },
-          { label: `${firstname}`, href: `/dashboard/doctor/patients/${id}` },
+          {
+            label: `${patientData?.firstName}`,
+            href: `/dashboard/doctor/patients/${patientData?.id}`,
+          },
           {
             label: "Create Prescription",
-            href: `/dashboard/doctor/patients/${id}/add`,
+            href: `/dashboard/doctor/patients/${patientData?.id}/add`,
             active: true,
           },
         ]}
       />
       <form action={formAction} className="my-10">
-        <input type="text" value={id} name="id" hidden />
-        <div className="bg-gray-50 p-5 rounded-md my-5">
+        <input type="text" value={patientData?.id} name="id" hidden />
+        <div className="my-5 rounded-md bg-gray-50 p-5">
           <div className="flex gap-x-3">
             <div className="w-2/5">
               <FullBorderInput
@@ -65,7 +79,7 @@ export default function CreatePrescriptionForm({
                 name="patientName"
                 error={undefined}
                 disabled={true}
-                defaultValue={name}
+                defaultValue={patientData?.fullName || ""}
                 label="Full name"
               />
             </div>
@@ -75,7 +89,7 @@ export default function CreatePrescriptionForm({
                 name="patientEmail"
                 error={undefined}
                 disabled={true}
-                defaultValue={email}
+                defaultValue={patientData?.email || ""}
                 label="Email"
               />
             </div>
@@ -85,13 +99,13 @@ export default function CreatePrescriptionForm({
                 name="patientAge"
                 error={undefined}
                 disabled={true}
-                defaultValue={age}
+                defaultValue={String(patientData?.age) || ""}
                 label="Age"
               />
             </div>
           </div>
           <DrugsList
-            drugsData={drugsData}
+            drugsData={drugsData as GetDrugDto[]}
             selectedDrugs={selectedDrugs}
             setSelectedDrugs={setSelectedDrugs}
           />
@@ -112,8 +126,8 @@ export function DrugsList({
   selectedDrugs,
   setSelectedDrugs,
 }: {
-  drugsData: any[];
-  selectedDrugs: any[];
+  drugsData: GetDrugDto[];
+  selectedDrugs: GetDrugDto[];
   setSelectedDrugs: (selectedDrugs: any[]) => void;
 }) {
   const [filteredDrugs, setFilteredDrugs] = useState(drugs);
@@ -121,7 +135,7 @@ export function DrugsList({
   const handleDrugsSearch: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     const search = e.target.value;
     const filteredDrugs = drugs.filter((drug) =>
-      drug.name.toLowerCase().includes(search.toLowerCase())
+      drug.name.toLowerCase().includes(search.toLowerCase()),
     );
     setFilteredDrugs(filteredDrugs);
   };
@@ -137,7 +151,7 @@ export function DrugsList({
   const handleDrugDelete: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     const drug = JSON.parse(e.currentTarget.value);
     const updatedDrugs = selectedDrugs.filter(
-      (selectedDrug) => selectedDrug.name !== drug.name
+      (selectedDrug) => selectedDrug.name !== drug.name,
     );
     setSelectedDrugs(updatedDrugs);
   };
@@ -153,11 +167,11 @@ export function DrugsList({
           onChange={handleDrugsSearch}
           style={{ marginBottom: 0 }}
         />
-        <div className="w-full bg-white rounded-b-md min-h-10 max-h-40 overflow-y-scroll flex flex-col">
+        <div className="flex max-h-40 min-h-10 w-full flex-col overflow-y-scroll rounded-b-md bg-white">
           {filteredDrugs.length ? (
             filteredDrugs.map((drug) => (
               <button
-                className="flex p-2 border-b border-gray-200 text-md"
+                className="text-md flex border-b border-gray-200 p-2"
                 key={JSON.stringify(drug)}
                 onClick={handleDrugSelect}
                 value={JSON.stringify(drug)}
@@ -174,16 +188,23 @@ export function DrugsList({
       <div className="flex flex-wrap gap-x-3 gap-y-2">
         {selectedDrugs.map((drug) => {
           return (
-          <div
-            key={drug.name}
-            className="flex gap-x-3 text-sky-600 bg-sky-100 p-2 px-3 rounded-full h-fit w-fit"
-          >
-            <span className="h-fit w-fit text-sm md:text-md">{drug.name}</span>
-            <button onClick={handleDrugDelete} value={JSON.stringify(drug)} type="button">
-              <IoCloseOutline className="text-red-500 text-xl font-bold hover:text-red-700 hover:rotate-90 duration-300" />
-            </button>
-          </div>
-        )})}
+            <div
+              key={drug.name}
+              className="flex h-fit w-fit gap-x-3 rounded-full bg-sky-100 p-2 px-3 text-sky-600"
+            >
+              <span className="md:text-md h-fit w-fit text-sm">
+                {drug.name}
+              </span>
+              <button
+                onClick={handleDrugDelete}
+                value={JSON.stringify(drug)}
+                type="button"
+              >
+                <IoCloseOutline className="text-xl font-bold text-red-500 duration-300 hover:rotate-90 hover:text-red-700" />
+              </button>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

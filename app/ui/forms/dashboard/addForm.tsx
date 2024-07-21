@@ -7,8 +7,8 @@ import { GoPlus } from "react-icons/go";
 import { useEffect } from "react";
 
 const initialState = {
-  error: null,
-  isSubmitted: false,
+  error: undefined,
+  success: false,
 };
 
 export default function AddForm({
@@ -16,7 +16,10 @@ export default function AddForm({
   inputPlaceholder,
   entity,
 }: {
-  addAction: (prevState: any, formData: FormData) => Promise<any>;
+  addAction: (
+    prevState: any,
+    formData: FormData
+  ) => Promise<{ error?: string; success: boolean }>;
   inputPlaceholder: string;
   entity: string;
 }) {
@@ -24,7 +27,7 @@ export default function AddForm({
 
   useEffect(() => {
     if (formState.error) toast.error(formState.error);
-    if (formState.isSubmitted) toast.success(`${entity} added successfully!`);
+    if (formState.success) toast.success(`${entity} added successfully!`);
   }, [formState, entity]);
 
   return (

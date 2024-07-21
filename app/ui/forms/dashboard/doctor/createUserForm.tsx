@@ -8,6 +8,7 @@ import toast, { Toaster } from "react-hot-toast";
 import FullBorderInput from "@/components/inputs/FullBorderInput";
 import FullBorderGenderSelect from "@/components/inputs/FullBorderGenderSelect";
 import Button from "@/components/inputs/Button";
+import { ActionReturn } from "@/app/actions/types";
 
 export default function CreateUserForm({
   createUserAction,
@@ -16,23 +17,23 @@ export default function CreateUserForm({
   createUserAction: (
     prevState: any,
     formData: FormData
-  ) => Promise<{ errors: any; isSubmitted: boolean }>;
+  ) => Promise<ActionReturn<any>>;
   entity: "Patient" | "Assistant";
 }) {
   const [formState, formAction] = useFormState(createUserAction, {
     errors: {},
-    isSubmitted: false,
+    success: false,
   });
 
-  const { errors, isSubmitted } = formState;
+  const { errors, success } = formState;
 
   useEffect(() => {
     if (errors.server) toast.error(errors.server);
   }, [errors]);
 
   useEffect(() => {
-    if (isSubmitted) toast.success(`${entity} created successfully`);
-  }, [isSubmitted, entity]);
+    if (success) toast.success(`${entity} created successfully`);
+  }, [formState]);
 
   return (
     <form action={formAction}>
@@ -57,9 +58,9 @@ export default function CreateUserForm({
           </div>
           <div className="w-1/4">
             <FullBorderInput
-              name="birthday"
+              name="dob"
               type="date"
-              error={errors?.birthday}
+              error={errors?.dob}
             />
           </div>
           <div className="w-1/4">
