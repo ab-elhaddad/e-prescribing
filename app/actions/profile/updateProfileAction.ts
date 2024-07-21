@@ -2,7 +2,7 @@
 
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
-import { updateUser } from "../data-access/userData";
+import { updateUserController } from "@/app/controllers/user";
 
 const profileFormSchema = z.object({
   firstName: z
@@ -17,12 +17,13 @@ const profileFormSchema = z.object({
     .max(50, {
       message: "Last name cannot be more than 50 characters",
     }),
-  address: z
-    .string()
-    .min(10, "Address must be at least 10 characters")
-    .max(100, "Address cannot be more than 100 characters")
-    .or(z.string().max(0)),
-  dob: z.date({ message: "Please enter a valid date" }),
+  address: z.optional(
+    z
+      .string()
+      .min(10, "Address must be at least 10 characters")
+      .max(100, "Address cannot be more than 100 characters")
+  ),
+  dob: z.optional(z.string()),
   gender: z.enum(["male", "female"], {
     message: "Please select a valid gender",
   }),
@@ -37,15 +38,15 @@ type UpdateProfileErrors = {
   server?: string;
 };
 
-export const updateProfileAction = async (
+export async function updateProfileAction(
   prevState: any,
   formData: FormData
-): Promise<{ isSuccessful: boolean; errors: UpdateProfileErrors }> => {
+): Promise<{ isSuccessful: boolean; errors: UpdateProfileErrors }> {
   const validatedFields = profileFormSchema.safeParse({
     firstName: formData.get("firstName"),
     lastName: formData.get("lastName"),
-    address: formData.get("address"),
-    dob: new Date(formData.get("dob") as string),
+    address: formData.get("address") || undefined,
+    dob: formData.get("dob") || undefined,
     gender: formData.get("gender"),
   });
 
@@ -55,14 +56,13 @@ export const updateProfileAction = async (
       errors: validatedFields.error.flatten().fieldErrors,
     };
 
-  const { isSuccessful, error } = await updateUser(validatedFields.data);
-
-  if (isSuccessful) {
+  const { error } = await updateUserController(validatedFields.data);
+  if (!error) {
     revalidatePath("/profile");
   }
 
   return {
-    isSuccessful,
+    isSuccessful: !error,
     errors: { server: error },
   };
-};
+}
