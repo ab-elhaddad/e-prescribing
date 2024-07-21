@@ -1,4 +1,4 @@
-import { getCurrentUser } from "@/app/data-access/userData";
+import { getCurrentUser } from "@/app/data-access/user";
 import { redirect } from "next/navigation";
 
 export function protectDashboardRole(
