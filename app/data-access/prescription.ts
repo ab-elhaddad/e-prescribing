@@ -13,7 +13,13 @@ export async function getPrescription(
   return prescription;
 }
 
-export async function getDoctorPrescriptions(id: string) {}
+export async function getDoctorPrescriptions(id: string) {
+  const prescriptions = await Prescription.find({ doctorId: id })
+    .populate("patientId")
+    .populate("doctorId")
+    .populate("drugs");
+  return prescriptions;
+}
 
 export async function getPatientPrescriptions(
   id: string,

@@ -1,5 +1,6 @@
 import {
   deletePrescription,
+  getDoctorPrescriptions,
   getPrescription,
 } from "../data-access/prescription";
 import { getCurrentUserId } from "../data-access/user";
@@ -38,6 +39,18 @@ export async function getPatientPrescriptionsController(): Promise<
   try {
     const id = getCurrentUserId();
     const prescriptions = await getPatientPrescriptions(id);
+    return { data: prescriptions.map(getPrescriptionDto) };
+  } catch (error) {
+    return handleControllerError(error);
+  }
+}
+
+export async function getDoctorPrescriptionsController(): Promise<
+  ControllerReturn<GetPrescriptionDto[]>
+> {
+  try {
+    const id = getCurrentUserId();
+    const prescriptions = await getDoctorPrescriptions(id);
     return { data: prescriptions.map(getPrescriptionDto) };
   } catch (error) {
     return handleControllerError(error);
