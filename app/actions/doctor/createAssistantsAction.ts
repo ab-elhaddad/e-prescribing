@@ -1,6 +1,7 @@
 "use server";
 
 import { z } from "zod";
+import { ActionReturn } from "../types";
 
 const CreateAssistantSchema = z
   .object({
@@ -36,4 +37,8 @@ const CreateAssistantSchema = z
 export async function createAssistantAction(
   prevState: any,
   formData: FormData,
-) {}
+): Promise<ActionReturn<void>> {
+  return {
+    success: true,
+  };
+}
