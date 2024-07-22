@@ -1,15 +1,14 @@
 "use client";
 
-import { SignInButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaSignInAlt } from "react-icons/fa";
 
-export default function SignInOrHome() {
+export default function ProfileOrHome() {
   const pathname = usePathname();
   return (
     <>
-      {pathname.startsWith("/login") || pathname.startsWith("/signup") ? (
+      {pathname.startsWith("/profile") ? (
         <Link href={"/home"}>
           <div className="scale-x-[-1]">
             <FaSignInAlt />
@@ -18,11 +17,9 @@ export default function SignInOrHome() {
         </Link>
       ) : (
         <>
-          <SignInButton>
-            <div className="flex cursor-pointer items-center gap-2"></div>
-            <FaSignInAlt />
-            {"SignIn"}
-          </SignInButton>
+          <Link href={"/profile"} className="text-sm">
+            Profile
+          </Link>
         </>
       )}
     </>
