@@ -31,12 +31,6 @@ export default function CreatePrescriptionForm({
   const { data: patientData, error: patientError } = patientResponse;
   const { data: drugsData, error: drugsError } = drugsResponse;
 
-  if (patientError || drugsError) {
-    const error = patientError || (drugsError as string);
-    toast.error(error);
-    return <div className="text-red-200">{error}</div>;
-  }
-
   const [selectedDrugs, setSelectedDrugs] = useState<any[]>([]);
   const createPrescriptionWithDrugs = createPrescriptionAction.bind(
     null,
@@ -51,6 +45,12 @@ export default function CreatePrescriptionForm({
     if (formState.success) toast.success("Prescription created successfully");
     else if (formState.errors?.server) toast.error(formState.errors?.server);
   }, [formState.success, formState.errors]);
+
+  if (patientError || drugsError) {
+    const error = patientError || (drugsError as string);
+    toast.error(error);
+    return <div className="text-red-200">{error}</div>;
+  }
 
   return (
     <div>
