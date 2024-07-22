@@ -1,3 +1,5 @@
+"use server";
+
 export async function createPrescriptionAction(
   selectedDrugs: any[],
   prevState: any,
