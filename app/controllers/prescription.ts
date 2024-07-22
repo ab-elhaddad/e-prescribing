@@ -6,7 +6,7 @@ import {
 import { getCurrentUserId } from "../data-access/user";
 import getPrescriptionDto, {
   GetPrescriptionDto,
-} from "../dtos/data-access/getPrescriptionDto";
+} from "../dtos/prescription/getPrescriptionDto";
 import { ControllerReturn } from "./types";
 import { handleControllerError } from "./utility";
 import { getPatientPrescriptions } from "@/app/data-access/prescription";

@@ -1,7 +1,7 @@
 "use server";
 
 import { PendingPrescription } from "../db/schema";
-import PendingPrescriptionsPersistenceDto from "../dtos/persistence/PendingPrescriptionPersistenceDto";
+import PendingPrescriptionsPersistenceDto from "../dtos/pending-prescription/pendingPrescriptionPersistenceDto";
 
 
 export async function getPendingPrescription(id: string) {

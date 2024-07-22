@@ -1,8 +1,8 @@
 "use server";
 
-import getUserDto, { GetUserDto } from "@/app/dtos/data-access/getUserDto";
-import { UpdateUserDto } from "@/app/dtos/data-access/updateUserDto";
-import UserPersistenceDto from "@/app/dtos/persistence/UserPersistenceDto";
+import getUserDto from "@/app/dtos/user/getUserDto";
+import { UpdateUserDto } from "@/app/dtos/user/updateUserDto";
+import UserPersistenceDto from "@/app/dtos/user/userPersistenceDto";
 import { auth, clerkClient } from "@clerk/nextjs/server";
 
 export async function getUser(id: string) {

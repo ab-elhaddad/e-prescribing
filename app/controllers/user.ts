@@ -2,8 +2,8 @@ import { auth } from "@clerk/nextjs/server";
 import { getUser, updateUser } from "../data-access/user";
 import { handleControllerError } from "./utility";
 import { ControllerReturn } from "./types";
-import { GetUserDto } from "../dtos/data-access/getUserDto";
-import { UpdateUserDto } from "../dtos/data-access/updateUserDto";
+import { GetUserDto } from "../dtos/user/getUserDto";
+import { UpdateUserDto } from "../dtos/user/updateUserDto";
 
 export async function getCurrentUserController(): Promise<
   ControllerReturn<GetUserDto>

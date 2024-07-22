@@ -1,5 +1,5 @@
 import { getDrugsByDoctor } from "../data-access/drug";
-import getDrugDto, { GetDrugDto } from "../dtos/data-access/getDrugDto";
+import getDrugDto, { GetDrugDto } from "../dtos/drug/getDrugDto";
 import { ControllerReturn } from "./types";
 import { handleControllerError } from "./utility";
 

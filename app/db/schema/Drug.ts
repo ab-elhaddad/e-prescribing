@@ -1,4 +1,4 @@
-import DrugPersistenceDto from "@/app/dtos/persistence/DrugPersistenceDto";
+import DrugPersistenceDto from "@/app/dtos/drug/drugPersistenceDto";
 import mongoose from "mongoose";
 
 const drugSchema = new mongoose.Schema<DrugPersistenceDto>(

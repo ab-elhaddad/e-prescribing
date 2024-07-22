@@ -5,8 +5,8 @@ import {
 } from "../data-access/pendingPrescription";
 import getPendingPrescriptionDto, {
   GetPendingPrescriptionDto,
-} from "../dtos/data-access/GetPendingPrescriptionDto";
-import PendingPrescriptionsPersistenceDto from "../dtos/persistence/PendingPrescriptionPersistenceDto";
+} from "../dtos/pending-prescription/getPendingPrescriptionDto";
+import PendingPrescriptionsPersistenceDto from "../dtos/pending-prescription/pendingPrescriptionPersistenceDto";
 import { ControllerReturn } from "./types";
 import { handleControllerError } from "./utility";
 

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 import React, { useEffect, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
@@ -7,11 +8,10 @@ import { useFormState, useFormStatus } from "react-dom";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FullBorderInput from "@/components/inputs/FullBorderInput";
 import Button from "@/components/inputs/Button";
-import Link from "next/link";
 import { IoCloseOutline } from "react-icons/io5";
 import { createPrescriptionAction } from "@/app/actions/doctor";
-import { GetUserDto } from "@/app/dtos/data-access/getUserDto";
-import { GetDrugDto } from "@/app/dtos/data-access/getDrugDto";
+import { GetUserDto } from "@/app/dtos/user/getUserDto";
+import { GetDrugDto } from "@/app/dtos/drug/getDrugDto";
 import { ControllerReturn } from "@/app/controllers/types";
 
 const initialState = {

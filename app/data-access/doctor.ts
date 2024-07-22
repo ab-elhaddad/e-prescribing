@@ -2,7 +2,7 @@
 
 import { clerkClient } from "@clerk/nextjs/server";
 import { getUser } from "./user";
-import getUserDto from "../dtos/data-access/getUserDto";
+import getUserDto from "../dtos/user/getUserDto";
 import { handleUserId } from "./utility";
 
 export async function getDoctorsByPatient(patientId?: string) {

@@ -12,8 +12,8 @@ import {
 import { handleControllerError } from "./utility";
 import { getAssistantsByDoctor } from "../data-access/assistant";
 import { ControllerReturn } from "./types";
-import { GetUserDto } from "../dtos/data-access/getUserDto";
-import { CreateDrugDto } from "../dtos/data-access/createDrugDto";
+import { GetUserDto } from "../dtos/user/getUserDto";
+import { CreateDrugDto } from "../dtos/drug/createDrugDto";
 
 export async function linkPatientAndDoctorController(
   patientEmail: string,

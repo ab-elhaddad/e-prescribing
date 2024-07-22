@@ -1,9 +1,9 @@
 "use server";
 
-import { CreateDrugDto } from "@/app/dtos/data-access/createDrugDto";
+import { CreateDrugDto } from "@/app/dtos/drug/createDrugDto";
 import { getCurrentUser, getUser } from "./user";
 import { Drug } from "@/app/db/schema";
-import DrugPersistenceDto from "../dtos/persistence/DrugPersistenceDto";
+import DrugPersistenceDto from "../dtos/drug/drugPersistenceDto";
 
 export async function getDrug(id: string) {
   return Drug.findById(id);

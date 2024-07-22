@@ -4,7 +4,7 @@ import InvoicesTableSkeleton from "@/app/ui/skeletons";
 import Table from "@/app/ui/dashboard/Table";
 import Breadcrumps from "@/components/Breadcrumbs";
 import { getPatientPrescriptionsController } from "@/app/controllers/prescription";
-import { GetPrescriptionDto } from "@/app/dtos/data-access/getPrescriptionDto";
+import { GetPrescriptionDto } from "@/app/dtos/prescription/getPrescriptionDto";
 
 export default function Page() {
   return (

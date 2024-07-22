@@ -1,4 +1,4 @@
-import PendingPrescriptionsPersistenceDto from "@/app/dtos/persistence/PendingPrescriptionPersistenceDto";
+import PendingPrescriptionsPersistenceDto from "@/app/dtos/pending-prescription/pendingPrescriptionPersistenceDto";
 import mongoose from "mongoose";
 
 const pendingPrescriptionSchema =

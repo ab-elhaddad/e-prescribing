@@ -1,10 +1,10 @@
 "use server";
 
-import getUserDto from "../dtos/data-access/getUserDto";
+import getUserDto from "../dtos/user/getUserDto";
 import { clerkClient, auth } from "@clerk/nextjs/server";
 import { getUser } from "./user";
 import { handleUserId } from "./utility";
-import { CreateUserDto } from "../dtos/data-access/createUserDto";
+import { CreateUserDto } from "../dtos/user/createUserDto";
 
 export async function addDoctorToPatient(patientId: string, doctorId: string) {
   const patient = await clerkClient().users.getUser(patientId);
