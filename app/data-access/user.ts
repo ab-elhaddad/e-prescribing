@@ -17,7 +17,7 @@ export async function getCurrentUser() {
   return getUser(userId);
 }
 
-export function getCurrentUserId() {
+export async function getCurrentUserId() {
   const { userId } = auth() as { userId: string };
   return userId;
 }
