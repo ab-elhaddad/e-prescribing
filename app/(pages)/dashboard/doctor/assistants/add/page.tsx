@@ -1,7 +1,7 @@
 import {
-  addAssistantAction,
   createAssistantAction,
-} from "@/app/lib/actions/assistantsActions";
+  linkAssistantAndDoctorAction,
+} from "@/app/actions/doctor";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import AddForm from "@/forms/dashboard/addForm";
 import CreateUserForm from "@/forms/dashboard/doctor/createUserForm";
@@ -23,7 +23,7 @@ export default function Page() {
         <div className="flex flex-col gap-y-2">
           <h1 className="ml-2 text-gray-800">Add by email</h1>
           <AddForm
-            addAction={addAssistantAction}
+            addAction={linkAssistantAndDoctorAction}
             entity="Assistant"
             inputPlaceholder="Write assistant's email address"
           />
