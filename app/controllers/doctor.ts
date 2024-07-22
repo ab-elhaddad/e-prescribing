@@ -1,3 +1,5 @@
+"use server";
+
 import { getUserId } from "@/app/data-access/user";
 import {
   addDoctorToPatient,

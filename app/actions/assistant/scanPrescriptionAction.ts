@@ -1,3 +1,5 @@
+"use server";
+
 export async function scanPrescriptionAction(
   prevState: any,
   formData: FormData,

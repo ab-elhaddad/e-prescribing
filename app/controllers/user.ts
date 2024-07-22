@@ -1,3 +1,5 @@
+"use server";
+
 import { auth } from "@clerk/nextjs/server";
 import { getUser, updateUser } from "../data-access/user";
 import { handleControllerError } from "./utility";
@@ -19,7 +21,7 @@ export async function getCurrentUserController(): Promise<
 }
 
 export async function updateUserController(
-  user: UpdateUserDto
+  user: UpdateUserDto,
 ): Promise<ControllerReturn<void>> {
   try {
     await updateUser(user);

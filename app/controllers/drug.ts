@@ -1,3 +1,5 @@
+"use server";
+
 import { getDrugsByDoctor } from "../data-access/drug";
 import getDrugDto, { GetDrugDto } from "../dtos/drug/getDrugDto";
 import { ControllerReturn } from "./types";

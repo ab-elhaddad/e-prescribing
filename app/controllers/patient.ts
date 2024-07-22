@@ -1,3 +1,5 @@
+"use server";
+
 import { getDoctorsByPatient } from "../data-access/doctor";
 import { handleControllerError } from "./utility";
 import { ControllerReturn } from "./types";

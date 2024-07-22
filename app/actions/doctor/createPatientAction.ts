@@ -1,3 +1,5 @@
+"use server";
+
 import { z } from "zod";
 import { ActionReturn } from "../types";
 import { formDataToObject, handleActionError } from "../utility";
@@ -55,7 +57,10 @@ export async function createPatientAction(
     );
 
     if (!validatedData.success) {
-      return { success: false, errors: validatedData.error.flatten().fieldErrors };
+      return {
+        success: false,
+        errors: validatedData.error.flatten().fieldErrors,
+      };
     }
 
     await createPatient(validatedData.data);

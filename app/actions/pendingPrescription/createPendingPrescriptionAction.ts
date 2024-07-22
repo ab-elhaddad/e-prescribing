@@ -1,3 +1,5 @@
+"use server";
+
 async function createPendingPrescription(
   drugs: string[],
   patientEmail: string,

@@ -1,3 +1,5 @@
+"use server";
+
 import { z } from "zod";
 
 const AddDrugSchema = z.object({

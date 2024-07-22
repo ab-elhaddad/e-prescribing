@@ -1,3 +1,5 @@
+"use server";
+
 import { ActionReturn } from "../types";
 
 export async function updatePrescriptionAction(

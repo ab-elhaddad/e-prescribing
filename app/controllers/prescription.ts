@@ -1,3 +1,5 @@
+"use server";
+
 import {
   deletePrescription,
   getDoctorPrescriptions,
@@ -37,7 +39,7 @@ export async function getPatientPrescriptionsController(): Promise<
   ControllerReturn<GetPrescriptionDto[]>
 > {
   try {
-    const id = getCurrentUserId();
+    const id = await getCurrentUserId();
     const prescriptions = await getPatientPrescriptions(id);
     return { data: prescriptions.map(getPrescriptionDto) };
   } catch (error) {
@@ -49,7 +51,7 @@ export async function getDoctorPrescriptionsController(): Promise<
   ControllerReturn<GetPrescriptionDto[]>
 > {
   try {
-    const id = getCurrentUserId();
+    const id = await getCurrentUserId();
     const prescriptions = await getDoctorPrescriptions(id);
     return { data: prescriptions.map(getPrescriptionDto) };
   } catch (error) {
