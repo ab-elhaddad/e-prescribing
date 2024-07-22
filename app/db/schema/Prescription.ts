@@ -1,4 +1,4 @@
-import PrescriptionPersistanceDto from "@/app/dtos/persistence/PrescriptionPersistenceDto";
+import PrescriptionPersistanceDto from "@/app/dtos/prescription/prescriptionPersistenceDto";
 import mongoose from "mongoose";
 
 const prescriptionSchema = new mongoose.Schema<PrescriptionPersistanceDto>(
