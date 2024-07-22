@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
-import { FaSignInAlt } from "react-icons/fa";
+import SignInOrHome from "./SignInOrHome";
 
 export default function Auth() {
   return (
@@ -9,8 +9,7 @@ export default function Auth() {
       <SignedOut>
         <SignInButton>
           <div className="flex cursor-pointer items-center gap-2">
-            <FaSignInAlt />
-            Sign in
+            <SignInOrHome/>
           </div>
         </SignInButton>
       </SignedOut>
