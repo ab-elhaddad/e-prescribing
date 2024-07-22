@@ -71,7 +71,7 @@ E-Prescribing is a web application that allows doctors to create and send prescr
 
 ### Home Page
 
-![Home Page](https://github.com/ab-elhaddad/e-prescribing/assets/113056556/9ceac64a-68dd-4770-82a5-77c110b90794)
+![home](https://github.com/user-attachments/assets/4e0ecb07-0384-4b9c-982e-d82bf739193c)
 
 ### About Page
 
@@ -79,15 +79,15 @@ E-Prescribing is a web application that allows doctors to create and send prescr
 
 ### Login Page
 
-![Login Page](https://github.com/ab-elhaddad/e-prescribing/assets/113056556/2984dd27-a4be-48b5-b93e-14c10e3e8181)
+![login](https://github.com/user-attachments/assets/6a860083-d1bf-4832-a824-df2ca9bb1fb4)
 
 ### Signup Page
 
-![Register Page](https://github.com/ab-elhaddad/e-prescribing/assets/113056556/6886f0c8-f566-45d4-a32f-10bf343a4fb4)
+![signup](https://github.com/user-attachments/assets/30e5a7df-57ac-487e-adb8-51f62be20a1f)
 
 ### Profile Page
 
-![Profile Page](https://github.com/ab-elhaddad/e-prescribing/assets/113056556/7eba5466-fd65-472e-a260-7661572b84e9)
+![profile](https://github.com/user-attachments/assets/719a669b-3a1a-41f8-86d8-a3df99a425dc)
 
 ### Doctor Dashboard
 
