@@ -19,9 +19,10 @@ export default function SignInOrHome() {
       ) : (
         <>
           <SignInButton>
-            <div className="flex cursor-pointer items-center gap-2"></div>
-            <FaSignInAlt />
-            {"SignIn"}
+            <div className="flex cursor-pointer items-center gap-2">
+              <FaSignInAlt />
+              {"SignIn"}
+            </div>
           </SignInButton>
         </>
       )}
